@@ -32,8 +32,8 @@ M_liq_comp = liq_comp./MW;
 
 KSm = 0.15; 
 KNd = 0.05;
-KTh = 7; % corgne & wood
-KU =  7;
+KTh = 0.01; % corgne et al. 2004
+KU =  0.03; % " "
 KOH = 0.0001;    % KOH = (OH)min/(OH)liq
 KCO = 0.0005; 
 

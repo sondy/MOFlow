@@ -23,10 +23,10 @@ figure(3); title(['Reference density with depth pre- and post-overturn for model
  
 
 %% Temperatures and pressures
-figure(6); title(['temperature evolutions [C] for: ', name]); hold on; plot(time/3.1536e13, Tsurf, 'r-', time/3.1536e13, Tsolid, 'b-'); legend('surface temp','interior temp',0); xlabel('time [Ma]')
+% figure(6); title(['temperature evolutions [C] for: ', name]); hold on; plot(time/3.1536e13, Tsurf, 'r-', time/3.1536e13, Tsolid, 'b-'); legend('surface temp','interior temp',0); xlabel('time [Ma]')
 %%    figure(7); title(['temperature evolutions [C] for: ', name]); hold on; plot(Tsurffig, R/1000, 'ro', Tsolidfig, rfig/1000, 'bx', Tsolid(1) - adiabslope*(rfig - (R-RM)), rfig/1000, 'k-'); legend('surface temp','temp at top of solid','adiabat',0); ylabel('radius [km]')
-figure(8); title(['Temperature with depth for overturned model']);  hold on;
-    plot(Tinv,rinv/1000, 'r', CorrectedTinv,rinv/1000, 'g', Tsolid, r/1000, 'k:'); xlabel('temperature [C]'); ylabel('radius, km'); legend('Inverted temperature','Adiabatically corrected','solidus',0);
+% figure(8); title(['Temperature with depth for overturned model']);  hold on;
+%     plot(Tinv,rinv/1000, 'r', CorrectedTinv,rinv/1000, 'g', Tsolid, r/1000, 'k:'); xlabel('temperature [C]'); ylabel('radius, km'); legend('Inverted temperature','Adiabatically corrected','solidus',0);
 %    print -depsc 'plots/temperatureWithDepth.eps'
 %   plot(Tinv,rinv/1000, 'r', CorrectedTinv,rinv/1000, 'g', solidus, rinv/1000, 'k:'); xlabel('temperature [C]'); ylabel('radius, km'); legend('Inverted temperature','Adiabatically corrected','solidus',0);
 %figure(9); title(['Pressure vs r for model:  ', name]); hold on; plot(P,r/1000, 'r'); xlabel('Pressure [GPa]'); ylabel('radius, km');
@@ -40,7 +40,7 @@ figure(8); title(['Temperature with depth for overturned model']);  hold on;
 %figure(12); title(['Atmospheric water partial pressure vs tau*: ', name]); hold on; plot(HPatm, taustarw, 'k-'); xlabel('Pressure [Pa]'); ylabel('Tau star')
 %figure(13); title(['Viscous boundary layer [m] for: ', name]); hold on; plot(time/3.1536e13, delt, 'r-'); xlabel('time [Ma]')
 %figure(13); title(['Flux [W/m^2] vs surface temperature: ', name]); hold on; plot(Tsurf, log10(flux), 'k-'); xlabel('T [C]'); ylabel('Log(10)Flux [W/m^2]')
-figure(14); title(['Solidification rate by normalized volume: ', name]); hold on; plot(time/3.1536e13, vol/1000, 'k-'); xlabel('time [Ma]')
+% figure(14); title(['Solidification rate by normalized volume: ', name]); hold on; plot(time/3.1536e13, vol/1000, 'k-'); xlabel('time [Ma]')
 
 %% Atmospheres
 % figure(15); title(['log(10)mass added to atmosphere [kg] for: ', name]); hold on; plot(time/3.1536e13, log10(Catmadd), 'ro', time/3.1536e13, log10(Hatmadd), 'bx'); legend('carbon dioxide','water',0); xlabel('time [Ma]')
