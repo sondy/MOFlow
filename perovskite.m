@@ -71,7 +71,7 @@ M_eqmin(11) = KCO*M_liq_comp(11);
 eqmin = M_eqmin.*MW;                % this is the bulk composition of equilibrium perovskite
 eqmin = eqmin./(0.01*sum(eqmin));  % renormalized and in wt%
 
-OHsat = (eqmin(3)*0.0015 + eqmin(4)*0.0010 + eqmin(5)*0.004)/[eqmin(3)+eqmin(4)+eqmin(5)]; % saturation depends strongly on Fe, Mg, Ca
+OHsat = (eqmin(3)*0.0015 + eqmin(4)*0.0010 + eqmin(5)*0.004)./(eqmin(3)+eqmin(4)+eqmin(5)); % saturation depends strongly on Fe, Mg, Ca
 if eqmin(10) > OHsat               % prevent OH addition over saturation
     eqmin(10) = OHsat;                
     eqmin = eqmin./(0.01*sum(eqmin));
