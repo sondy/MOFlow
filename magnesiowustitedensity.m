@@ -50,7 +50,7 @@ for i = 1:2     % loop through each phase
 %     Kot = Kot(i);                                 % for consistency in function BirchMurnsolid
 %     Kpt = Kpt(i);
     Vo = Vo(i);
-    VP(i) = BirchMurnsolid(Kot, Kpt, Vo, P);
+    VP(i) = BirchMurnsolid(Kot(i), Kpt(i), Vo, P);
     molvol(i) = VP(i)/1e6;              % convert molar volume of m3/mol
     phase_rho(i) = rho_mol(i)/molvol(i);    % phase density in kg/m3
 

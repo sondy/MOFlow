@@ -56,6 +56,8 @@ if P(j) > Layer1P;
     pdensityzero = perovskitedensity(Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe, 1e-4, 1);
     pdensitysol = perovskitedensity(Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe, 1e-4, Tsolid(j));
 
+    P(j)
+    
     [Mgnummw, eqminmw] = magnesiowustite(liq_comp);
     mwdensity = magnesiowustitedensity(Mgnummw, P(j), Tsolid(j));
     mwdensityzero = magnesiowustitedensity(Mgnummw, 1e-4, 1);
