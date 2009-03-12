@@ -20,7 +20,7 @@ function density = magnesiowustitedensity(Mgnum, P, T)
 Vol298(1) = 12.25; %18.4; %12.25;       % Vo298, cm3/mole
 KT298(1) = 158;         % KT298, GPa
 Kpt(1) = 4.13;        % dK/dP
-dKdT1) = -0.031;           % dK/dT
+dKdT(1) = -0.031;           % dK/dT
 a0(1) = 0.355e-4;    % ao
 a1(1) = 1.1e-8;    % a1
 a2(1) = 0;   % a2
@@ -30,7 +30,7 @@ rho_mol(1) = 71.846/1000;  % kg/moles of formula
 Vol298(2) = 11.25; %18.4; %11.25; % Vo298, cm3/mole
 KT298(2) = 160; % KT298, GPa
 Kpt(2) = 4.13; % dK/dP
-dKdT2) = -0.0272; % dK/dT
+dKdT(2) = -0.0272; % dK/dT
 a0(2) = 0.3768e-4; % ao
 a1(2) = 0.7404e-8;    % a1
 a2(2) = -0.7445; % a2
@@ -44,7 +44,7 @@ for i = 1:2     % loop through each phase
     expVo(i) = (a0(i)*(T+298) + (a1(i)/2)*((T+298)^2) - a2(i)*(1/(T+298)))...
         - (a0(i)*(298) + (a1(i)/2)*(298^2) - a2(i)*(1/298));
     Vo(i) = Vol298(i)*exp(expVo(i));            % Vo(T)
-    Kot(i) = KT298(i) + dKdTi)*(T+298);        % KT(T)
+    Kot(i) = KT298(i) + dKdT(i)*(T+298);        % KT(T)
     
 %     magnesio_thermal(j, i) = Kot( i);
 %     Kot = Kot(i);                                 % for consistency in function BirchMurnsolid
