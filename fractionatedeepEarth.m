@@ -11,7 +11,7 @@ P(j) = -0.0374*(r(j)/1000) + 238.5372;   %***[GPa] from radius in km, from 130GP
 
 %%
 % %%%%%% LAYER 0 %%%%%%%%%%%%%%%%%%%% post-perovskite
-display('Layer 0: Post-perovskite')
+%display('Layer 0: Post-perovskite')
 if (P(j) > Layer0P);
    intliqx = intliq0;
    [eqminppv, Mgnumppv] = postperovskite(liq_comp);
@@ -47,7 +47,7 @@ end
 
 %%
 % %%%%%% LAYER 1 %%%%%%%%%%%%%%%%%%%% mw + perov
-display('Layer 1: Perovskite, Magnesiowustite')
+%display('Layer 1: Perovskite, Magnesiowustite')
 if P(j) > Layer1P;
     intliqx = intliq1;
     %    disp(['Layer 2, index = ', num2str(j)])
@@ -55,8 +55,6 @@ if P(j) > Layer1P;
     pdensity = perovskitedensity(Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe, P(j), Tsolid(j));
     pdensityzero = perovskitedensity(Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe, 1e-4, 1);
     pdensitysol = perovskitedensity(Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe, 1e-4, Tsolid(j));
-
-    P(j)
     
     [Mgnummw, eqminmw] = magnesiowustite(liq_comp);
     mwdensity = magnesiowustitedensity(Mgnummw, P(j), Tsolid(j));
@@ -85,7 +83,7 @@ if P(j) > Layer1P;
 end
 
 % %%%%%% LAYER 2 %%%%%%%%%%%%%%%%%%%% gammaspinel + majorite
-display('Layer 2: Gamma spinel, Majorite')
+%display('Layer 2: Gamma spinel, Majorite')
 if P(j) > Layer2P;
     intliqx = intliq2;
     %    disp(['Layer 2, index = ', num2str(j)])
@@ -122,7 +120,7 @@ end
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LAYER 3 %%%%%%%%%%%%%%%%%%%% gammaspinel + majorite
-display('Layer 3: Gamma spinel, Majorite')
+%display('Layer 3: Gamma spinel, Majorite')
 if P(j) > Layer3P;
     intliqx = intliq3;
     %    disp(['Layer 3, index = ', num2str(j)])
@@ -198,7 +196,7 @@ end
 % %disp('End of garnet fractionation - no more Al'); j
 
 %% %%%%%% LAYER 4 %%%%%%%%%%%%%%%%%%%% alpha + opx + cpx + gt
-display('Layer 4: Garnet, Alpha olivine, Clinopyroxene, Orthopyroxene')
+%display('Layer 4: Garnet, Alpha olivine, Clinopyroxene, Orthopyroxene')
 if P(j) > Layer4P;
     intliqx = intliq4;
     %    disp(['Layer 4 after garnet, index = ', num2str(j)])
@@ -245,7 +243,7 @@ end
 
 %%
 % % %%%%%% LAYER 5 %%%%%%%%%%%%%%%%%%%% spin + opx + cpx + alpha
-display('Layer 5: Spinel, Alpha olivine, Clinopyroxene, Orthopyroxene')
+%display('Layer 5: Spinel, Alpha olivine, Clinopyroxene, Orthopyroxene')
 if P(j) > Layer5P;
     intliqx = intliq5;
     %    disp(['Layer 5, index = ', num2str(j)])
@@ -292,7 +290,7 @@ end
 
 %%
 %%%%%%%%%%%%%%%%%% LAYER 6 %%%%%%%%%%%%%%%%%%%% plag + opx + cpx + alpha
-display('Layer 6: Plagioclase, Alpha olivine, Clinopyroxene, Orthopyroxene')
+%display('Layer 6: Plagioclase, Alpha olivine, Clinopyroxene, Orthopyroxene')
 if P(j) > Layer6P;
     intliqx = intliq6;
     %    disp(['Layer 6, index = ', num2str(j)])
@@ -342,7 +340,7 @@ end
 
 %%
 %%%%%%%%%%%%%%%%%% LAYER 7 %%%%%%%%%%%% same as layer 6; fixed liquid
-display('Layer 7: Same as layer 6 (fixed liquid)')
+%display('Layer 7: Same as layer 6 (fixed liquid)')
 if P(j) > Layer7P;
     intliqx = intliq7;
     %    disp(['Layer 7, index = ', num2str(j)])

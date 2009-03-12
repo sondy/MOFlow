@@ -7,11 +7,13 @@ function VP = BirchMurnsolid(Kot, Kpt, Vo, P)
 Pfunc = @(Vratio)(3/2)*Kot*((Vratio)^(7/3) - ...
     (Vratio)^(5/3))*(1 - (3/4)*(4 - Kpt)*((Vratio)^(2/3) - 1)) - P;
 
-[Vpressure, FVAL, EXITFLAG] = fzero(Pfunc, 1.2);
+range = [0 1000];
+
+[Vpressure, FVAL, EXITFLAG] = fzero(Pfunc, range);
 
 if (EXITFLAG < 0)
     fprintf('\n');
-    fprintf('fzero failed --- less than zero \n');
+    fprintf('fzero failed --- Vratio guess is less than zero \n');
     fprintf('\n');
     PrintCaller
     fprintf('\n');
