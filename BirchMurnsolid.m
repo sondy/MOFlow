@@ -7,7 +7,8 @@ function VP = BirchMurnsolid(Kot, Kpt, Vo, P)
 Pfunc = @(Vratio)(3/2)*Kot*((Vratio)^(7/3) - ...
     (Vratio)^(5/3))*(1 - (3/4)*(4 - Kpt)*((Vratio)^(2/3) - 1)) - P;
 
-range = [0 1000];
+% range = [0 1000];
+range = 1.3;
 
 [Vpressure, FVAL, EXITFLAG] = fzero(Pfunc, range);
 
