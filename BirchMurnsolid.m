@@ -7,14 +7,14 @@ function VP = BirchMurnsolid(Kot, Kpt, Vo, P)
 Pfunc = @(Vratio)(3/2)*Kot*((Vratio)^(7/3) - ...
     (Vratio)^(5/3))*(1 - (3/4)*(4 - Kpt)*((Vratio)^(2/3) - 1)) - P;
 
-% range = [0 1000];
-range = 1.3;
+range = [0.95 4];
+% range = 1.3;
 
 [Vpressure, FVAL, EXITFLAG] = fzero(Pfunc, range);
 
-global xrecord xrecordn
-xrecordn=xrecordn+1;
-xrecord(xrecordn)=Vpressure;
+% global xrecord xrecordn
+% xrecordn=xrecordn+1;
+% xrecord(xrecordn)=Vpressure;
 
 if (EXITFLAG < 0)
     fprintf('\n');
