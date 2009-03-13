@@ -1,3 +1,5 @@
+clear all;
+
 tic
 global xrecord xrecordn
 xrecord=zeros(1,100000);

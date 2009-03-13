@@ -18,7 +18,7 @@
 % T_surf(j)
 
 close all;
-clear all;
+% clear all;
 
 H2Oliquid(1) = 0.0; %0.05; %0.5;    %0;  % in mass percent
 CO2liquid(1) =  0.0; %0.01;%0.1;%0.6; %
