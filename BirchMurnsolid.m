@@ -11,6 +11,10 @@ range = [0 1000];
 
 [Vpressure, FVAL, EXITFLAG] = fzero(Pfunc, range);
 
+global xrecord xrecordn
+xrecordn=xrecordn+1;
+xrecord(xrecordn)=Vpressure;
+
 if (EXITFLAG < 0)
     fprintf('\n');
     fprintf('fzero failed --- Vratio guess is less than zero \n');
