@@ -34,21 +34,3 @@ Mearth = 5.9742e24;
 percWeight = massDprimeprime*100/Mearth;
 
 fprintf('This is %2.3g%% the mass of the Earth. \n', percWeight)
-
-% display(massDprimeprime)
-
-% theta = 0:0.000001:pi;
-% 
-% cosData = 2*cos(theta).*theta;
-% 
-% %cosSum = 0;
-% 
-% plot(theta, cosData)
-% 
-% % for j = 2:1:size(theta, 2)
-% %     
-% %     cosSum = cosSum + (cosData(j)-cosData(j-1))*(theta(j)-theta(j-1));
-% %     
-% % end
-% 
-% cosSum = trapz(theta, cosData)
