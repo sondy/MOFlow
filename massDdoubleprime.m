@@ -26,7 +26,15 @@ radiusDprimeprime = rinv(rho1_index:rho2_index);
 massDprimeprime = trapz(radiusDprimeprime,...
     4*pi.*rhoDprimeprime.*radiusDprimeprime.^2);
 
-fprintf('The mass of the D double prime layer is %2.3g kg \n', massDprimeprime)
+fprintf('The mass of the D double prime layer is %2.3g kg. \n',...
+    massDprimeprime)
+
+Mearth = 5.9742e24;
+
+percWeight = massDprimeprime*100/Mearth;
+
+fprintf('This is %2.3g%% the mass of the Earth. \n', percWeight)
+
 % display(massDprimeprime)
 
 % theta = 0:0.000001:pi;
