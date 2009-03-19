@@ -6,5 +6,10 @@
 
 % massDprimeprime is the mass of the D'' layer
 
-mass_mantle = 
+% mass_mantle = 
 
+% From Boyet and Carlson, 2005
+
+% [x]_CC * M_CC + [x]_MORBs * M_MORBs = [x]_EDR * M_EDR
+
+% Mass of the continental crust = 0.6%*MassEarth
