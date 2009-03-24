@@ -31,6 +31,10 @@ fprintf('The mass of the D double prime layer is %2.3g kg. \n',...
 
 Mearth = 5.9742e24;
 
-percWeight = massDprimeprime*100/Mearth;
+percEarthMass = massDprimeprime*100/Mearth;
 
-fprintf('This is %2.3g%% the mass of the Earth. \n', percWeight)
+fprintf('This is %2.3g%% the mass of the Earth. \n', percEarthMass)
+
+percMantleMass = massDprimeprime*100/Mantlemass;
+
+fprintf('This is %2.3g%% the mass of the mantle. \n', percMantleMass)
