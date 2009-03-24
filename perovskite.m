@@ -30,10 +30,28 @@ MW = [  60.09,...   % SiO2   (1)   g/mol for oxides
 AlSi = (Alwt/MW(2))/(Siwt/MW(1));
 M_liq_comp = liq_comp./MW;
 
-KSm = 0.15; 
-KNd = 0.05;
-KTh = 0.01; % corgne et al. 2004
-KU =  0.03; % " "
+% KSm = 0.15; 
+% KNd = 0.05;
+
+KSm_Ca = 9;
+KSm_MgFe = 0.05;
+KSm_Al = KSm_MgFe;
+
+KNd_Ca = 7;
+KNd_MgFe = 0.016;
+KNd_Al = KNd_MgFe;
+
+KTh_Ca = 10;
+KTh_MgFe = 0.005;
+KTh_Al = KTh_MgFe;
+
+KU_Ca = 8;
+KU_MgFe = 0.025;
+KU_Al = KU_MgFe;
+ 
+% KTh = 0.01; % corgne et al. 2004
+% KU =  0.03; % " "
+
 KOH = 0.0001;    % KOH = (OH)min/(OH)liq
 KCO = 0.0005; 
 
@@ -61,10 +79,30 @@ M_eqmin(3) = FeMgmin*M_eqmin(4);
  
 M_eqmin(2) = AlSi*M_eqmin(1);   % moles of Al2O3
 M_eqmin(5) = CaAlmin*2*M_eqmin(2);
-M_eqmin(6) = KSm*M_liq_comp(6);
-M_eqmin(7) = KNd*M_liq_comp(7);
-M_eqmin(8) = KTh*M_liq_comp(8);
-M_eqmin(9) = KU*M_liq_comp(9);
+
+Mgnum = M_eqmin(4)/(M_eqmin(4) + M_eqmin(3));
+TotMgFe = (3)*M_eqmin(2);        % moles of Mg+Fe that go into Al perovskite to charge balance Al
+RemMgFe = (M_eqmin(3) + M_eqmin(4)) - TotMgFe;  % moles of Mg+Fe left to make non-Al, non-Ca perovskite
+Perc_Al = (M_eqmin(2))/((M_eqmin(2)) + (RemMgFe) + (M_eqmin(5)));   % fraction of Al perovskite
+Perc_Ca = (M_eqmin(5))/((M_eqmin(2)) + (RemMgFe) + (M_eqmin(5)));   % fraction of Ca perovskite
+Perc_MgFe = (RemMgFe)/((M_eqmin(2)) + (RemMgFe) + (M_eqmin(5)));   % fraction of MgFe perovskite
+
+% M_eqmin(6) = KSm*M_liq_comp(6); % Sm
+% M_eqmin(7) = KNd*M_liq_comp(7); % Nd
+
+M_eqmin(6) = M_liq_comp(6)*(Perc_Al*KSm_Al + Perc_Ca*KSm_Ca +...
+    Perc_MgFe*KSm_MgFe);
+M_eqmin(7) = M_liq_comp(7)*(Perc_Al*KNd_Al + Perc_Ca*KNd_Ca +...
+    Perc_MgFe*KNd_MgFe);
+
+M_eqmin(8) = M_liq_comp(8)*(Perc_Al*KTh_Al + Perc_Ca*KTh_Ca +...
+    Perc_MgFe*KTh_MgFe);
+M_eqmin(9) = M_liq_comp(9)*(Perc_Al*KU_Al + Perc_Ca*KU_Ca +...
+    Perc_MgFe*KU_MgFe);
+
+% M_eqmin(8) = KTh*M_liq_comp(8);
+% M_eqmin(9) = KU*M_liq_comp(9);
+
 M_eqmin(10) = KOH*M_liq_comp(10);
 M_eqmin(11) = KCO*M_liq_comp(11);
 
@@ -84,12 +122,5 @@ end
 
 % now divide into (Mg, Fe)3(Al)2 perovskite, [CaSiO3]3 Ca perovskite, and [(Mg,Fe)SiO3]3 non-Al, non-Ca perovskite
 % req. 2 Als or 3 Cas per unit
- 
-Mgnum = M_eqmin(4)/(M_eqmin(4) + M_eqmin(3));
-TotMgFe = (3)*M_eqmin(2);        % moles of Mg+Fe that go into Al perovskite to charge balance Al
-RemMgFe = (M_eqmin(3) + M_eqmin(4)) - TotMgFe;  % moles of Mg+Fe left to make non-Al, non-Ca perovskite
-Perc_Al = (M_eqmin(2))/((M_eqmin(2)) + (RemMgFe) + (M_eqmin(5)));   % fraction of Al perovskite
-Perc_Ca = (M_eqmin(5))/((M_eqmin(2)) + (RemMgFe) + (M_eqmin(5)));   % fraction of Ca perovskite
-Perc_MgFe = (RemMgFe)/((M_eqmin(2)) + (RemMgFe) + (M_eqmin(5)));   % fraction of MgFe perovskite
  
 
