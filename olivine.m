@@ -58,7 +58,7 @@ M_eqmin(10) = KOH*M_liq_comp(10);
 M_eqmin(11) = KCO*M_liq_comp(11);
 
 % M_eqmin
-eqmin = M_eqmin.*MW;                % this is the bulk comosition of equilibrium olivine
+eqmin = M_eqmin.*MW;                % this is the bulk composition of equilibrium olivine
 eqmin = eqmin./(0.01*sum(eqmin));   % renormalized and in wt%
 
 if eqmin(10) > 0.12                  % prevent OH addition over saturation
