@@ -2,7 +2,7 @@
 
 % common final calculations after each increment of solid fractionation
  
-if P(j) < 0.2;
+if P(j) < Layer6P;
     new_liq = liquid(j-1,:);
 else        % Note that solid composition includes interstitial liquids
 %    new_liq = liquid(j-1,:)*(liqfrac(j)/liqfrac(j-1)) - solid(j,:)*(1-liqfrac(j)/liqfrac(j-1))*(1-intliqx) - liquid(j-1,:)*(1-liqfrac(j)/liqfrac(j-1))*(intliqx);
@@ -16,11 +16,11 @@ end
     D(j) = density;
     Do(j) = densityzero;
     Dsol(j) = densitysol;
-       if liquid(j-1,1) <= 1; liquid(j-1,1) = 1; disp(['No Si at step: ', num2str(j)]); liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));end
-       if liquid(j-1,2) <= 1; liquid(j-1,1) = 1; disp(['No Al at step: ', num2str(j)]); liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));end 
-       if liquid(j-1,3) <= 1; liquid(j-1,3) = 1; disp(['No Fe at step: ', num2str(j)]); liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));end
-       if liquid(j-1,4) <= 1; liquid(j-1,4) = 1; disp(['No Mg at step: ', num2str(j)]); liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));end
-       if liquid(j-1,5) <= 1; liquid(j-1,5) = 1; disp(['No Ca at step: ', num2str(j)]); liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));end
+       if liquid(j,1) <= 3; liquid(j,1) = 3; disp(['No Si at step: ', num2str(j)]); liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));end
+       if liquid(j,2) <= 2; liquid(j,1) = 2; disp(['No Al at step: ', num2str(j)]); liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));end 
+       if liquid(j,3) <= 1; liquid(j,3) = 1; disp(['No Fe at step: ', num2str(j)]); liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));end
+       if liquid(j,4) <= 1; liquid(j,4) = 1; disp(['No Mg at step: ', num2str(j)]); liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));end
+       if liquid(j,5) <= 1; liquid(j,5) = 1; disp(['No Ca at step: ', num2str(j)]); liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));end
 %        if liquid(j-1,6) <= 1e-7; liquid(j-1,5) = 1e-6; disp(['No Sm at step: ', num2str(j)]); liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));end
 %        if liquid(j-1,7) <= 1e-7; liquid(j-1,5) = 1e-6; disp(['No Nd at step: ', num2str(j)]); liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));end
 %        if liquid(j-1,8) <= 1e-7; liquid(j-1,5) = 1e-6; disp(['No Lu at step: ', num2str(j)]); liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));end

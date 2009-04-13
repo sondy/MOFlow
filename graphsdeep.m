@@ -25,8 +25,8 @@ figure(3); title(['Reference density with depth pre- and post-overturn for model
 %% Temperatures and pressures
 % figure(6); title(['temperature evolutions [C] for: ', name]); hold on; plot(time/3.1536e13, Tsurf, 'r-', time/3.1536e13, Tsolid, 'b-'); legend('surface temp','interior temp',0); xlabel('time [Ma]')
 %%    figure(7); title(['temperature evolutions [C] for: ', name]); hold on; plot(Tsurffig, R/1000, 'ro', Tsolidfig, rfig/1000, 'bx', Tsolid(1) - adiabslope*(rfig - (R-RM)), rfig/1000, 'k-'); legend('surface temp','temp at top of solid','adiabat',0); ylabel('radius [km]')
-% figure(8); title(['Temperature with depth for overturned model']);  hold on;
-%     plot(Tinv,rinv/1000, 'r', CorrectedTinv,rinv/1000, 'g', Tsolid, r/1000, 'k:'); xlabel('temperature [C]'); ylabel('radius, km'); legend('Inverted temperature','Adiabatically corrected','solidus',0);
+ figure(8); title(['Temperature with depth for overturned model']);  hold on;
+     plot(Tinv,rinv/1000, 'r', CorrectedTinv,rinv/1000, 'g', Tsolid, r/1000, 'k:'); xlabel('temperature [C]'); ylabel('radius, km'); legend('Inverted temperature','Adiabatically corrected','solidus',0);
 %    print -depsc 'plots/temperatureWithDepth.eps'
 %   plot(Tinv,rinv/1000, 'r', CorrectedTinv,rinv/1000, 'g', solidus, rinv/1000, 'k:'); xlabel('temperature [C]'); ylabel('radius, km'); legend('Inverted temperature','Adiabatically corrected','solidus',0);
 %figure(9); title(['Pressure vs r for model:  ', name]); hold on; plot(P,r/1000, 'r'); xlabel('Pressure [GPa]'); ylabel('radius, km');
@@ -53,9 +53,9 @@ figure(3); title(['Reference density with depth pre- and post-overturn for model
 %%    figure(20); title(['Liquid water content [mass percent] for: ', name]); hold on; plot(Tsurf, liquid(:,10)); xlabel('surface temperature')
 %figure(20); title(['Liquid carbon content [mass percent] for: ', name]); hold on; plot(time/3.1536e13, CO2saturation, 'r-', time/3.1536e13, liquid(:,11), 'b-'); legend('saturation','magma content',0); xlabel('time [Ma]'); %axis([0 0.9 0 3])
 %figure(21); title(['Volatile contents in evolving liquid']); hold on; plot(liquid(:,10),r/1000, 'g', liquid(:,11),r/1000,'r'); xlabel('water and carbon content in evolving liquid wt%]'); ylabel('radius, km'); legend('water','carbon',0);
-%figure(22); title(['Oxide percentage of evolving liquid:  ', name]); hold on; plot(liquid(:,1), r/1000, liquid(:,2), r/1000, liquid(:,3), r/1000, liquid(:,4), r/1000, liquid(:,5), r/1000); xlabel('wt% of oxide'); ylabel('radius, km'); legend('SiO2','Al2O3', 'Feo','MgO', 'CaO', 0);
-% figure(23); title(['Ppm of trace elements in evolving liquids for model: ', name]); hold on;
-%    plot(liquid(:,6)*10^4, r/1000, liquid(:,7)*10^4, r/1000, liquid(:,8)*10^4, r/1000, liquid(:,9)*10^4, r/1000); xlabel('ppm of trace element'); ylabel('radius, km'); legend('Sm','Nd','Lu','Hf',0);
+figure(22); title(['Oxide percentage of evolving liquid:  ', name]); hold on; plot(liquid(:,1), r/1000, liquid(:,2), r/1000, liquid(:,3), r/1000, liquid(:,4), r/1000, liquid(:,5), r/1000); xlabel('wt% of oxide'); ylabel('radius, km'); legend('SiO2','Al2O3', 'Feo','MgO', 'CaO', 0);
+figure(23); title('Ppm by weight of trace elements in evolving liquids'); hold on;
+    plot(liquid(:,6)*10^4, r/1000, liquid(:,7)*10^4, r/1000, liquid(:,8)*10^4, r/1000, liquid(:,9)*10^4, r/1000); xlabel('ppm of trace element'); ylabel('radius, km'); legend('Sm','Nd','Th','U',0);
 
 %% Major element compositions of cumulates
 %%    figure(24); title(['Oxide percentage with depth for pre-overturn model:  ', name]); hold on; plot(solid(:,1), r/1000, solid(:,2), r/1000, solid(:,3), r/1000, solid(:,4), r/1000, solid(:,5), r/1000); xlabel('wt% of oxide'); ylabel('radius, km'); legend('SiO2','Al2O3', 'Feo','MgO', 'CaO', 0);
@@ -131,13 +131,13 @@ hold on;
 x1 = Dsolinv;
 y1 = rinv/1000;
 
-x2 = solidinv(:,6)*10^4/0.1471;
+x2 = solidinv(:,6)*10^4;
 y2 = rinv/1000;
-x3 = solidinv(:,7)*10^4/0.4524;
+x3 = solidinv(:,7)*10^4;
 y3 = rinv/1000; 
-x4 = solidinv(:,8)*10^4/0.0243; 
+x4 = solidinv(:,8)*10^4; 
 y4 = rinv/1000; 
-x5 = solidinv(:,9)*10^4/0.1040; 
+x5 = solidinv(:,9)*10^4; 
 y5 = rinv/1000;
 
 hl1 = line(x1, y1, 'Color', 'k');
@@ -157,27 +157,14 @@ hl5 = line(x5,y1,'Color','c','Parent',ax2);
 
 legend('Sm','Nd','Th','U',0); %axis([0 .5 2000 3400]);
 
-title(['Trace element concentrations chondrite-normalized with depth for overturned model:  ', name]);
-
-print -depsc plots/concentration-density.eps
+title('Trace element concentrations ppm with depth for overturned model');
 
 hold off;
 
 
-% 
-% figure(42);...
-% %    title(['Reference density with depth pre- and post-overturn for model:  ', name]);...
-%     plot(...%Dsol(1:marker2),r(1:marker2)/1000,'y',
-%     Dsolinv,rinv/1000, 'k');...
-%     xlabel('density at 1 atm and solidus temperature [kg/m3]');...
-%     ylabel('radius, km');
-% 
-% 
-% 
-% %figure(43); 
-% %title(['Trace element concentrations chondrite-normalized with depth for overturned model:  ', name]); 
-% plot(solidinv(:,6)*10^4/0.1471, rinv/1000, solidinv(:,7)*10^4/0.4524, rinv/1000, solidinv(:,8)*10^4/0.0243, rinv/1000, solidinv(:,9)*10^4/0.1040, rinv/1000);...
-%     xlabel('fraction of chondritic');...
-%     ylabel('radius, km');...
-%     legend('Sm','Nd','Lu','Hf',0); %axis([0 .5 2000 3400]);
+figure(43); 
+title('147Sm/144Nd ratio in magma ocean cumulates and in coevolving liquids'); 
+plot(((solid(:,6)*0.1499/150.36)/(solid(:,7)*0.238/144.24)), r/1000, 'g-',((liquid(:,6)*0.1499/150.36)/(liquid(:,7)*0.238/144.24)), r/1000, 'r-');
+    xlabel('147Sm/144Nd molar');ylabel('radius [km] of cumulate solidification');
+%    legend('Solid cumulates','Coexisting magma ocean liquids',0); %axis([0 .5 2000 3400]);
 

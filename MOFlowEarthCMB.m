@@ -1,8 +1,7 @@
 % MOFlowEarthCMB
+%% NEED TO CHECK PE CALCS
 
 % Using the Th-U decay chain
-
-% XXX NEED TO change cool2clement, graphs, and sortandinvert to correct versions for depth
 % lines that need to be changed for new planets are marked with ***
 % **** change coretemp in cool2clement to make smooth profile
 
@@ -24,10 +23,9 @@ H2Oliquid(1) = 0.0; %0.05; %0.5;    %0;  % in mass percent
 CO2liquid(1) =  0.0; %0.01;%0.1;%0.6; %
 
 % initial values for calculations in this program
-%RM = 2000000;                   % *** m, depth of magma ocean
 CMB = 2885000;                  % *** m, radius of core-mantle boundary
 R = 6378000;                    % *** m, total radius of planet
-RM = R - CMB;
+RM = R - CMB; %2000000;                   % *** m, depth of magma ocean
 g = 9.8;                        % *** m/sec2
 adiabslope = 0.33/1000;         %*** K/m, slope of adiabat
 tfinal = 50*3.14e13;            % *** sec total time of conductive cooling in cool2clement
@@ -39,6 +37,7 @@ Mantlemass = (R^3 - (R - RM)^3)/(R^3 - CMB^3)*4.032e+024; %*** kg, mass of MO
 
 name = ([num2str(H2Oliquid(1)),'% H_2O, ',num2str(CO2liquid(1)),'% CO_2']);
 
+maxstep = 997;  % number of steps = number of volume fractions
 tage = 4.56*10^9*3.14*10^7; % age of planet, in sec
 kth = 3;            % W/mK
 H = 418700;         % J/kg
@@ -50,7 +49,7 @@ rho = 3000;         % kg/m3
 rhocore = 7500;             % kg/m^3
 solidrho = 4000;    % kg/m3
 alpha = 3e-5;       % K-1
-r = zeros(1, 990);
+r = zeros(1, maxstep);
 r(1) = (R-RM);
 eta = 1;            % Pas
 kwater = 0.01;      % m2/kg Yamamoto '52 for water for emissivity calculations
@@ -103,53 +102,53 @@ liq_comp(10) = H2Oliquid2(1); liq_comp(11) = CO2liquid2(1);
 
 % post-perovskite layer above the CMB, as magnesiowustite (sp?) is unstable
 % at the relevant temperatures and pressures
-intliq0 = 0.01;
+intliq0 = 0.00;
 ppv0 = (1 - intliq0); % layer 0
 Layer0P = 120; %
 
-intliq1 = 0.01;
+intliq1 = 0.00;
 per1 = (1 - intliq1)*0.95; % layer 1
 mw1 = (1 - intliq1)*0.05;
 Layer1P = 22;
 
-intliq2 = 0.01;
+intliq2 = 0.00;
 gamma2 = (1 - intliq2)*0.45; %0.55; % layer 2
 maj2 = (1 - intliq2)*0.55; %0.45;
 Layer2P = 18.00;
 
-intliq3 = 0.01;
+intliq3 = 0.00;
 beta3 = (1 - intliq3)*0.4; % layer 3
 maj3 = (1 - intliq3)*0.35;
 cpx3 = (1 - intliq3)*0.25;
 Layer3P = 15.00;
 
-intliq4 = 0.01;
-gar4 = (1 - intliq4)*0.05; %0.10; %0.15; % layer 4 garnet settling is removed
-cpx4 = (1 - intliq4)*0.25;
+intliq4 = 0.00;
+gar4 = (1 - intliq4)*0.10; %0.10; %0.15; % layer 4 garnet settling is removed
+cpx4 = (1 - intliq4)*0.20;
 opx4 = (1 - intliq4)*0.20; %0.15;
 alpha4 = (1 - intliq4)*0.50;
 Layer4P = 2.5;
-Layer4PA = 12.8;    % pressure after which not to return to garnet
+%Layer4PA = 12.8;    % pressure after which not to return to garnet
 
-intliq5 = 0.01;
+intliq5 = 0.00;
 spin5 = (1 - intliq5)*0.05; %0.10; %0.15;  % layer 5
 cpx5 = (1 - intliq5)*0.25;
 opx5 = (1 - intliq5)*0.20;
-alpha5 = (1 - intliq5)*0.5; %0.45; %0.40;
+alpha5 = (1 - intliq5)*0.50; %0.45; %0.40;
 Layer5P = 1.0;
 
-intliq6 = 0.01;
+intliq6 = 0.00;
 plag6 = (1 - intliq6)*0.05; %0.10; %0.15; % layer 6
 cpx6 = (1 - intliq6)*0.25;
 opx6 = (1 - intliq6)*0.20;
-alpha6 = (1 - intliq6)*0.5; %0.45; %0.40;
-Layer6P = 0.05; %0.9;
+alpha6 = (1 - intliq6)*0.50; %0.45; %0.40;
+Layer6P = 0.2; %0.9;
 
-intliq7 = intliq6;
-plag7 = plag6; % layer 7 as layer 6 but no liquid evolution
-cpx7 = cpx6;
-opx7 = opx6;
-alpha7 = alpha6;
+intliq7 = 0.00;   % kind of a proxy for all the remaining evolved liquid
+plag7 = (1 - intliq7)*0.3; %  no liquid evolution
+cpx7 = (1 - intliq7)*0;
+opx7 = (1 - intliq7)*0.3;
+alpha7 = (1 - intliq7)*0.3;
 Layer7P = 0.0;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -167,25 +166,25 @@ Patm(1) = CPatm(1) + HPatm(1); % calculated above when initialatmosphere routine
 HMatm(1) = (HPatm(1)*4*pi*R^2)/g; CMatm(1) = (CPatm(1)*4*pi*R^2)/g;
 Matm(1) = HMatm(1) + CMatm(1);
 
-taustarw = zeros(1,990);
+taustarw = zeros(1,maxstep);
 taustarw(1) = ((3*HMatm(1))/(8*pi*R^2))*(((kwater*g)/(3*po))^0.5);  % Abe and Matsui 1986
 
-taustarc = zeros(1,990);
+taustarc = zeros(1,maxstep);
 taustarc(1) = ((3*CMatm(1))/(8*pi*R^2))*(((kcarbon*g)/(3*po))^0.5);
 
-emiss = zeros(1,990);
+emiss = zeros(1,maxstep);
 emiss(1) = (2 /(taustarw(1)+taustarc(1) + 2));
 
-vol = zeros(1,990);
+vol = zeros(1,maxstep);
 vol(1) = 1;
 
-flux = zeros(1,990);
+flux = zeros(1,maxstep);
 
 k = 1;  m = 1; % loops for abbreviated data for output - see bottom of file
 
-magnesio_thermal = zeros(990, 2);
+magnesio_thermal = zeros(maxstep, 2);
 
-for j = 2:1:990    % each step is one-tenth of a percent solidification by volume
+for j = 2:1:maxstep    % each step is one-tenth of a percent solidification by volume
 %     display(j)
     vol(j) = j;
 
@@ -335,7 +334,8 @@ taustarwend = ((3*(HMatm(j)+Hnewatm))/(8*pi*R^2))*(((kwater*g)/(3*po))^0.5);  % 
 taustarcend = ((3*(CMatm(j)+Cnewatm))/(8*pi*R^2))*(((kcarbon*g)/(3*po))^0.5);
 endemiss = (2 /(taustarwend+taustarcend + 2));    % H2O/CO2 relative absorption wavelength widths =1.5/0.5 not considered here
 %%%%%%%%%%%%
-cool2clementpartial
+cool2clementwhole
 graphsdeep
 
 massDdoubleprime
+EER_Sm_Nd

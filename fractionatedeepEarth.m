@@ -47,8 +47,8 @@ end
 
 %%
 % %%%%%% LAYER 1 %%%%%%%%%%%%%%%%%%%% mw + perov
-%display('Layer 1: Perovskite, Magnesiowustite')
 if P(j) > Layer1P;
+%display('Layer 1: Perovskite, Magnesiowustite')
     intliqx = intliq1;
     %    disp(['Layer 2, index = ', num2str(j)])
     [eqminper, Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe] = perovskite(liq_comp);
@@ -83,8 +83,8 @@ if P(j) > Layer1P;
 end
 
 % %%%%%% LAYER 2 %%%%%%%%%%%%%%%%%%%% gammaspinel + majorite
-%display('Layer 2: Gamma olivine, Majorite')
 if P(j) > Layer2P;
+%display('Layer 2: Gamma spinel, Majorite')
     intliqx = intliq2;
     %    disp(['Layer 2, index = ', num2str(j)])
     [eqmingamma, Mgnumg] = gamma(liq_comp);
@@ -120,8 +120,8 @@ end
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LAYER 3 %%%%%%%%%%%%%%%%%%%% gammaspinel + majorite
-%display('Layer 3: Beta olivine, Majorite, Clinopyroxene')
 if P(j) > Layer3P;
+%display('Layer 3: Gamma spinel, Majorite')
     intliqx = intliq3;
     %    disp(['Layer 3, index = ', num2str(j)])
     [eqminbeta, Mgnumb] = beta(liq_comp);
@@ -196,8 +196,8 @@ end
 % %disp('End of garnet fractionation - no more Al'); j
 
 %% %%%%%% LAYER 4 %%%%%%%%%%%%%%%%%%%% alpha + opx + cpx + gt
-%display('Layer 4: Garnet, Alpha olivine, Clinopyroxene, Orthopyroxene')
 if P(j) > Layer4P;
+%display('Layer 4: Garnet, Alpha olivine, Clinopyroxene, Orthopyroxene')
     intliqx = intliq4;
     %    disp(['Layer 4 after garnet, index = ', num2str(j)])
     [eqmingar, Mgnumgar, Perc_AlCa, Perc_AlMgFe] = garnet(liq_comp);
@@ -243,8 +243,8 @@ end
 
 %%
 % % %%%%%% LAYER 5 %%%%%%%%%%%%%%%%%%%% spin + opx + cpx + alpha
-%display('Layer 5: Spinel, Alpha olivine, Clinopyroxene, Orthopyroxene')
 if P(j) > Layer5P;
+%display('Layer 5: Spinel, Alpha olivine, Clinopyroxene, Orthopyroxene')
     intliqx = intliq5;
     %    disp(['Layer 5, index = ', num2str(j)])
     [eqminspin, Mgnumspin] = spinel(liq_comp);
@@ -290,8 +290,8 @@ end
 
 %%
 %%%%%%%%%%%%%%%%%% LAYER 6 %%%%%%%%%%%%%%%%%%%% plag + opx + cpx + alpha
-%display('Layer 6: Plagioclase, Alpha olivine, Clinopyroxene, Orthopyroxene')
 if P(j) > Layer6P;
+display('Layer 6: Plagioclase, Alpha olivine, Clinopyroxene, Orthopyroxene')
     intliqx = intliq6;
     %    disp(['Layer 6, index = ', num2str(j)])
     [eqminplag, Anplag] = plagioclase(liq_comp);
@@ -340,8 +340,8 @@ end
 
 %%
 %%%%%%%%%%%%%%%%%% LAYER 7 %%%%%%%%%%%% same as layer 6; fixed liquid
-%display('Layer 7: Same as layer 6 (fixed liquid)')
 if P(j) > Layer7P;
+display('Layer 7: Same as layer 6 (fixed liquid)')
     intliqx = intliq7;
     %    disp(['Layer 7, index = ', num2str(j)])
     [eqminplag, Anplag] = plagioclase(liq_comp);
