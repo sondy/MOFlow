@@ -291,7 +291,7 @@ end
 %%
 %%%%%%%%%%%%%%%%%% LAYER 6 %%%%%%%%%%%%%%%%%%%% plag + opx + cpx + alpha
 if P(j) > Layer6P;
-display('Layer 6: Plagioclase, Alpha olivine, Clinopyroxene, Orthopyroxene')
+%display('Layer 6: Plagioclase, Alpha olivine, Clinopyroxene, Orthopyroxene')
     intliqx = intliq6;
     %    disp(['Layer 6, index = ', num2str(j)])
     [eqminplag, Anplag] = plagioclase(liq_comp);

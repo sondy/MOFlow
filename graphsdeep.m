@@ -124,47 +124,50 @@ figure(34); title(['Trace element concentrations chondrite-normalized with depth
 % 
 % hold on;
 
-figure(42);
+% figure(42);
+% 
+% hold on;
+% 
+% x1 = Dsolinv;
+% y1 = rinv/1000;
+% 
+% x2 = solidinv(:,6)*10^4;
+% y2 = rinv/1000;
+% x3 = solidinv(:,7)*10^4;
+% y3 = rinv/1000; 
+% x4 = solidinv(:,8)*10^4; 
+% y4 = rinv/1000; 
+% x5 = solidinv(:,9)*10^4; 
+% y5 = rinv/1000;
+% 
+% hl1 = line(x1, y1, 'Color', 'k');
+% xlabel('density at 1 atm and solidus temperature [kg/m^3]');
+% ylabel('radius, km');
+% ax1 = gca;
+% 
+% ax2 = axes('Position',get(ax1,'Position'),...
+%            'XAxisLocation','top',...
+%            'YAxisLocation','right',...
+%            'Color','none',...
+%            'XColor','k','YColor','k');
+% hl2 = line(x2,y1,'Color','b','Parent',ax2);
+% hl3 = line(x3,y1,'Color','g','Parent',ax2);
+% hl4 = line(x4,y1,'Color','r','Parent',ax2);
+% hl5 = line(x5,y1,'Color','c','Parent',ax2);
+% 
+% legend('Sm','Nd','Th','U',0); %axis([0 .5 2000 3400]);
+% 
+% title('Trace element concentrations ppm with depth for overturned model');
+% 
+% hold off;
 
-hold on;
-
-x1 = Dsolinv;
-y1 = rinv/1000;
-
-x2 = solidinv(:,6)*10^4;
-y2 = rinv/1000;
-x3 = solidinv(:,7)*10^4;
-y3 = rinv/1000; 
-x4 = solidinv(:,8)*10^4; 
-y4 = rinv/1000; 
-x5 = solidinv(:,9)*10^4; 
-y5 = rinv/1000;
-
-hl1 = line(x1, y1, 'Color', 'k');
-xlabel('density at 1 atm and solidus temperature [kg/m^3]');
-ylabel('radius, km');
-ax1 = gca;
-
-ax2 = axes('Position',get(ax1,'Position'),...
-           'XAxisLocation','top',...
-           'YAxisLocation','right',...
-           'Color','none',...
-           'XColor','k','YColor','k');
-hl2 = line(x2,y1,'Color','b','Parent',ax2);
-hl3 = line(x3,y1,'Color','g','Parent',ax2);
-hl4 = line(x4,y1,'Color','r','Parent',ax2);
-hl5 = line(x5,y1,'Color','c','Parent',ax2);
-
-legend('Sm','Nd','Th','U',0); %axis([0 .5 2000 3400]);
-
-title('Trace element concentrations ppm with depth for overturned model');
-
-hold off;
-
-
+%%
 figure(43); 
+hold on
 title('147Sm/144Nd ratio in magma ocean cumulates and in coevolving liquids'); 
-plot(((solid(:,6)*0.1499/150.36)/(solid(:,7)*0.238/144.24)), r/1000, 'g-',((liquid(:,6)*0.1499/150.36)/(liquid(:,7)*0.238/144.24)), r/1000, 'r-');
-    xlabel('147Sm/144Nd molar');ylabel('radius [km] of cumulate solidification');
-%    legend('Solid cumulates','Coexisting magma ocean liquids',0); %axis([0 .5 2000 3400]);
-
+plot(((solid(:,6)*0.1499/150.36)/(solid(:,7)*0.238/144.24)), r/1000, 'g-',...
+    ((liquid(:,6)*0.1499/150.36)/(liquid(:,7)*0.238/144.24)), r/1000, 'r-');
+    xlabel('147Sm/144Nd molar');
+    ylabel('radius [km] of cumulate solidification');
+    legend('Solid cumulates','Coexisting magma ocean liquids'); %axis([0 .5 2000 3400]);
+hold off
