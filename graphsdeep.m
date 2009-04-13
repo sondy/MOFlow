@@ -159,6 +159,8 @@ legend('Sm','Nd','Th','U',0); %axis([0 .5 2000 3400]);
 
 title(['Trace element concentrations chondrite-normalized with depth for overturned model:  ', name]);
 
+print -depsc plots/concentration-density.eps
+
 hold off;
 
 

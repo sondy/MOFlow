@@ -83,7 +83,7 @@ if P(j) > Layer1P;
 end
 
 % %%%%%% LAYER 2 %%%%%%%%%%%%%%%%%%%% gammaspinel + majorite
-%display('Layer 2: Gamma spinel, Majorite')
+%display('Layer 2: Gamma olivine, Majorite')
 if P(j) > Layer2P;
     intliqx = intliq2;
     %    disp(['Layer 2, index = ', num2str(j)])
@@ -120,7 +120,7 @@ end
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LAYER 3 %%%%%%%%%%%%%%%%%%%% gammaspinel + majorite
-%display('Layer 3: Gamma spinel, Majorite')
+%display('Layer 3: Beta olivine, Majorite, Clinopyroxene')
 if P(j) > Layer3P;
     intliqx = intliq3;
     %    disp(['Layer 3, index = ', num2str(j)])
