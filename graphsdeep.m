@@ -165,9 +165,9 @@ figure(34); title(['Trace element concentrations chondrite-normalized with depth
 figure(43); 
 hold on
 title('147Sm/144Nd ratio in magma ocean cumulates and in coevolving liquids'); 
-plot(((solid(:,6)*0.1499/150.36)/(solid(:,7)*0.238/144.24)), r/1000, 'g-',...
-    ((liquid(:,6)*0.1499/150.36)/(liquid(:,7)*0.238/144.24)), r/1000, 'r-');
+plot(((solid(:,6)*0.1499./150.36)./(solid(:,7)*0.238./144.24)), r/1000, 'g-',...
+    ((liquid(:,6)*0.1499./150.36)./(liquid(:,7)*0.238./144.24)), r/1000, 'r-');
     xlabel('147Sm/144Nd molar');
     ylabel('radius [km] of cumulate solidification');
-    legend('Solid cumulates','Coexisting magma ocean liquids'); %axis([0 .5 2000 3400]);
+    legend('Solid cumulates','Coexisting magma ocean liquids', 'Location', 'SouthEast'); %axis([0 .5 2000 3400]);
 hold off
