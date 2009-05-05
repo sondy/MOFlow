@@ -14,8 +14,18 @@ figure(3); title(['Reference density with depth pre- and post-overturn for model
     ylabel('radius, km');    
 %    print -depsc 'plots/densityWithDepth.eps'
     
-% figure(4); title(['Phase densities for model:  ', name]); hold on; axis([2000 4500 5400 6400]); plot(perov, r/1000, magnesio, r/1000, bet, r/1000, gam, r/1000, maj, r/1000, stish, r/1000, cpyrox, r/1000, opyrox, r/1000, gar, r/1000, spi, r/1000, plag, r/1000, oliv, r/1000, iliq, r/1000); 
-%     legend('perovskite', 'magnesiowustite', 'beta', 'gamma', 'majorite', 'stishovite', 'cpx', 'opx', 'garnet', 'spinel', 'plagioclase', 'olivine', 'int liq', 0); xlabel('Density [kg/m3]'); ylabel('radius, km'); zoom on;
+figure(4); title(['Phase densities for model:  ', name]); 
+hold on; 
+axis([2000 4500 5400 6400]);  
+plot(perov, r/1000, magnesio, r/1000, bet, r/1000, gam, r/1000, maj,...
+    r/1000, stish, r/1000, cpyrox, r/1000, opyrox, r/1000, gar,...
+    r/1000, spi, r/1000, plag, r/1000, oliv, r/1000); 
+plot(iliq, r/1000, 'k:')
+    legend('perovskite', 'magnesiowustite', 'beta', 'gamma', 'majorite',...
+        'stishovite', 'cpx', 'opx', 'garnet', 'spinel', 'plagioclase',...
+        'olivine', 'int liq', 0); 
+    xlabel('Density [kg/m3]'); 
+    ylabel('radius, km'); zoom on;
 % figure(5); title(['Phase densities for model:  ', name]); axis ij; hold on; plot(perov, P, magnesio, P, bet, P, gam, P, maj, P, stish, P, cpyrox, P, opyrox, P, gar, P, spi, P, plag, P, oliv, P, iliq, P); 
 %     legend('perovskite', 'magnesiowustite', 'beta', 'gamma', 'majorite', 'stishovite', 'cpx', 'opx', 'garnet', 'spinel', 'plagioclase', 'olivine', 'int liq', 0); xlabel('Density [kg/m3]'); ylabel('Pressure [GPa]'); zoom on; %axis([2000 4500 5400 6400]);
 %figure(5); title(['Solidus density with depth for overturned model']);  hold on;
