@@ -12,7 +12,7 @@ totalliquidvol = (4/3)*pi*(R^3 - r(maxstep)^3); % total liquid unsolidified at t
 for k = 2:max
     delavgSm(k) = solidinv(k,6)*(4/3)*pi*(rinv(k)^3 - rinv(k-1)^3)/totalDvol;
     delavgNd(k) = solidinv(k,7)*(4/3)*pi*(rinv(k)^3 - rinv(k-1)^3)/totalDvol;
-    delavgU(k) = solidinv(k,9)*(4/3)*pi*(rinv(k)^3 - rinv(k-1)^3)/totalDvol;
+    delavgU(k)  = solidinv(k,9)*(4/3)*pi*(rinv(k)^3 - rinv(k-1)^3)/totalDvol;
     delavgTh(k) = solidinv(k,8)*(4/3)*pi*(rinv(k)^3 - rinv(k-1)^3)/totalDvol;
 end
 
@@ -20,30 +20,42 @@ end
 
 avgNdEER = sum(delavgNd);   % for insertion into Rick Carlson's spreadsheet
 avgSmEER = sum(delavgSm);
-disp(['D" Nd wt% is ', num2str(avgNdEER),' and Sm wt% is ', num2str(avgSmEER)])
+disp(['D" Nd wt% is ', num2str(avgNdEER),...
+    ' and Sm wt% is ', num2str(avgSmEER)])
 fprintf('\n')
 % these two include all the residual liquid from the surface - kind of
 % endmember of possibilities for D" composition
-avgNdEERwLiq = (totalliquidvol/(totalliquidvol+totalDvol))*liquid(maxstep,7) + (totalDvol/(totalliquidvol+totalDvol))*avgNdEER;
-avgSmEERwLiq = (totalliquidvol/(totalliquidvol+totalDvol))*liquid(maxstep,6) + (totalDvol/(totalliquidvol+totalDvol))*avgSmEER;
-disp(['With all final liquids D" Nd wt% is ', num2str(avgNdEERwLiq),' and Sm wt% is ', num2str(avgSmEERwLiq)])
+avgNdEERwLiq = (totalliquidvol/(totalliquidvol +...
+    totalDvol))*liquid(maxstep,7) +...
+    (totalDvol/(totalliquidvol+totalDvol))*avgNdEER;
+avgSmEERwLiq = (totalliquidvol/(totalliquidvol +...
+    totalDvol))*liquid(maxstep,6) +...
+    (totalDvol/(totalliquidvol+totalDvol))*avgSmEER;
+disp(['With all final liquids D" Nd wt% is ',...
+    num2str(avgNdEERwLiq),' and Sm wt% is ', num2str(avgSmEERwLiq)])
 fprintf('\n')
 fprintf('\n')
 avgU = sum(delavgU);
 avgTh = sum(delavgTh);
 EERUfracoftotal = avgU*totalDvol/(liquid(1,9)*Mantlevolume);  % for comparison with Carlson's estimates
 EERThfracoftotal = avgTh*totalDvol/(liquid(1,8)*Mantlevolume);    % of what U and Th fraction must be in D"
-disp(['D" fraction of total Earth U is ', num2str(EERUfracoftotal),' and Th fraction is ', num2str(EERThfracoftotal)])
+disp(['D" fraction of total Earth U is ', num2str(EERUfracoftotal),...
+    ' and Th fraction is ', num2str(EERThfracoftotal)])
 fprintf('\n')
 fprintf('\n')
 
 %% with liquids
-EERUfracoftotalwliq = (avgU*totalDvol + liquid(maxstep,9)*totalliquidvol)/(liquid(1,9)*Mantlevolume);
-EERThfracoftotalwliq = (avgTh*totalDvol + liquid(maxstep,8)*totalliquidvol)/(liquid(1,8)*Mantlevolume);
-disp(['With all final liquids D" fraction of total Earth U is ', num2str(EERUfracoftotalwliq),' and Th fraction is ', num2str(EERThfracoftotalwliq)])
+EERUfracoftotalwliq = (avgU*totalDvol +...
+    liquid(maxstep,9)*totalliquidvol)/(liquid(1,9)*Mantlevolume);
+EERThfracoftotalwliq = (avgTh*totalDvol +...
+    liquid(maxstep,8)*totalliquidvol)/(liquid(1,8)*Mantlevolume);
+disp(['With all final liquids D" fraction of total Earth U is ',...
+    num2str(EERUfracoftotalwliq),' and Th fraction is ',...
+    num2str(EERThfracoftotalwliq)])
 fprintf('\n')
 avgNdEDR = mean(solidinv(max:990,7));
 avgSmEDR = mean(solidinv(max:990,6));
-disp(['Mantle minus D" Nd wt% is ', num2str(avgNdEDR),' and Sm wt% is ', num2str(avgSmEDR)])
+disp(['Mantle minus D" Nd wt% is ', num2str(avgNdEDR),...
+    ' and Sm wt% is ', num2str(avgSmEDR)])
 
 

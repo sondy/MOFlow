@@ -73,17 +73,17 @@ time(1) = 0; deltatime(1) = 0; veloc(1) = 0;
 Hmassflux(1) = 0; Cmassflux(1) = 0; Hatmadd(1) = 0; HMOfactor(1) = 0; Catmadd(1) = 0; CMOfactor(1) = 0;
 delt(1) = 0; Cfractionout(1) = 0; Hfractionout(1) = 0;
 
-if H2Oliquid(1) > 0; 
-    initialatmospherewater;  
-else HPatm(1) = 0; 
-    H2Oliquid2(1) = 0; 
+if H2Oliquid(1) > 0;
+    initialatmospherewater;
+else HPatm(1) = 0;
+    H2Oliquid2(1) = 0;
 end
 % this program partitions the initial volatile quantities into atm and MO
 
-if CO2liquid(1) > 0; 
-    initialatmospherecarbon;  
-else CPatm(1) = 0; 
-    CO2liquid2(1) = 0; 
+if CO2liquid(1) > 0;
+    initialatmospherecarbon;
+else CPatm(1) = 0;
+    CO2liquid2(1) = 0;
 end
 % this program partitions the initial volatile quantities into atm and MO
 
@@ -92,9 +92,9 @@ end
 
 liq_comp = [45.96 4.06 7.54 37.78 3.21 0.00001472 0.00004524 0.00000294 0.00000081 0 0];
 %0.00000243,0.0000104,... % changing from Lu-Hf to Th-U
-% U & Th from Anders and Grevesse CI chondrite table, column G., 
+% U & Th from Anders and Grevesse CI chondrite table, column G.,
 % in some unholy units.  Units in table are in ppb.
-    
+
 liq_comp = 100*liq_comp./(100-(H2Oliquid2(1)+CO2liquid2(1))); % normalized MO oxides so volatiles remain at values specified above
 liq_comp(10) = H2Oliquid2(1); liq_comp(11) = CO2liquid2(1);
 
@@ -185,7 +185,7 @@ k = 1;  m = 1; % loops for abbreviated data for output - see bottom of file
 magnesio_thermal = zeros(maxstep, 2);
 
 for j = 2:1:maxstep    % each step is one-tenth of a percent solidification by volume
-%     display(j)
+    %     display(j)
     vol(j) = j;
 
     % calculate emissivity, time, saturation levels in magma for i
@@ -203,8 +203,8 @@ for j = 2:1:maxstep    % each step is one-tenth of a percent solidification by v
     % continue T to bottom of viscous boundary layer to get Ttop (T's following solidification of this step)
     %delt(j) = 10*[(rho*alpha*g*flux(j))/(eta*kappa*k)]^(-1/4); XX what is k here?
     %Tsolid(j) = (-1.1601e-007)*(r(j)/1000)^3 + 0.0014*(r(j)/1000)^2 + -6.3821*(r(j)/1000) + 1.4439e+004; % doesn't seem to need this + (- 10*(0.2*(liqfrac(j))+0.02)^(-1));
-%     Tsolid(j) =  -0.000000000086301e3*(r(j)/1000)^3 + 0.000000887643612e3*(r(j)/1000)^2 +...
-%         (-0.003265497414172e3*(r(j)/1000)) + 8.310438900359062e3;
+    %     Tsolid(j) =  -0.000000000086301e3*(r(j)/1000)^3 + 0.000000887643612e3*(r(j)/1000)^2 +...
+    %         (-0.003265497414172e3*(r(j)/1000)) + 8.310438900359062e3;
     Tsolid(j) = solidus(RtoP(r(j)));
     Ttop(j) = Tsolid(j) - adiabslope*(R - r(j)) - H/Cp;        % continue up along adiabat                                                                                                                                    % depends on interpretation of j as 0.25% solidification
     Tsurf(j) = Ttop(j); % + [flux(j)/((0.1*kthXX??*rho*alpha*g)/(eta*kappa))]^(3/4);      % converted j (volume) to radius to fit equation
@@ -322,12 +322,14 @@ end
 
 %figure(1);title(['Density with depth for model:  ', name]); hold on; plot(D,r/1000, 'r'); xlabel('density [kg/m3]'); ylabel('radius, km');
 %figure(2);title(['Reference density with depth for model:  ', name]); hold on; plot(Do,r/1000, 'r'); xlabel('density at 1 atm and 1 deg C [kg/m3]'); ylabel('radius, km');
-figure(3); title(['Reference density with depth for model:  ', name]); 
-    hold on; 
-    plot(Dsol,r/1000, 'r'); 
-    xlabel('density at 1 atm and solidus temperature [kg/m3]'); 
+%%
+figure(3); title(['Reference density with depth for model:  ', name]);
+    hold on;
+    plot(Dsol, r./1000, 'r');
+    xlabel('density at 1 atm and solidus temperature [kg/m3]');
     ylabel('radius, km');
 
+%%
 sortandinvertperovskite
 %%%calculate new emissivity with volatile release from melting
 taustarwend = ((3*(HMatm(j)+Hnewatm))/(8*pi*R^2))*(((kwater*g)/(3*po))^0.5);  % Abe and Matsui 1986
@@ -335,7 +337,7 @@ taustarcend = ((3*(CMatm(j)+Cnewatm))/(8*pi*R^2))*(((kcarbon*g)/(3*po))^0.5);
 endemiss = (2 /(taustarwend+taustarcend + 2));    % H2O/CO2 relative absorption wavelength widths =1.5/0.5 not considered here
 %%%%%%%%%%%%
 cool2clementwhole
-%graphsdeep
+graphsdeep
 
 massDdoubleprime
 EER_Sm_Nd
