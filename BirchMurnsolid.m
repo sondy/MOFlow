@@ -1,7 +1,8 @@
 function VP = BirchMurnsolid(Kot, Kpt, Vo, P)
 % Birch-Murnaghan solution for solid density with depth
 % calculates VP at given P based on Vo (which is V(t) at one bar)
-% technique from Fei et al (1990) etc (but note that many paper's equations are wrong)
+% technique from Fei et al (1990) etc (but note that many paper's equations 
+% are wrong)
 % P is pressure in GPa but Birch-Murn calcs in Pa
 
 Pfunc = @(Vratio)(3/2)*Kot*((Vratio)^(7/3) - ...
@@ -35,8 +36,8 @@ end
 % and the entire equation rearranged such that Pfunc is zero at the correct
 % volume ratio.
 % If Vratio = Vo/VP, then VP = Vo/Vratio
-% 1.2 for the initial guess seems to be a good one for the entire volume of
-% the Earth's mantle for perovskite
+% [0.95 4] for the initial guess seems to be a good one for the entire 
+% volume of the Earth's mantle for perovskite
 % fzero simply finds the zero point of the Pfunc function at around 1.2 and
 % returns Vratio
 

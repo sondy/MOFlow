@@ -153,7 +153,8 @@ Layer7P = 0.0;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 P(1) = InitP;           % P at bottom of magma ocean
-liquid(1,:) = liq_comp; intliq(1,:) = liq_comp;
+liquid(1,:) = liq_comp; 
+intliq(1,:) = liq_comp;
 MG(1,1) = (liq_comp(4)/40.311)./(liq_comp(4)/40.311 + liq_comp(3)/71.846); % Mg1 is liquid, 2 is solid
 
 % parameters for sortandinvert.m
