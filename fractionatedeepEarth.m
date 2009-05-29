@@ -341,7 +341,7 @@ end
 %%
 %%%%%%%%%%%%%%%%%% LAYER 7 %%%%%%%%%%%% same as layer 6; fixed liquid
 if P(j) > Layer7P;
-display('Layer 7: Same as layer 6 (fixed liquid)')
+%display('Layer 7: Same as layer 6 (fixed liquid)')
     intliqx = intliq7;
     %    disp(['Layer 7, index = ', num2str(j)])
     [eqminplag, Anplag] = plagioclase(liq_comp);

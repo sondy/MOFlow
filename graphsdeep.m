@@ -8,14 +8,17 @@ disp('In graphsdeep')
 %figure(2);title(['Reference density with depth for model:  ', name]); hold on; plot(Do(1:marker),r(1:marker)/1000,'y'); xlabel('density at 1 atm and 1 deg C [kg/m3]'); ylabel('radius, km');
 figure(3); %title(['Reference density with depth pre- and post-overturn for model:  ', name]); 
     hold on; 
-    plot(Dsol, r./1000,'b', 'LineWidth', 4)
-    plot(Dsolinv, rinv./1000, 'k', 'LineWidth', 4); %        plot(Dsol(1:marker2), r(1:marker2)/1000,'y',...     
+    plot(Dsol, r./1000,'b')%, 'LineWidth', 4)
+    plot(Dsolinv, rinv./1000, 'k')%, 'LineWidth', 4); %        plot(Dsol(1:marker2), r(1:marker2)/1000,'y',...     
     xlabel('density at 1 atm and solidus temperature [kg m^{-3}]'); 
-    ylabel('radius, km');    
+    ylabel('radius, km'); 
+    xlim([2600 4200])
+    ylim([2500 6500])
     
-    legend('Pre-overturn density', 'Post-overturn density', 'Location', 'East')
+    %legend('Pre-overturn density', 'Post-overturn density', 'Location', 'East')
     
-    print -depsc 'plots/densityWithDepth.eps'
+    densityWithDepth = strcat('plots/densityWithDepth', RM_string, '.eps');
+    print('-depsc', densityWithDepth)
    
 % %%
 % figure(4); title(['Phase densities for model:  ', name]); 
@@ -30,9 +33,11 @@ figure(3); %title(['Reference density with depth pre- and post-overturn for mode
 %         'olivine', 'int liq', 0); 
 %     xlabel('Density [kg/m3]'); 
 %     ylabel('radius, km'); zoom on;
-% % figure(5); title(['Phase densities for model:  ', name]); axis ij; hold on; plot(perov, P, magnesio, P, bet, P, gam, P, maj, P, stish, P, cpyrox, P, opyrox, P, gar, P, spi, P, plag, P, oliv, P, iliq, P); 
-% %     legend('perovskite', 'magnesiowustite', 'beta', 'gamma', 'majorite', 'stishovite', 'cpx', 'opx', 'garnet', 'spinel', 'plagioclase', 'olivine', 'int liq', 0); xlabel('Density [kg/m3]'); ylabel('Pressure [GPa]'); zoom on; %axis([2000 4500 5400 6400]);
-% %figure(5); title(['Solidus density with depth for overturned model']);  hold on;
+%%
+% figure(5); title(['Phase densities for model:  ', name]); axis ij; hold on; plot(perov, P, magnesio, P, bet, P, gam, P, maj, P, stish, P, cpyrox, P, opyrox, P, gar, P, spi, P, plag, P, oliv, P, iliq, P); 
+%     legend('perovskite', 'magnesiowustite', 'beta', 'gamma', 'majorite', 'stishovite', 'cpx', 'opx', 'garnet', 'spinel', 'plagioclase', 'olivine', 'int liq', 0); xlabel('Density [kg/m3]'); ylabel('Pressure [GPa]'); zoom on; %axis([2000 4500 5400 6400]);
+%%
+    % %figure(5); title(['Solidus density with depth for overturned model']);  hold on;
 % %    plot(Dsolinv,rinv/1000, 'r',Dinv,rinv/1000, 'y', Doinv,rinv/1000, 'k'); xlabel('density [kg/m3]'); ylabel('radius, km'); legend('Density at 1 atm, solidus','Density at P, solidus','Density at 1 atm, 1 deg',0);
 %  
 % 
@@ -155,27 +160,35 @@ y4 = rinv/1000;
 x5 = solidinv(:,9)*10^4; 
 y5 = rinv/1000;
 
-hl1 = line(x1, y1, 'Color', 'k', 'LineWidth', 2);
+hl1 = line(x1, y1, 'Color', 'k');%, 'LineWidth', 2);
 xlabel('density at 1 atm and solidus temperature [kg/m^3]');
 ylabel('radius, km');
+ 
+    xlim([2600 4200])
+    ylim([2500 6500]) 
 ax1 = gca;
 
 ax2 = axes('Position',get(ax1,'Position'),...
            'XAxisLocation','top',...
            'YAxisLocation','right',...
            'Color','none',...
-           'XColor','k','YColor','k');
-hl2 = line(x2,y1,'Color','b','Parent',ax2, 'LineWidth', 1.2);
-hl3 = line(x3,y1,'Color','g','Parent',ax2, 'LineWidth', 1.2);
-hl4 = line(x4,y1,'Color','r','Parent',ax2, 'LineWidth', 1.2);
-hl5 = line(x5,y1,'Color','c','Parent',ax2, 'LineWidth', 1.2);
+           'XColor','k','YColor','k',...
+           'XLim', [0 1.2],...
+           'YLim', [2500 6500]);
+hl2 = line(x2,y1,'Color','b','Parent',ax2);%, 'LineWidth', 1.2);
+hl3 = line(x3,y1,'Color','g','Parent',ax2);%, 'LineWidth', 1.2);
+hl4 = line(x4,y1,'Color','r','Parent',ax2);%, 'LineWidth', 1.2);
+hl5 = line(x5,y1,'Color','c','Parent',ax2);%, 'LineWidth', 1.2);
 
 legend('Sm','Nd','Th','U',0); %axis([0 .5 2000 3400]);
 
 title('Trace element concentrations ppm with depth for overturned model');
+    
+traceElement = strcat('plots/traceElement', RM_string, '.eps');
+print('-depsc', traceElement)
 
 hold off;
-% 
+ 
 %% Sm/Nd ratios
 % in magma ocean during solidification before overturn
 solidSm = (solid(:,6)*0.1499/150.36);
@@ -186,11 +199,17 @@ liquidNd = (liquid(:,7)*0.238/144.24);
 figure(43); 
 hold on
 title('147Sm/144Nd ratio in magma ocean cumulates and in coevolving liquids'); 
-plot(solidSm./solidNd, r./1000, 'b-','LineWidth', 4)
-plot(liquidSm./liquidNd, r./1000, 'r-','LineWidth', 4);
+plot(solidSm./solidNd, r./1000, 'b-')%,'LineWidth')%, 4)
+plot(liquidSm./liquidNd, r./1000, 'r-')%,'LineWidth')%, 4);
     xlabel('147Sm/144Nd molar ratio');
     ylabel('radius [km] of cumulate solidification');
+    xlim([0 1.4])
+    ylim([2500 6500])
     legend('Solid cumulates','Coexisting magma ocean liquids',0); %axis([0 .5 2000 3400]);
+    
+traceElementSolids = strcat('plots/traceElementSolids', RM_string, '.eps');
+print('-depsc', traceElementSolids)
+    
 hold off
 %%
 %     

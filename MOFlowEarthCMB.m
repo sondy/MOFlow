@@ -24,8 +24,10 @@ CO2liquid(1) =  0.0; %0.01;%0.1;%0.6; %
 
 % initial values for calculations in this program
 CMB = 2885000;                  % *** m, radius of core-mantle boundary
-R = 6378000;                    % *** m, total radius of planet
+R = 6378000;        % *** m, total radius of planet
 RM = R - CMB; %2000000;                   % *** m, depth of magma ocean
+%RM = 3000000;
+RM_string = num2str(RM/1000);
 g = 9.8;                        % *** m/sec2
 adiabslope = 0.33/1000;         %*** K/m, slope of adiabat
 tfinal = 50*3.14e13;            % *** sec total time of conductive cooling in cool2clement
@@ -327,7 +329,7 @@ end
 %%
 figure(3); title(['Reference density with depth for model:  ', name]);
     hold on;
-    plot(Dsol, r./1000, 'r','LineWidth',4);
+    plot(Dsol, r./1000, 'r')%,'LineWidth',4);
     xlabel('density at 1 atm and solidus temperature [kg/m3]');
     ylabel('radius, km');
 
@@ -341,5 +343,5 @@ endemiss = (2 /(taustarwend+taustarcend + 2));    % H2O/CO2 relative absorption 
 cool2clementwhole
 graphsdeep
 
-massDdoubleprime
-EER_Sm_Nd
+% massDdoubleprime
+% EER_Sm_Nd
