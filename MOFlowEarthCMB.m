@@ -1,4 +1,7 @@
 % MOFlowEarthCMB
+
+% this file is now called by the ocean function.
+
 %% NEED TO CHECK PE CALCS
 
 % Using the Th-U decay chain
@@ -25,7 +28,7 @@ CO2liquid(1) =  0.0; %0.01;%0.1;%0.6; %
 % initial values for calculations in this program
 CMB = 2885000;                  % *** m, radius of core-mantle boundary
 R = 6378000;        % *** m, total radius of planet
-RM = R - CMB; %2000000;                   % *** m, depth of magma ocean
+%RM = R - CMB; %2000000;                   % *** m, depth of magma ocean
 %RM = 3000000;
 RM_string = num2str(RM/1000);
 g = 9.8;                        % *** m/sec2
@@ -343,5 +346,5 @@ endemiss = (2 /(taustarwend+taustarcend + 2));    % H2O/CO2 relative absorption 
 cool2clementwhole
 graphsdeep
 
-% massDdoubleprime
-% EER_Sm_Nd
+massDdoubleprime
+EER_Sm_Nd

@@ -2,7 +2,7 @@
 % calculates average Sm, Nd, U, Th content for EER (D") layers
 % of "max" steps above CMB
 
-fprintf('\n \n')
+fprintf('\n -- \n')
 
 max = 50; %rho2_index
 
@@ -24,19 +24,21 @@ for k = 2:max
     delavgTh(k) = solidinv(k,8)*volseg;
 end
 
-%% must calculate final liquids - these might well sink with dense layers
+%% calculation of final liquids - these might well sink with dense layers
 avgNdEER = sum(delavgNd);   % for insertion into Rick Carlson's spreadsheet
 avgSmEER = sum(delavgSm);
 avgUEER  = sum(delavgU);
 avgThEER  = sum(delavgTh);
 
+disp('For the final liquids:')
+fprintf('\n')
 disp(['D" Nd wt% is ', num2str(avgNdEER),...
     '; Sm wt% is ', num2str(avgSmEER),...
     '; U wt% is ', num2str(avgUEER),...
-    '; Th wt% is ', num2str(avgThEER)])
+    '; and Th wt% is ', num2str(avgThEER), '.'])
 fprintf('\n')
 
-% these two include all the residual liquid from the surface - kind of
+%% these two include all the residual liquid from the surface - kind of
 % endmember of possibilities for D" composition
 avgNdEERwLiq = (totalliquidvol/(totalliquidvol +...
     totalDvol))*liquid(maxstep,7) +...
@@ -44,6 +46,13 @@ avgNdEERwLiq = (totalliquidvol/(totalliquidvol +...
 avgSmEERwLiq = (totalliquidvol/(totalliquidvol +...
     totalDvol))*liquid(maxstep,6) +...
     (totalDvol/(totalliquidvol+totalDvol))*avgSmEER;
+avgUEERwLiq = (totalliquidvol/(totalliquidvol +...
+    totalDvol))*liquid(maxstep,9) +...
+    (totalDvol/(totalliquidvol+totalDvol))*avgUEER;
+avgThEERwLiq = (totalliquidvol/(totalliquidvol +...
+    totalDvol))*liquid(maxstep,8) +...
+    (totalDvol/(totalliquidvol+totalDvol))*avgThEER;
+
 disp(['With all final liquids D" Nd wt% is ',...
     num2str(avgNdEERwLiq),' and Sm wt% is ', num2str(avgSmEERwLiq)])
 fprintf('\n')

@@ -1,10 +1,11 @@
-clear all;
+%clear all;
 
-% function ocean_depth = ocean(depth)
-% 
-% oceanDepth = ocean_depth;
+function ocean(depth)
+
+RM = depth;
 
 tic
+
 % global xrecord xrecordn
 % xrecord=zeros(1,100000);
 % xrecordn=0;
