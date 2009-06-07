@@ -2,6 +2,8 @@
 
 function ocean(depth)
 
+globals
+
 RM = depth;
 
 tic
