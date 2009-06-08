@@ -13,9 +13,9 @@ range = [0.95 4];
 
 [Vpressure, FVAL, EXITFLAG] = fzero(Pfunc, range);
 
-% global xrecord xrecordn
-% xrecordn=xrecordn+1;
-% xrecord(xrecordn)=Vpressure;
+global xrecord xrecordn
+xrecordn = xrecordn + 1;
+xrecord(xrecordn) = Vpressure;
 
 if (EXITFLAG < 0)
     fprintf('\n');
