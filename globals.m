@@ -4,4 +4,4 @@
 CMB = 2885000;                  % *** m, radius of core-mantle boundary
 R = 6378000; 
 
-global maxstep r rinv volseg
+global liquid maxstep r rinv solidinv 

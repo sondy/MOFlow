@@ -11,6 +11,7 @@ totalliquidvol = (4/3)*pi*(R^3 - r(maxstep)^3);
     % total liquid unsolidified at top of MO; m^3
 
 % preallocation
+volseg = [];
 delavgSm = [];
 delavgNd = [];
 delavgU  = [];
