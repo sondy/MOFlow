@@ -12,10 +12,10 @@ totalliquidvol = (4/3)*pi*(R^3 - r(maxstep)^3);
 
 % preallocation
 volseq = [];
-delavgSm(k) = [];
-delavgNd(k) = [];
-delavgU(k)  = [];
-delavgTh(k) = [];
+delavgSm = [];
+delavgNd = [];
+delavgU  = [];
+delavgTh = [];
     
 for k = 2:max
     volseg = (4/3)*pi*(rinv(k)^3 - rinv(k-1)^3)/totalDvol;
