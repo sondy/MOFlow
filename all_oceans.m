@@ -1,4 +1,4 @@
-% calling all oceans...
+%% calling all oceans...
 
 global num_oceans % for making the following into vectors
 global avgEER avgEERwLiq EERfracoftotal EERfracoftotalwliq avgEDR
@@ -11,10 +11,11 @@ depths = linspace(1000, 3000, 5).*1000;
 CMB = 2885000;                  % *** m, radius of core-mantle boundary
 R = 6378000; 
 
-depths = cat(2, depths, R-CMB);
+depths = [depths, R-CMB];
 
 num_oceans = [];
 
-for num_oceans = 1:size(depths, 2)
+%% 
+for num_oceans = 1:length(depths)
     ocean(depths(num_oceans))
 end
