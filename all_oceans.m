@@ -1,5 +1,9 @@
 % calling all oceans...
 
+%globals
+global num_oceans % for making the following into vectors
+global avgEER avgEERwLiq EERfracoftotal EERfracoftotalwliq avgEDR
+
 globals
 
 depths = linspace(1000, 3000, 5).*1000; 

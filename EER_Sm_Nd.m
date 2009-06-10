@@ -39,8 +39,11 @@ disp(['D" Nd wt% is ', num2str(avgNdEER),...
     '; and Th wt% is ', num2str(avgThEER), '.'])
 fprintf('\n')
 
-%% these two include all the residual liquid from the surface - kind of
-% endmember of possibilities for D" composition
+% write all avgEER into a global variable
+avgEER(:, num_oceans) = cat(1, avgSmEER, avgNdEER, avgThEER, avgUEER);
+
+%% these two include all the residual liquid from the surface:
+% sort of like endmember of possibilities for D" composition
 avgNdEERwLiq = (totalliquidvol/(totalliquidvol +...
     totalDvol))*liquid(maxstep,7) +...
     (totalDvol/(totalliquidvol+totalDvol))*avgNdEER;
@@ -60,10 +63,17 @@ disp(['With all final liquids D" Nd wt% is ',num2str(avgNdEERwLiq),...
     '; and Th wt% is ', num2str(avgThEERwLiq)])
 fprintf('\n')
 fprintf('\n')
+
+% write all avgEERwLiq into a global variable
+avgEERwLiq(:, num_oceans) = cat(1, avgSmEERwLiq, avgNdEERwLiq,...
+    avgThEERwLiq, avgUEERwLiq);
+
 avgU = sum(delavgU);
 avgTh = sum(delavgTh);
-EERUfracoftotal = avgU*totalDvol/(liquid(1,9)*Mantlevolume);  % for comparison with Carlson's estimates
-EERThfracoftotal = avgTh*totalDvol/(liquid(1,8)*Mantlevolume);    % of what U and Th fraction must be in D"
+EERUfracoftotal = avgU*totalDvol/(liquid(1,9)*Mantlevolume);  
+    % for comparison with Carlson's estimates
+EERThfracoftotal = avgTh*totalDvol/(liquid(1,8)*Mantlevolume);    
+    % of what U and Th fraction must be in D"
 disp(['D" fraction of total Earth U is ', num2str(EERUfracoftotal),...
     ' and Th fraction is ', num2str(EERThfracoftotal)])
 fprintf('\n')
@@ -78,6 +88,8 @@ disp(['With all final liquids D" fraction of total Earth U is ',...
     num2str(EERUfracoftotalwliq),' and Th fraction is ',...
     num2str(EERThfracoftotalwliq)])
 fprintf('\n')
+
+
 avgNdEDR = mean(solidinv(max:990,7));
 avgSmEDR = mean(solidinv(max:990,6));
 disp(['Mantle minus D" Nd wt% is ', num2str(avgNdEDR),...
