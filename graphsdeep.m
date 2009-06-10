@@ -10,6 +10,9 @@ figure(3); %title(['Reference density with depth pre- and post-overturn for mode
     hold on; 
     plot(Dsol, r./1000,'b')%, 'LineWidth', 4)
     plot(Dsolinv, rinv./1000, 'k')%, 'LineWidth', 4); %        plot(Dsol(1:marker2), r(1:marker2)/1000,'y',...     
+
+    plot(Dsolinv(50),rinv(50)./1000,'Ok')   %D'' layer is about here
+    
     xlabel('density at 1 atm and solidus temperature [kg m^{-3}]'); 
     ylabel('radius, km'); 
     xlim([2600 4200])
