@@ -1,6 +1,5 @@
 % calling all oceans...
 
-%globals
 global num_oceans % for making the following into vectors
 global avgEER avgEERwLiq EERfracoftotal EERfracoftotalwliq avgEDR
 

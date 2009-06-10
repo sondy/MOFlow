@@ -79,6 +79,9 @@ disp(['D" fraction of total Earth U is ', num2str(EERUfracoftotal),...
 fprintf('\n')
 fprintf('\n')
 
+% write all EERfracoftotal into a global variable
+EERfracoftotal(:, num_oceans) = cat(1, EERThfracoftotal, EERUfracoftotal);
+
 %% D" fraction with liquids
 EERUfracoftotalwliq = (avgU*totalDvol +...
     liquid(maxstep,9)*totalliquidvol)/(liquid(1,9)*Mantlevolume);
@@ -89,10 +92,14 @@ disp(['With all final liquids D" fraction of total Earth U is ',...
     num2str(EERThfracoftotalwliq)])
 fprintf('\n')
 
+% write all EERfracoftotalwliq into a global variable
+EERfracoftotalwliq(:, num_oceans) = cat(1, EERThfracoftotalwliq,...
+    EERUfracoftotalwliq);
 
 avgNdEDR = mean(solidinv(max:990,7));
 avgSmEDR = mean(solidinv(max:990,6));
 disp(['Mantle minus D" Nd wt% is ', num2str(avgNdEDR),...
     ' and Sm wt% is ', num2str(avgSmEDR)])
 
-
+% write all avgNdEDR into a global variable
+avgEDR(:, num_oceans) = cat(1, avgSmEDR, avgNdEDR);
