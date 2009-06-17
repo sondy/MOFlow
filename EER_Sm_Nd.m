@@ -5,6 +5,7 @@
 fprintf('\n \n')
 
 max = 50; %rho2_index
+% number of steps to consider as part of the D" layer
 
 totalDvol = (4/3)*pi*(rinv(max)^3 - rinv(1)^3); % total D" volume
 totalliquidvol = (4/3)*pi*(R^3 - r(maxstep)^3); 
@@ -29,7 +30,7 @@ end
 avgNdEER = sum(delavgNd);   % for insertion into Rick Carlson's spreadsheet
 avgSmEER = sum(delavgSm);
 avgUEER  = sum(delavgU);
-avgThEER  = sum(delavgTh);
+avgThEER = sum(delavgTh);
 
 disp('For the final liquids:')
 fprintf('\n')
@@ -41,6 +42,7 @@ fprintf('\n')
 
 % write all avgEER into a global variable
 avgEER(:, num_oceans) = cat(1, avgSmEER, avgNdEER, avgThEER, avgUEER);
+display(avgEER)
 
 %% these two include all the residual liquid from the surface:
 % sort of like endmember of possibilities for D" composition

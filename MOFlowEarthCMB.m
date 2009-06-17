@@ -72,12 +72,17 @@ solidus = makeSolidus();
 
 Tsolid(1) = solidus(RtoP(r(1)));
 
-Tsurf(1) = Tsolid(1) - adiabslope*(R - r(1)) - H/Cp;        % continue up along adiabat
+Tsurf(1) = Tsolid(1) - adiabslope*(R - r(1)) - H/Cp;        
+% continue up along adiabat
 liqfrac(1) = 1;
 time(1) = 0; deltatime(1) = 0; veloc(1) = 0;
-Hmassflux(1) = 0; Cmassflux(1) = 0; Hatmadd(1) = 0; HMOfactor(1) = 0; Catmadd(1) = 0; CMOfactor(1) = 0;
+
+Hmassflux(1) = 0; Cmassflux(1) = 0; Hatmadd(1) = 0; 
+HMOfactor(1) = 0; Catmadd(1) = 0; CMOfactor(1) = 0;
+
 delt(1) = 0; Cfractionout(1) = 0; Hfractionout(1) = 0;
 
+%% start running the program
 if H2Oliquid(1) > 0;
     initialatmospherewater;
 else HPatm(1) = 0;
@@ -106,6 +111,7 @@ liq_comp(10) = H2Oliquid2(1); liq_comp(11) = CO2liquid2(1);
 
 % initial values for calculations in fractionate.m
 
+%% Eight Layers
 % post-perovskite layer above the CMB, as magnesiowustite (sp?) is unstable
 % at the relevant temperatures and pressures
 intliq0 = 0.00;
@@ -156,6 +162,8 @@ cpx7 = (1 - intliq7)*0;
 opx7 = (1 - intliq7)*0.3;
 alpha7 = (1 - intliq7)*0.3;
 Layer7P = 0.0;
+
+%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 P(1) = InitP;           % P at bottom of magma ocean
@@ -167,7 +175,7 @@ MG(1,1) = (liq_comp(4)/40.311)./(liq_comp(4)/40.311 + liq_comp(3)/71.846); % Mg1
 dFdT = 0.3;                 % weight % melted per degree rise above solidus
 Planetmass = 5.9742e24;     %*** mass of Earth, from NASA [kg]
 Coremass = 1.9416e024;      %*** mass of core [kg]
-
+%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%begin
 Patm(1) = CPatm(1) + HPatm(1); % calculated above when initialatmosphere routines are called
 HMatm(1) = (HPatm(1)*4*pi*R^2)/g; CMatm(1) = (CPatm(1)*4*pi*R^2)/g;
@@ -191,6 +199,7 @@ k = 1;  m = 1; % loops for abbreviated data for output - see bottom of file
 
 magnesio_thermal = zeros(maxstep, 2);
 
+%%
 for j = 2:1:maxstep    % each step is one-tenth of a percent solidification by volume
     %     display(j)
     vol(j) = j;
@@ -346,5 +355,6 @@ endemiss = (2 /(taustarwend+taustarcend + 2));    % H2O/CO2 relative absorption 
 cool2clementwhole
 graphsdeep
 
+%%
 massDdoubleprime
 EER_Sm_Nd
