@@ -1,4 +1,4 @@
-%% calling all oceans...
+% calling all oceans...
 
 global num_oceans % for making the following into vectors
 global avgEER avgEERwLiq EERfracoftotal EERfracoftotalwliq avgEDR
@@ -15,7 +15,6 @@ depths = [depths, R-CMB];
 
 num_oceans = [];
 
-%% 
 for num_oceans = 1:length(depths)
     ocean(depths(num_oceans))
 end
