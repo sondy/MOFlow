@@ -198,8 +198,7 @@ flux = zeros(1,maxstep);
 k = 1;  m = 1; % loops for abbreviated data for output - see bottom of file
 
 magnesio_thermal = zeros(maxstep, 2);
-mass_solidified=0;
-
+mass_solidified= 0;
 %%
 for j = 2:1:maxstep    % each step is one-tenth of a percent solidification by volume
     %     display(j)
@@ -246,7 +245,7 @@ for j = 2:1:maxstep    % each step is one-tenth of a percent solidification by v
     CO2saturation(j) = 100*[(2.08e-6)*(CPatm(j-1))^0.45] + 0.05;  % CO2 saturation in mass percent, P in Pa
 
     % call program to fractionate solid phases and send back the amount of volatiles to remove from the liquid
-    fractionatedeepEarth
+    fractionate500Earth
 
     %%% water degassing routines
     if liquid(j,10) < H2Osaturation(j); Hatmadd(j) = 0; HMOfactor(j) = 0;

@@ -1,10 +1,12 @@
 function [eqmin, Mgnum, CaMg] = clinopyroxene(liq_comp)
 
-% CLINOPYROXENE calculates olivine equilibrium for clinopyroxene
+% CLINOPYROXENE calculates equilibrium for clinopyroxene
 % (Mg, Fe, Ca)2(Si)2(O)6
 % liq_comp is in wt%
 % MW is the molar weights of oxides
  
+liq_comp(4) = max([liq_comp(4), 0.0001]);
+
 FeMgKd = 0.28;  % Kd = (Fe/Mg)min / (Fe/Mg)liq
 CaMg = 0.12; %.15;       % Molar distrubution of Ca/Mg+Fe in pyroxene (less than Longhi 2003)
  
