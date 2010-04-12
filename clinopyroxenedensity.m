@@ -38,8 +38,12 @@ Kot = par(9,1);                            % for consistency in function BirchMu
 Kpt = par(3,1);
 Vo = par(8,1);
 %fprintf('Mgnum=%.2f, CaMg=%.2f, P=%.2f, T=%.2f \n', Mgnum, CaMg, P, T)
-if Mgnum<0.29 
-    fprintf('break in clino density\n')
+if Mgnum < 0.29 
+    fprintf('clino Mg num < 0.29\n')
+elseif Mgnum < 0
+    fprintf('clino Mg num < 0\n')
+elseif Mgnum > 1
+    fprintf('clino Mg num > 1\n')
 end
 VP(1) = BirchMurnsolid(Kot, Kpt, Vo, P);
 par(10,1) = VP(1)/1e6;                     % convert molar volume of m3/mol

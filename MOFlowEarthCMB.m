@@ -198,7 +198,7 @@ flux = zeros(1,maxstep);
 k = 1;  m = 1; % loops for abbreviated data for output - see bottom of file
 
 magnesio_thermal = zeros(maxstep, 2);
-mass_solidified=0;
+mass_solidified = 0;
 
 %%
 for j = 2:1:maxstep    % each step is one-tenth of a percent solidification by volume
