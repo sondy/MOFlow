@@ -15,12 +15,12 @@ figure(3); %title(['Reference density with depth pre- and post-overturn for mode
     
     xlabel('density at 1 atm and solidus temperature [kg m^{-3}]'); 
     ylabel('radius, km'); 
-    xlim([2600 4200])
+    xlim([2600 4000])
     ylim([2500 6500])
     
     %legend('Pre-overturn density', 'Post-overturn density', 'Location', 'East')
     
-    densityWithDepth = strcat('plots/densityWithDepth', RM_string, '.eps');
+    densityWithDepth = strcat('plots/densityWithDepth', DM_string, '.eps');
     print('-depsc', densityWithDepth)
    
 % %%
@@ -167,7 +167,7 @@ hl1 = line(x1, y1, 'Color', 'k');%, 'LineWidth', 2);
 xlabel('density at 1 atm and solidus temperature [kg/m^3]');
 ylabel('radius, km');
  
-    xlim([2600 4200])
+    xlim([2600 3600])
     ylim([2500 6500]) 
 ax1 = gca;
 
@@ -187,7 +187,7 @@ legend('Sm','Nd','Th','U',0); %axis([0 .5 2000 3400]);
 
 title('Trace element concentrations ppm with depth for overturned model');
     
-traceElement = strcat('plots/traceElement', RM_string, '.eps');
+traceElement = strcat('plots/traceElement', DM_string, '.eps');
 print('-depsc', traceElement)
 
 hold off;
@@ -210,7 +210,7 @@ plot(liquidSm./liquidNd, r./1000, 'r-')%,'LineWidth')%, 4);
     ylim([2500 6500])
     legend('Solid cumulates','Coexisting magma ocean liquids',0); %axis([0 .5 2000 3400]);
     
-traceElementSolids = strcat('plots/traceElementSolids', RM_string, '.eps');
+traceElementSolids = strcat('plots/traceElementSolids', DM_string, '.eps');
 print('-depsc', traceElementSolids)
     
 hold off

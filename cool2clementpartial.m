@@ -7,7 +7,7 @@ disp('In cool2clementpartial')
 % through time
 % for whole-mantle MOs change lines marked with XXX
 
-Rcore = (R - RM)/1000;		% km, bottom of MO in this case not CMB
+Rcore = (R - DM)/1000;		% km, bottom of MO in this case not CMB
 Rmantle = R/1000;           % km
 tempsurf = Tinv(j) + 273;   % surface temp from end of sortandinvert
 rhomantle = solidrho;       % kg/m^3

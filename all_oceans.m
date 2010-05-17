@@ -9,10 +9,11 @@ globals
 depths = linspace(500, 2500, 5).*1000; 
 % linearly spaced magma ocean depths, all in meters
 
-CMB = 2885000;                  % *** m, depth of core-mantle boundary
+CMB_depth = 2885000;                % *** m, depth of core-mantle boundary
 % from the surface of the Earth
 
-depths = [depths, CMB];
+depths = [depths, CMB_depth];
+%depths = [CMB_depth];
 
 num_oceans = [];
 

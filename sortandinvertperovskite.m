@@ -95,7 +95,7 @@ for i = 1:endi	% resorts into heaviest at i = 1 and lightest at i = endi, surfac
 end									% was in before being sorted
 
 
-rinv(1) = R-RM;
+rinv(1) = R - DM;
 Solidus(1) = solidus(RtoP(rinv(1)));
 %(-1.1601e-007)*(rinv(1)/1000)^3 + 0.0014*(rinv(1)/1000)^2 + -6.3821*(rinv(1)/1000) + 1.4439e+004 - 200;% melting solidus 200 degrees higher than bulk mantle
 

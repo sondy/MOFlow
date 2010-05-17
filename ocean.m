@@ -4,7 +4,7 @@ function ocean(depth)
 
 globals
 
-RM = depth;
+DM = depth; % depth of the magma ocean, not radius
 
 tic
 
