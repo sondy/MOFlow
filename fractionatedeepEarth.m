@@ -87,7 +87,7 @@ if P(j) > Layer2P;
 %display('Layer 2: Gamma spinel, Majorite')
     intliqx = intliq2;
     %    disp(['Layer 2, index = ', num2str(j)])
-    [eqmingamma, Mgnumg] = gamma(liq_comp);
+    [eqmingamma, Mgnumg] = gamma_mineral(liq_comp);
     gdensity = gammadensity(Mgnumg, P(j), Tsolid(j));
     gdensityzero = gammadensity(Mgnumg, 1e-4, 1);
     gdensitysol = gammadensity(Mgnumg, 1e-4, Tsolid(j));
