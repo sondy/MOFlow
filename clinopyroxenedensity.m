@@ -37,7 +37,7 @@ par(9,1) = par(2,1) + par(4,1)*(T+298);    % KT(T)
 Kot = par(9,1);                            % for consistency in function BirchMurnsolid
 Kpt = par(3,1);
 Vo = par(8,1);
-%fprintf('Mgnum=%.2f, CaMg=%.2f, P=%.2f, T=%.2f \n', Mgnum, CaMg, P, T)
+fprintf('Mgnum=%.2f, CaMg=%.2f, P=%.2f, T=%.2f \n', Mgnum, CaMg, P, T)
 if Mgnum < 0.29 
     fprintf('clino Mg num < 0.29\n')
 elseif Mgnum < 0
@@ -50,3 +50,4 @@ par(10,1) = VP(1)/1e6;                     % convert molar volume of m3/mol
 par(12,1) = par(11,1)/par(10,1);           % phase density in kg/m3
 
 density = par(12,1);
+%fprintf('clino density =%.2f \n', density)

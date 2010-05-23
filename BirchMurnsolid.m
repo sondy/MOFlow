@@ -44,10 +44,10 @@ end
 % If speed ever becomes a problem, calculate the inverse of this equation
 % symbolically then use it here
 
-% This doesn't seem to work for other minerals in the rest of the mantle, as
-% it begins returning imaginary results!  Hrm.  I wonder how to best generate
-% guesses for other minerals; I guess looking at how Vo/VP behaves for other
-% minerals would be a good idea.
+% This doesn't seem to work for other minerals in the rest of the mantle, 
+% as it begins returning imaginary results!  Hrm.  I wonder how to best
+% generate guesses for other minerals; I guess looking at how Vo/VP behaves
+% for other minerals would be a good idea.
 
 % CalcPressure = (3/2)*Kot*((Vo/VP)^(7/3) - (Vo/VP)^(5/3))*(1 - (3/4)*(4 -
 % Kpt)*((Vo/VP)^(2/3) - 1));

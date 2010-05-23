@@ -6,7 +6,15 @@
 
 function radius = PtoR(pressure)
 
-radius = (1000/-0.0374)*(pressure -238.5372);
+CMB_depth = 2885000;             % *** m, depth to core-mantle boundary
+R = 6378000;                     % *** m, total radius of planet
+CMB = R - CMB_depth;
+
+m = 140*1000/(CMB - R);
+
+b = 140 - m*(CMB/1000);
+
+radius = (1000/m)*(pressure - b);
 
 % p =  -0.0374*(radius/1000) + 238.5372; 
 % 

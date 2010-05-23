@@ -19,7 +19,7 @@ else        % Note that solid composition includes interstitial liquids
     %new_liq = liquid(j-1,:) - solid(j,:)*((Mantlemass*0.001)/(liqfrac(j)*Mantlemass)); % - liquid(j-1,:)*(intliqx)*((Mantlemass*0.001)/(liqfrac(j)*Mantlemass));
     new_liq = (liquid(j-1,:) * mass_liquid - mass_this_shell * solid(j,:))/new_mass_liquid;
     if min(new_liq) < 0
-        disp('new_liq < 0')
+        disp('values in new_liq are < 0')
     end
     liq_comp = 100*new_liq./(sum(new_liq));  % renormalized liquid composition
 end

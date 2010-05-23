@@ -25,9 +25,7 @@ close all;
 DM_string = num2str(DM/1000); % makes a string out of the MO depth
 
 fprintf('\n \n')
-
 disp(['*** Magma ocean of depth ', DM_string, ' km ***'])
-
 fprintf('\n \n')
 
 H2Oliquid(1) = 0.0; %0.05; %0.5;    %0;  % in mass percent
@@ -37,11 +35,16 @@ CO2liquid(1) =  0.0; %0.01;%0.1;%0.6; %
 CMB_depth = 2885000;             % *** m, depth to core-mantle boundary
 R = 6378000;                     % *** m, total radius of planet
 CMB = R - CMB_depth;
+
+m = 140*1000/(CMB - R);
+
+b = 140* - m*(CMB/1000);
+
 g = 9.81;                        % *** m/sec2
 adiabslope = 0.33/1000;          %*** K/m, slope of adiabat
 tfinal = 50*3.14e13;             % *** sec total time of conductive cooling in cool2clement
 tempcore = 1600 + 273;           % *** in K (2100C = 2373 K; 1900C = 2173K) match to ending T in MOFlow
-InitP = -0.0374*((R-DM)/1000) + 238.5372;   % ***[GPa] at bottom of MO
+InitP = RtoP(R-DM);   % ***[GPa] at bottom of MO
 Tsolidend = 600;                 %*** temp when all interior is solid according to our calcs; used to distribute latent heat
 Tsurflatent = 1500;              %*** surface temp below which latent heat begins to be phased out
 mass_of_mantle = 4.032e+024;     % kg, mass of mantle

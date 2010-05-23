@@ -1,4 +1,3 @@
-
 % RtoP.m
 % March 3, 2009
 % Alessondra Springmann
@@ -8,6 +7,13 @@
 function pressure = RtoP(radius)
 
 % linear relationship from MOFlow code
+CMB_depth = 2885000;             % *** m, depth to core-mantle boundary
+R = 6378000;                     % *** m, total radius of planet
+CMB = R - CMB_depth;
 
-pressure = -0.0374*(radius/1000) + 238.5372; 
+m = 140*1000/(CMB - R);
+
+b = 140 - m*(CMB/1000);
+
+pressure = m*(radius/1000) + b; 
 
