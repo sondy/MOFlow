@@ -120,27 +120,27 @@ liq_comp(10) = H2Oliquid2(1); liq_comp(11) = CO2liquid2(1);
 %% Eight Layers
 % post-perovskite layer above the CMB, as magnesiowustite (sp?) is unstable
 % at the relevant temperatures and pressures
-intliq0 = 0.00;
+intliq0 = 0.00;	% post-perovskite
 ppv0 = (1 - intliq0); % layer 0
 Layer0P = 120; %
 
-intliq1 = 0.00;
+intliq1 = 0.05;	% perovskite and magnesiowustite
 per1 = (1 - intliq1)*0.95; % layer 1
 mw1 = (1 - intliq1)*0.05;
 Layer1P = 22;
 
-intliq2 = 0.00;
+intliq2 = 0.05;	% gamma olivine and majorite
 gamma2 = (1 - intliq2)*0.45; %0.55; % layer 2
 maj2 = (1 - intliq2)*0.55; %0.45;
 Layer2P = 18.00;
 
-intliq3 = 0.00;
+intliq3 = 0.05;	% beta olivine, majorite, cpx
 beta3 = (1 - intliq3)*0.4; % layer 3
 maj3 = (1 - intliq3)*0.35;
 cpx3 = (1 - intliq3)*0.25;
 Layer3P = 15.00;
 
-intliq4 = 0.00;
+intliq4 = 0.05;	% garnet, cpx, opx, olivine
 gar4 = (1 - intliq4)*0.10; %0.10; %0.15; % layer 4 garnet settling is removed
 cpx4 = (1 - intliq4)*0.20;
 opx4 = (1 - intliq4)*0.20; %0.15;
@@ -148,21 +148,21 @@ alpha4 = (1 - intliq4)*0.50;
 Layer4P = 2.5;
 %Layer4PA = 12.8;    % pressure after which not to return to garnet
 
-intliq5 = 0.00;
+intliq5 = 0.05;	% spinel, opx, cpx, olivine
 spin5 = (1 - intliq5)*0.05; %0.10; %0.15;  % layer 5
 cpx5 = (1 - intliq5)*0.25;
 opx5 = (1 - intliq5)*0.20;
 alpha5 = (1 - intliq5)*0.50; %0.45; %0.40;
 Layer5P = 1.0;
 
-intliq6 = 0.00;
+intliq6 = 0.05;	% plagioclase, cpx, opx, olivine
 plag6 = (1 - intliq6)*0.05; %0.10; %0.15; % layer 6
 cpx6 = (1 - intliq6)*0.25;
 opx6 = (1 - intliq6)*0.20;
 alpha6 = (1 - intliq6)*0.50; %0.45; %0.40;
 Layer6P = 0.2; %0.9;
 
-intliq7 = 0.00;   % kind of a proxy for all the remaining evolved liquid
+intliq7 = 0.05;   % kind of a proxy for all the remaining evolved liquid
 plag7 = (1 - intliq7)*0.3; %  no liquid evolution
 cpx7 = (1 - intliq7)*0;
 opx7 = (1 - intliq7)*0.3;

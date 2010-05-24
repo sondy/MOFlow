@@ -6,15 +6,16 @@ global avgEER avgEERwLiq EERfracoftotal EERfracoftotalwliq avgEDR
 globals
 
 % depths = linspace(500, 3000, 6).*1000; 
-%depths = linspace(500, 2500, 5).*1000; 
+depths = linspace(500, 2000, 4).*1000; 
 % linearly spaced magma ocean depths, all in meters
 
 CMB_depth = 2885000;                % *** m, depth of core-mantle boundary
 % from the surface of the Earth
 
+%depths = [depths]
 %depths = [depths, CMB_depth];
-%depths = [2500*1000];
-depths = [CMB_depth];
+%depths = [2000*1000];
+%depths = [CMB_depth];
 
 num_oceans = [];
 

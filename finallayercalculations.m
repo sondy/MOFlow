@@ -33,13 +33,13 @@ D(j) = density;
 Do(j) = densityzero;
 Dsol(j) = densitysol;
 
-if liquid(j,1) <= 3;
-    liquid(j,1) = 3;
+if liquid(j,1) <= 1;
+    liquid(j,1) = 1;
     disp(['No Si at step: ', num2str(j)]);
     liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));
 end
-if liquid(j,2) <= 2;
-    liquid(j,1) = 2;
+if liquid(j,2) <= 1;
+    liquid(j,1) = 1;
     disp(['No Al at step: ', num2str(j)]);
     liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));
 end
