@@ -199,6 +199,9 @@ emiss(1) = (2 /(taustarw(1)+taustarc(1) + 2));
 vol = zeros(1,maxstep);
 vol(1) = 1;
 
+liqfrac = zeros(1,maxstep);
+delr = zeros(1,maxstep);
+
 flux = zeros(1,maxstep);
 
 k = 1;  m = 1; % loops for abbreviated data for output - see bottom of file

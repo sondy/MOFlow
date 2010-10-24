@@ -17,7 +17,9 @@ else        % Note that solid composition includes interstitial liquids
     %    new_liq = liquid(j-1,:)*(liqfrac(j)/liqfrac(j-1)) - solid(j,:)*(1-liqfrac(j)/liqfrac(j-1))*(1-intliqx) - liquid(j-1,:)*(1-liqfrac(j)/liqfrac(j-1))*(intliqx);
     %   new_liq = liquid(j-1,:) - solid(j,:)*(1-liqfrac(j)/liqfrac(j-1)); %*(1-intliqx); % - liquid(j-1,:)*(1-liqfrac(j)/liqfrac(j-1))*(intliqx);
     %new_liq = liquid(j-1,:) - solid(j,:)*((Mantlemass*0.001)/(liqfrac(j)*Mantlemass)); % - liquid(j-1,:)*(intliqx)*((Mantlemass*0.001)/(liqfrac(j)*Mantlemass));
-    new_liq = (liquid(j-1,:) * mass_liquid - mass_this_shell * solid(j,:))/new_mass_liquid;
+    %new_liq = (liquid(j-1,:) * mass_liquid - mass_this_shell * solid(j,:))/new_mass_liquid;
+    new_liq = liq_comp_calc_ECD(j, delr, liquid, Mantlevolume, ...
+        mass_liquid, mass_solidified, mass_this_shell, new_mass_liquid, solid);
     if min(new_liq) < 0
         disp('values in new_liq are < 0')
     end
