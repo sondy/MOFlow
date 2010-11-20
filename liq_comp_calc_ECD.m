@@ -17,11 +17,10 @@ function new_liq = liq_comp_calc_ECD(...
     new_mass_liquid, ...
     solid)
 
-liq_term = liquid(j-1,:) .* (mass_liquid./new_mass_liquid);
+liq_term = liquid(j-1,:) .* (mass_liquid./mass_liquid);
 
-sol_term = (solid(j,:) .*...
-    ((mass_solidified - mass_this_shell)./new_mass_liquid));
+sol_term = solid(j,:) .* (mass_this_shell./mass_liquid);
 
-new_liq = liq_term.*(1 + (Mantlevolume + delr(j)./Mantlevolume)) ...
-    + liq_term ...
-    - sol_term;
+vol_term = 1 + (Mantlevolume + delr(j))./Mantlevolume;
+
+new_liq = liq_term.*vol_term - sol_term;

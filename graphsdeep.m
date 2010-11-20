@@ -16,12 +16,12 @@ figure(3); %title(['Reference density with depth pre- and post-overturn for mode
     xlabel('density at 1 atm and solidus temperature [kg m^{-3}]'); 
     ylabel('radius, km'); 
     xlim([2600 4000])
-    ylim([2500 6500])
+    ylim([3400 6500])
     
     %legend('Pre-overturn density', 'Post-overturn density', 'Location', 'East')
     
-    densityWithDepth = strcat('plots/densityWithDepth', DM_string, '.eps');
-    print('-depsc', densityWithDepth)
+    densityWithDepth = strcat('plots/densityWithDepth', DM_string, '.pdf');
+    print('-dpdf', densityWithDepth)
    
 % %%
 % figure(4); title(['Phase densities for model:  ', name]); 
@@ -49,7 +49,7 @@ figure(3); %title(['Reference density with depth pre- and post-overturn for mode
 % %%    figure(7); title(['temperature evolutions [C] for: ', name]); hold on; plot(Tsurffig, R/1000, 'ro', Tsolidfig, rfig/1000, 'bx', Tsolid(1) - adiabslope*(rfig - (R-RM)), rfig/1000, 'k-'); legend('surface temp','temp at top of solid','adiabat',0); ylabel('radius [km]')
 %  figure(8); title(['Temperature with depth for overturned model']);  hold on;
 %      plot(Tinv,rinv/1000, 'r', CorrectedTinv,rinv/1000, 'g', Tsolid, r/1000, 'k:'); xlabel('temperature [C]'); ylabel('radius, km'); legend('Inverted temperature','Adiabatically corrected','solidus',0);
-% %    print -depsc 'plots/temperatureWithDepth.eps'
+% %    print -dpdf 'plots/temperatureWithDepth.pdf'
 % %   plot(Tinv,rinv/1000, 'r', CorrectedTinv,rinv/1000, 'g', solidus, rinv/1000, 'k:'); xlabel('temperature [C]'); ylabel('radius, km'); legend('Inverted temperature','Adiabatically corrected','solidus',0);
 % %figure(9); title(['Pressure vs r for model:  ', name]); hold on; plot(P,r/1000, 'r'); xlabel('Pressure [GPa]'); ylabel('radius, km');
 % %%    figure(9); title(['temperature evolutions [C] for: ', name]); hold on; plot(Tsurf, Patm*10^-5, 'r-'); legend('surface temp',0); xlabel('Surface T [C]'); ylabel('Patm [bar]')
@@ -168,7 +168,7 @@ xlabel('density at 1 atm and solidus temperature [kg/m^3]');
 ylabel('radius, km');
  
     xlim([2600 3800])
-    ylim([2500 6500]) 
+    ylim([3400 6500]) 
 ax1 = gca;
 
 ax2 = axes('Position',get(ax1,'Position'),...
@@ -176,8 +176,8 @@ ax2 = axes('Position',get(ax1,'Position'),...
            'YAxisLocation','right',...
            'Color','none',...
            'XColor','k','YColor','k',...
-           'XLim', [0 1.4],...
-           'YLim', [2500 6500]);
+           'XLim', [-0.001 0.3],...
+           'YLim', [3400 6500]);
 hl2 = line(x2,y1,'Color','b','Parent',ax2);%, 'LineWidth', 1.2);
 hl3 = line(x3,y1,'Color','g','Parent',ax2);%, 'LineWidth', 1.2);
 hl4 = line(x4,y1,'Color','r','Parent',ax2);%, 'LineWidth', 1.2);
@@ -187,8 +187,8 @@ legend('Sm','Nd','Th','U',0); %axis([0 .5 2000 3400]);
 
 title('Trace element concentrations ppm with depth for overturned model');
     
-traceElement = strcat('plots/traceElement', DM_string, '.eps');
-print('-depsc', traceElement)
+traceElement = strcat('plots/traceElement', DM_string, '.pdf');
+print('-dpdf', traceElement)
 
 hold off;
  
@@ -207,13 +207,15 @@ plot(liquidSm./liquidNd, r./1000, 'r-')%,'LineWidth')%, 4);
     xlabel('147Sm/144Nd molar ratio');
     ylabel('radius [km] of cumulate solidification');
     xlim([0 1.4])
-    ylim([2500 6500])
+    ylim([3400 6500])
     legend('Solid cumulates','Coexisting magma ocean liquids',0); %axis([0 .5 2000 3400]);
     
-traceElementSolids = strcat('plots/traceElementSolids', DM_string, '.eps');
-print('-depsc', traceElementSolids)
+traceElementSolids = strcat('plots/traceElementSolids', DM_string, '.pdf');
+print('-dpdf', traceElementSolids)
     
 hold off
+
+
 %%
 %     
 % % in magma ocean during solidification after overturn
@@ -228,3 +230,82 @@ hold off
 % hold off
 % 
 % 
+
+%% Temperature profile as a function of depth
+% 10/27/2010
+
+figure(45);
+
+jj = 1:1:maxstep;
+
+hold on
+
+title('Surface Temperature as a function of step number');
+
+    xlabel('step number')
+
+    ylabel('Surface Temperature');
+    
+    
+plot(jj, Tsurf, 'k')
+
+hold off
+
+%% Liquid Composition as a function of step
+% 11/14/2010
+
+figure(46);
+
+jj = 1:1:maxstep;
+
+hold on
+
+title('Liquid Composition as a function of step');
+
+xlabel('step number')
+
+ylabel('liquid composition');
+
+% all_liquid_composition
+
+plot(jj', all_liquid_composition(:, 1), 'k')
+plot(jj', all_liquid_composition(:, 2), 'b')
+plot(jj', all_liquid_composition(:, 3), 'c')
+plot(jj', all_liquid_composition(:, 4), 'g')
+plot(jj', all_liquid_composition(:, 5), 'y')
+plot(jj', all_liquid_composition(:, 6), 'r')
+plot(jj', all_liquid_composition(:, 7), 'm')
+plot(jj', all_liquid_composition(:, 8))
+plot(jj', all_liquid_composition(:, 9))
+plot(jj', all_liquid_composition(:, 10))
+plot(jj', all_liquid_composition(:, 11))
+
+
+hold off;
+
+%% liquid
+% 11/15/2010
+
+figure(47);
+
+hold on;
+
+title('Liquid Composition as a function of step');
+
+xlabel('step number')
+
+ylabel('liquid composition');
+
+plot(jj', liquid(:, 1), 'k');
+plot(jj', liquid(:, 2), 'b');
+plot(jj', liquid(:, 3), 'c')
+plot(jj', liquid(:, 4), 'g')
+plot(jj', liquid(:, 5), 'y')
+plot(jj', liquid(:, 6), 'r')
+plot(jj', liquid(:, 7), 'm')
+plot(jj', liquid(:, 8))
+plot(jj', liquid(:, 9))
+plot(jj', liquid(:, 10))
+plot(jj', liquid(:, 11))
+
+hold off

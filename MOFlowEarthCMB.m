@@ -48,8 +48,8 @@ InitP = RtoP(R-DM);   % ***[GPa] at bottom of MO
 Tsolidend = 600;                 %*** temp when all interior is solid according to our calcs; used to distribute latent heat
 Tsurflatent = 1500;              %*** surface temp below which latent heat begins to be phased out
 mass_of_mantle = 4.032e+024;     % kg, mass of mantle
-Mantlemass = ((R^3 - (R - DM)^3)/(R^3 - (CMB)^3))*mass_of_mantle; %*** kg, mass of magma ocean [bad variable name!]
-Mantlevolume = (4/3)*pi*((R)^3 - (R - DM)^3); % m3 volume of magma ocean [bad variable name!]
+Mantlemass = ((R.^3 - (R - DM).^3)./(R.^3 - (CMB).^3)).*mass_of_mantle; %*** kg, mass of magma ocean [bad variable name!]
+Mantlevolume = (4/3)*pi*((R).^3 - (R - DM).^3); % m3 volume of magma ocean [bad variable name!]
 
 name = ([num2str(H2Oliquid(1)),'% H_2O, ',num2str(CO2liquid(1)),'% CO_2']);
 
@@ -107,7 +107,7 @@ end
 % Earth: Hart and Zindler - Na2O plus 2xchondritic traces plus chondritic water, all mass percent
 
 liq_comp = [45.96 4.06 7.54 37.78 3.21 0.00001472...
-    0.00004524 0.00000294 0.00000081 0 0];
+    0.00004524 0.00000294 0.00000081 0.0 0.0];
 %0.00000243,0.0000104,... % changing from Lu-Hf to Th-U
 % U & Th from Anders and Grevesse CI chondrite table, column G.,
 % in some unholy units.  Units in table are in ppb.
@@ -204,13 +204,18 @@ delr = zeros(1,maxstep);
 
 flux = zeros(1,maxstep);
 
+all_liquid_composition = zeros(maxstep, length(liq_comp));
+all_liquid_composition(1, :) = liq_comp;
+% disp('dimensions of all_liq_comp:')
+% disp(size(all_liquid_composition))
+
 k = 1;  m = 1; % loops for abbreviated data for output - see bottom of file
 
 magnesio_thermal = zeros(maxstep, 2);
 mass_solidified = 0;
 
 %%
-for j = 2:1:maxstep    % each step is one-tenth of a percent solidification by volume
+for j = 2:1:maxstep;    % each step is one-tenth of a percent solidification by volume
     %     display(j)
     vol(j) = j;
 
@@ -356,6 +361,9 @@ figure(3); title(['Reference density with depth for model:  ', name]);
     ylabel('radius, km');
 
 %%
+
+%disp(all_liquid_composition);
+
 sortandinvertperovskite
 %%%calculate new emissivity with volatile release from melting
 taustarwend = ((3*(HMatm(j)+Hnewatm))/(8*pi*R^2))*(((kwater*g)/(3*po))^0.5);  % Abe and Matsui 1986

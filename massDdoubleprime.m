@@ -10,14 +10,14 @@
 
 % trapz is a numerical integration routine in Matlab
 
-rho2_index = find(3317 < Dsolinv & Dsolinv < 3319); % density at the top of 
+rho2_index = find(3100 < Dsolinv & Dsolinv < 3200); % density at the top of 
 % the D'' layer
 
 rho1_index = 1; % density at the CMB
 
 radius1 = rinv(rho1_index); % radius at the CMB
 
-radius2 = rinv(rho2_index); % radius at the top of the D'' layer
+radius2 = rinv(50); % radius at the top of the D'' layer
 
 rhoDprimeprime = Dsolinv(rho1_index:rho2_index);
 

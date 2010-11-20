@@ -10,7 +10,7 @@ P = [135  35    30    24    20   17   16   15   10   5    0];  %GPa
 T = [4200 2927  2747 2517  2337 2130 2040 2027 1907 1627 1120];  %K
 % changed T(1) from 5000
 
-pp_solidus = pchip(P, T); % comment goes here
+pp_solidus = pchip(P, T); % Piecewise Cubic Hermite Interpolating Polynomial
 solidus_new = @(P) ppval(pp_solidus, P);
 
 %% Old solidus from Elkins-Tanton (2008)
@@ -26,8 +26,8 @@ pp_solidus = pchip(P, T); % comment goes here
 
 solidus = @(P) ppval(pp_solidus, P); %% final solidus!
 
-%% Test plotting
-
+% %% Test plotting
+% 
 % range = [0 140];
 % 
 % figure
