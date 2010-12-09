@@ -5,6 +5,9 @@
 %disp('Final Layer Calculations')
 
 mass_this_shell = density.*(Mantlevolume ./ 1000);
+
+% density is from fractionate deep Earth
+
 %each step is a constant fraction of the overall MO volume
 mass_liquid     = Mantlemass - mass_solidified;
 mass_solidified = mass_solidified + mass_this_shell;
@@ -16,46 +19,54 @@ if P(j) < Layer6P;
 else        % Note that solid composition includes interstitial liquids
     %    new_liq = liquid(j-1,:)*(liqfrac(j)/liqfrac(j-1)) - solid(j,:)*(1-liqfrac(j)/liqfrac(j-1))*(1-intliqx) - liquid(j-1,:)*(1-liqfrac(j)/liqfrac(j-1))*(intliqx);
     %   new_liq = liquid(j-1,:) - solid(j,:)*(1-liqfrac(j)/liqfrac(j-1)); %*(1-intliqx); % - liquid(j-1,:)*(1-liqfrac(j)/liqfrac(j-1))*(intliqx);
-    %new_liq = liquid(j-1,:) - solid(j,:)*((Mantlemass*0.001)/(liqfrac(j)*Mantlemass)); % - liquid(j-1,:)*(intliqx)*((Mantlemass*0.001)/(liqfrac(j)*Mantlemass));
+    %   new_liq = liquid(j-1,:) - solid(j,:)*((Mantlemass*0.001)/(liqfrac(j)*Mantlemass)); % - liquid(j-1,:)*(intliqx)*((Mantlemass*0.001)/(liqfrac(j)*Mantlemass));
     %new_liq = (liquid(j-1,:) * mass_liquid - mass_this_shell * solid(j,:))/new_mass_liquid;
-%     new_liq = liq_comp_calc_ECD(...
-%         j, ...
-%         delr, ...
-%         liquid, ... 
-%         Mantlevolume, ...
-%         mass_liquid, ...
-%         mass_solidified, ...
-%         new_mass_liquid, ...
-%         solid);
-
-liq_term = liquid(j-1,:) .* (mass_liquid./new_mass_liquid);
-
-sol_term = solid(j,:) .* (mass_this_shell./new_mass_liquid);
-
-vol_term = 1 + (Mantlevolume + delr(j))./Mantlevolume;
-
-new_liq = liq_term.*vol_term - sol_term;
-
-%     new_liq = liq_comp_calc(liquid, ...
-%         mass_liquid,...
-%         mass_this_shell, ...
-%         solid, ...
-%         new_mass_liquid,...
-%         j);
-
+    %     new_liq = liq_comp_calc_ECD(...
+    %         j, ...
+    %         delr, ...e
+    %         liquid, ...
+    %         Mantlevolume, ...
+    %         mass_liquid, ...
+    %         mass_solidified, ...
+    %         new_mass_liquid, ...
+    %         solid);
+    
+    liq_term = liquid(j-1,:) .* (mass_liquid./new_mass_liquid);
+    
+    sol_term = solid(j,:) .* (mass_this_shell./new_mass_liquid);
+    
+    vol_term = 1 + (Mantlevolume + delr(j))./Mantlevolume;
+    
+    new_liq = liq_term.*vol_term - sol_term;
+    
+    %     new_liq = liq_comp_calc(liquid, ...
+    %         mass_liquid,...
+    %         mass_this_shell, ...
+    %         solid, ...
+    %         new_mass_liquid,...
+    %         j);
+    
     if min(new_liq) < 0
         disp('values in new_liq are < 0')
     end
     liq_comp = 100*new_liq./(sum(new_liq));  % renormalized liquid composition
     all_liquid_composition(j, :) = liq_comp;
     
-%     for kk = 1:length(liq_comp);
-%        all_liquid_composition(j, kk) = liq_comp(kk);
-%     end
+    mantle_mass_vector(j, :) = mass_solidified;
     
-%    all_liquid_composition
+    mantle_mass_by_layer(j, :) = mass_this_shell;
+   
+    residual_liquids_vector(j, :) = new_mass_liquid;
+    
+    solid_comp_by_layer(j, :) = solid(j, :);
+    
+    %     for kk = 1:length(liq_comp);
+    %        all_liquid_composition(j, kk) = liq_comp(kk);
+    %     end
+    
+    %    all_liquid_composition
     %liq_comp
-%    all_liquid_composition
+    %    all_liquid_composition
 end
 
 

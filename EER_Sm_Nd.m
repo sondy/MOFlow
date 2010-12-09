@@ -51,12 +51,15 @@ display(avgEER)
 avgNdEERwLiq = (totalliquidvol/(totalliquidvol +...
     totalDvol))*liquid(maxstep,7) +...
     (totalDvol/(totalliquidvol+totalDvol))*avgNdEER;
+
 avgSmEERwLiq = (totalliquidvol/(totalliquidvol +...
     totalDvol))*liquid(maxstep,6) +...
     (totalDvol/(totalliquidvol+totalDvol))*avgSmEER;
+
 avgUEERwLiq = (totalliquidvol/(totalliquidvol +...
     totalDvol))*liquid(maxstep,9) +...
     (totalDvol/(totalliquidvol+totalDvol))*avgUEER;
+
 avgThEERwLiq = (totalliquidvol/(totalliquidvol +...
     totalDvol))*liquid(maxstep,8) +...
     (totalDvol/(totalliquidvol+totalDvol))*avgThEER;
@@ -65,8 +68,8 @@ disp(['With all final liquids D" Nd wt% is ',num2str(avgNdEERwLiq),...
     '; Sm wt% is ', num2str(avgSmEERwLiq),...
     '; U wt% is ', num2str(avgUEERwLiq),...
     '; and Th wt% is ', num2str(avgThEERwLiq)])
-fprintf('\n')
-fprintf('\n')
+
+fprintf('\n \n')
 
 % write all avgEERwLiq into a global variable
 avgEERwLiq(:, num_oceans) = cat(1, avgSmEERwLiq, avgNdEERwLiq,...
@@ -109,3 +112,52 @@ fprintf('\n \n')
 
 % write all avgNdEDR into a global variable
 avgEDR(:, num_oceans) = cat(1, avgSmEDR, avgNdEDR);
+
+%% Residual Liquid Density
+densityResidual = new_mass_liquid./totalliquidvol;
+
+%fprintf('The new mass liquid is %2.3g kg. \n', new_mass_liquid)
+
+fprintf('The volume of the residual liquids is %2.3g kg. \n', totalliquidvol)
+
+fprintf('The mass of the residual liquids is %2.3g kg. This is %2.3g%% the mass of the mantle. \n',...
+    new_mass_liquid, (new_mass_liquid*100/mass_of_mantle))
+
+fprintf('The density of the residual liquids is %2.3g kg/m^3 \n',...
+    densityResidual)
+
+%% Mass Balance - a test, of sorts
+
+%fprintf('The mass of the mantle is %2.3g kg. \n', mass_of_mantle)
+
+fprintf('The mass of the solidified ocean + residual liquids is %2.3g kg. \n',...
+    (mass_solidified + new_mass_liquid))
+
+silicateMass = (((R-DM).^3 - CMB.^3)/(R.^3 - CMB.^3))*mass_of_mantle;
+
+% SO - solidified ocean; RL - residual liquids; US - unmelted silicates
+
+fprintf('The mass of the SO, RL, and US is %3.4g%% of the present mantle mass. \n', ...
+    ((silicateMass + mass_solidified + new_mass_liquid)*100)/(mass_of_mantle))
+
+%% Soo, does liq_comp make sense?
+% 12/4/2010
+
+% 1: SiO2, 2: Al2O3, 3: FeO, 4: MgO, 5: CaO, 6: Sm, 7: Nd, 8: Th, 9: U, 10:
+% OH, 11: C
+
+%disp(liq_comp)
+
+% Take the values from liq_comp and multiply them by the density of each
+% species.  Does the resulting density make sense?
+
+liq_comp_density = liq_comp.*mineral_density;
+
+density_calc_res_liq = sum((liq_comp_density./100));
+
+fprintf('The calculated density of the final layer is %2.3g kg/m^3. \n',...
+    density_calc_res_liq)
+
+mass_calc_res_liq = density_calc_res_liq*totalliquidvol;
+
+% Well if it's close to 3600 kg/m^3, then yes.

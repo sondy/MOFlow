@@ -3,8 +3,8 @@
 
 %% initializations
 
-close all;
-clear all;
+% close all;
+% clear all;
 
 % T1 = 500:100:5000; % in C
 rho_2 = 3400; %kg/m^3
@@ -14,24 +14,27 @@ alpha = 1e-5;% 1e-5 1e-6];
 
 %% calculation
 
-deltaT = 500:10:2000;
+deltaT = 500:20:2000;
 
 max = size(deltaT,2);
 
 deltaT = deltaT';
 
-delta_rho = zeros(max,1);
+delta_rho = zeros(max,max);
 
 
 
-figure(1)
+figure(3)
 hold on
 for i = 1:max;
     delta_rho(i,:) = deltaT(i).*rho_1.*alpha; % change in density
-    plot(deltaT, delta_rho(i,1), '*', 'Color', [0 .5 i./max])
+    %plot(deltaT, delta_rho(i,1), '*', 'Color', [0 .5 i./max])
 end
 
 
+pcolor(deltaT, delta_rho(:,1), delta_rho(:,:)); %shading interp;
+shading interp;
+colorbar;
 
 % for i = 1:size(T1,2);
 %     delta_rho_2(i,:) = deltaT(2).*rho_1.*alpha;% - rho_1;

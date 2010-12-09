@@ -66,7 +66,7 @@ for j = 2:endi	% calculate new radius for each layer based on crystalvolume befo
     % solidus(j) = (-1.1601e-007)*(rinv(j)/1000)^3 + 0.0014*(rinv(j)/1000)^2 + -6.3821*(rinv(j)/1000) + 1.4439e+004 - 200;% melting solidus 200 degrees higher than bulk mantle
     Solidus(j) = solidus(RtoP(rinv(j))) - 200;
 end
-
+=
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % for j = 2:endi
 %        figure(38); hold on;

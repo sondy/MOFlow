@@ -281,6 +281,9 @@ plot(jj', all_liquid_composition(:, 10))
 plot(jj', all_liquid_composition(:, 11))
 
 
+legend('SiO2', 'Al2O3', 'FeO', 'MgO', 'CaO', 'Sm', 'Nd', 'Th', 'U',...
+    'OH', 'C')
+
 hold off;
 
 %% liquid
@@ -308,4 +311,24 @@ plot(jj', liquid(:, 9))
 plot(jj', liquid(:, 10))
 plot(jj', liquid(:, 11))
 
+legend('SiO2', 'Al2O3', 'FeO', 'MgO', 'CaO', 'Sm', 'Nd', 'Th', 'U',...
+    'OH', 'C')
+
 hold off
+
+%% mantle & residual liquid mass
+% 12/4/2010
+figure(48);
+
+hold on;
+
+title('normalized: solidified magma ocean mass (k); residual liquids mass (r)')
+
+xlabel('step number')
+
+ylabel('normalized mass')
+
+plot(jj', mantle_mass_vector./Mantlemass, 'k')
+plot(jj', residual_liquids_vector./Mantlemass, 'r')
+
+legend('solidified magma ocean mass (kg)', 'residual liquids mass (kg)')

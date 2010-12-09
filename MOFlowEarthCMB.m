@@ -40,8 +40,11 @@ m = 140*1000/(CMB - R);
 
 b = 140* - m*(CMB/1000);
 
-g = 9.81;                        % *** m/sec2
-adiabslope = 0.33/1000;          %*** K/m, slope of adiabat
+g = 9.81;                        % *** m/sec^2
+
+Mearth = 5.9742e24;              % *** kg
+
+adiabslope = 0.33/1000;          % *** K/m, slope of adiabat
 tfinal = 50*3.14e13;             % *** sec total time of conductive cooling in cool2clement
 tempcore = 1600 + 273;           % *** in K (2100C = 2373 K; 1900C = 2173K) match to ending T in MOFlow
 InitP = RtoP(R-DM);   % ***[GPa] at bottom of MO
@@ -111,6 +114,9 @@ liq_comp = [45.96 4.06 7.54 37.78 3.21 0.00001472...
 %0.00000243,0.0000104,... % changing from Lu-Hf to Th-U
 % U & Th from Anders and Grevesse CI chondrite table, column G.,
 % in some unholy units.  Units in table are in ppb.
+
+% densities from wikipedia
+mineral_density = [2634 4000 5745 3580 3350 7400 7000 11700 18900 0 2267];
 
 liq_comp = 100*liq_comp./(100-(H2Oliquid2(1)+CO2liquid2(1))); % normalized MO oxides so volatiles remain at values specified above
 liq_comp(10) = H2Oliquid2(1); liq_comp(11) = CO2liquid2(1);
@@ -204,15 +210,33 @@ delr = zeros(1,maxstep);
 
 flux = zeros(1,maxstep);
 
-all_liquid_composition = zeros(maxstep, length(liq_comp));
-all_liquid_composition(1, :) = liq_comp;
 % disp('dimensions of all_liq_comp:')
 % disp(size(all_liquid_composition))
 
 k = 1;  m = 1; % loops for abbreviated data for output - see bottom of file
 
 magnesio_thermal = zeros(maxstep, 2);
+
+%% Vectors for later graphing tests
 mass_solidified = 0;
+
+all_liquid_composition = zeros(maxstep, length(liq_comp));
+all_liquid_composition(1, :) = liq_comp;
+
+mantle_mass_vector = zeros(maxstep, 1);
+mantle_mass_vector(1, :) = mass_solidified;
+
+mantle_mass_by_layer = zeros(maxstep, 1);
+mantle_mass_by_layer(1, :) = mass_solidified;
+
+% mantle_volume_by_layer = ones(maxstep, 1);
+% mantle_volume_by_layer = mantle_volume_by_layer.*(Mantlevolume./1000);
+
+solid_comp_by_layer = zeros(maxstep, length(liq_comp));
+solid_comp_by_layer(1, :) = liq_comp;
+
+residual_liquids_vector = zeros(maxstep, 1);
+residual_liquids_vector(1, :) = Mantlemass;
 
 %%
 for j = 2:1:maxstep;    % each step is one-tenth of a percent solidification by volume
@@ -356,7 +380,7 @@ end
 %%
 figure(3); title(['Reference density with depth for model:  ', name]);
     hold on;
-    plot(Dsol, r./1000, 'r')%,'LineWidth',4);
+    %plot(Dsol, r./1000, 'r')%,'LineWidth',4);
     xlabel('density at 1 atm and solidus temperature [kg/m3]');
     ylabel('radius, km');
 
@@ -371,8 +395,11 @@ taustarcend = ((3*(CMatm(j)+Cnewatm))/(8*pi*R^2))*(((kcarbon*g)/(3*po))^0.5);
 endemiss = (2 /(taustarwend+taustarcend + 2));    % H2O/CO2 relative absorption wavelength widths =1.5/0.5 not considered here
 %%%%%%%%%%%%
 cool2clementwhole
-graphsdeep
+leanGraphs
+%graphsdeep
 
 %%
 massDdoubleprime
 EER_Sm_Nd
+
+disp('')

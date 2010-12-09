@@ -2,9 +2,9 @@
 % 2/16/2009 Alessondra Springmann
 
 %% initializations
-
-close all;
-clear all;
+% 
+% close all;
+% clear all;
 
 T1 = 500:100:5000; % in C
 rho_2 = 3400; %kg/m^3
@@ -58,7 +58,7 @@ legend_str1 = ['\alpha = ' alpha1 '; \DeltaT = ' deltaT1];
 legend_str2 = ['\alpha = ' alpha1 '; \DeltaT = ' deltaT2];
 legend_str3 = ['\alpha = ' alpha1 '; \DeltaT = ' deltaT3];
 
-figure(1)
+figure(2)
 plot(T1', delta_rho_1(:,1), 'b-')%, T2(2))
 hold on
 plot(T1', delta_rho_2(:,1), 'r-')
