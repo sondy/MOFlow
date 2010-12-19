@@ -19,6 +19,9 @@ radius1 = rinv(rho1_index); % radius at the CMB
 
 radius2 = rinv(50); % radius at the top of the D'' layer
 
+display(radius1)
+display(radius2)
+
 rhoDprimeprime = mean(Dsolinv(rho1_index:rho2_index));
 
 fprintf('The average density of the D" layer is %2.3g kg/m^3. \n',...
