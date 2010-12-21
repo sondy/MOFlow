@@ -121,7 +121,7 @@ end
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LAYER 3 %%%%%%%%%%%%%%%%%%%% gammaspinel + majorite
 if P(j) > Layer3P;
-%display('Layer 3: Gamma spinel, Majorite')
+%display('Layer 3: Beta spinel, Majorite')
     intliqx = intliq3;
     %    disp(['Layer 3, index = ', num2str(j)])
     [eqminbeta, Mgnumb] = beta(liq_comp);
