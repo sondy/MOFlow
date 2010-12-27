@@ -28,16 +28,35 @@ solidus = @(P) ppval(pp_solidus, P); %% final solidus!
 
 % %% Test plotting
 % 
-% range = [0 140];
+%range = [0 140];
+
+range0 = 0:1:140;
+
+range = sort(range0, 2, 'descend');
+
+radius_range = PtoR(range)./1000;
+
+t_solidus_new = solidus_new(range);
+t_solidus_old = solidus_old(range);
+t_solidus = solidus(range);
+
+% Plotting
 % 
-% figure
+% figure1 = figure; 
+% % 
+% % axes1 = axes('Parent',figure1,'YDir','reverse');
+% % hold(axes1,'all');
+% 
 % hold on 
-% fplot(solidus_new, range, 'r') % from Abe (1997)
-% fplot(solidus_old, range, 'b') % from Elkins-Tanton (2008)
-% fplot(solidus, range, 'g')
-% legend('New', 'Old', 'Hybrid', 'Location', 'NorthWest')
-% xlabel('Pressure in GPa')
-% ylabel('Temperature in C')
+% plot(t_solidus_new, radius_range, 'r.') % from Abe (1997)
+% plot(t_solidus_old, radius_range, 'b.') % from Elkins-Tanton (2008)
+% plot(t_solidus, radius_range, 'm.')
+% legend('Abe (1997)', 'Elkins-Tanton (2008)', 'This Work',...
+%     'Location', 'NorthEast')
+% xlabel('Temperature (^{\circ}C)')
+% ylabel('Radius (km)')
+% 
+% print('-dpng', 'plots/solidi.png')
 
 
 %% old comments

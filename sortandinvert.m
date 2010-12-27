@@ -1,6 +1,6 @@
 % sortandinvert.m
 
-disp('In sortandinvert')
+disp('In sortandinvert---it has been called!')
 
 % altered for integrated code on 09/23/2006
 % takes results of any profile and inverts it by sorting by density

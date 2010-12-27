@@ -23,20 +23,20 @@ density_calc_plot = zeros(maxstep, 1);
 % 
 % plot(density_calc_plot, r./1000, 'rO');
 
-density_by_layer = mantle_mass_by_layer./(Mantlevolume./1000);
+% density_by_layer = mantle_mass_by_layer./(Mantlevolume./1000);
+% % 
+% % plot(density_by_layer, r./1000, 'gO');
+% % plot(density_by_layer(10), r(10)./1000, 'r*');
 % 
-% plot(density_by_layer, r./1000, 'gO');
-% plot(density_by_layer(10), r(10)./1000, 'r*');
-
- % Calculate density for each layer from solid composition,
- % pre-solidification
-density_from_solid = zeros(maxstep, 1);
-
-for kk = 1:1:maxstep;
-    density_from_solid(kk, 1) = sum(mineral_density.*solid_comp_by_layer(kk, :)./100);
-end
-
-plot(density_from_solid, r./1000, 'cO');
+%  % Calculate density for each layer from solid composition,
+%  % pre-solidification
+% density_from_solid = zeros(maxstep, 1);
+% 
+% for kk = 1:1:maxstep;
+%     density_from_solid(kk, 1) = sum(mineral_density.*solid_comp_by_layer(kk, :)./100);
+% end
+% 
+% plot(density_from_solid, r./1000, 'cO');
 
 xlabel('density at 1 atm and solidus temperature [kg m^{-3}]');
 ylabel('radius, km');
@@ -47,21 +47,21 @@ legend(...%'Reference density',...
     'Pre-overturn density',...
     'Post-overturn density', 'Location of the D" Layer', ...
     ...%'Calculated reference density',
-    'Density from solid composition',...
+    ...%'Density from solid composition',...
     'Location', 'Best')
 
 %     densityWithDepth = strcat('plots/densityWithDepth', DM_string, '.pdf');
 %     print('-dpdf', densityWithDepth)
 hold off;
 
-%% Figure 50
-figure(50);
-
-hold on;
-
-plot(mantle_mass_by_layer, r./1000, 'b.');
-
-hold off;
+% %% Figure 50
+% figure(50);
+% 
+% hold on;
+% 
+% plot(mantle_mass_by_layer, r./1000, 'b.');
+% 
+% hold off;
 
 %% liquid
 % 11/15/2010
@@ -72,28 +72,32 @@ figure(47);
 
 hold on;
 
-title('Liquid Composition as a function of step');
+title('Radius versus Liquid Composition of the Coevolving Liquids');
 
-xlabel('step number')
+xlabel('liquid composition (mass percent)')
 
-ylabel('liquid composition');
+ylabel('radius (km)');
 
-plot(jj', liquid(:, 1), 'k');
-plot(jj', liquid(:, 2), 'b');
-plot(jj', liquid(:, 3), 'c')
-plot(jj', liquid(:, 4), 'g')
-plot(jj', liquid(:, 5), 'y')
-plot(jj', liquid(:, 6), 'r')
-plot(jj', liquid(:, 7), 'm')
-plot(jj', liquid(:, 8))
-plot(jj', liquid(:, 9))
-plot(jj', liquid(:, 10))
-plot(jj', liquid(:, 11))
+plot(liquid(:, 1), r./1000, 'k');
+plot(liquid(:, 2), r./1000, 'b');
+plot(liquid(:, 3), r./1000, 'c')
+plot(liquid(:, 4), r./1000, 'g')
+plot(liquid(:, 5), r./1000, 'y')
+plot(liquid(:, 6), r./1000, 'r')
+plot(liquid(:, 7), r./1000, 'm')
+plot(liquid(:, 8), r./1000, 'Color', [0 .5 1])
+plot(liquid(:, 9), r./1000, 'Color', [0 .5 .5])
+plot(liquid(:, 10), r./1000, 'Color', [1 .5 0])
+plot(liquid(:, 11), r./1000, 'Color', [.8 .5 1])
 
 legend('SiO2', 'Al2O3', 'FeO', 'MgO', 'CaO', 'Sm', 'Nd', 'Th', 'U',...
     'OH', 'C', 'Location', 'Best')
 
 hold off
+
+print('-dpng', 'plots/compositionStep.png')
+
+%display('foo')
 
 % %% mantle & residual liquid mass
 % % 12/4/2010
