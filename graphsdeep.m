@@ -15,13 +15,13 @@ figure(3); %title(['Reference density with depth pre- and post-overturn for mode
     
     xlabel('density at 1 atm and solidus temperature [kg m^{-3}]'); 
     ylabel('radius, km'); 
-    xlim([2600 4000])
+    xlim([2600 3600])
     ylim([3400 6500])
     
     %legend('Pre-overturn density', 'Post-overturn density', 'Location', 'East')
     
-    densityWithDepth = strcat('plots/densityWithDepth', DM_string, '.pdf');
-    print('-dpdf', densityWithDepth)
+    densityWithDepth = strcat('plots/densityWithDepth', DM_string, '.eps');
+    print('-depsc', densityWithDepth)
    
 % %%
 % figure(4); title(['Phase densities for model:  ', name]); 
@@ -167,7 +167,7 @@ hl1 = line(x1, y1, 'Color', 'k');%, 'LineWidth', 2);
 xlabel('density at 1 atm and solidus temperature [kg/m^3]');
 ylabel('radius, km');
  
-    xlim([2600 3800])
+    xlim([2600 3600])
     ylim([3400 6500]) 
 ax1 = gca;
 
@@ -185,10 +185,10 @@ hl5 = line(x5,y1,'Color','c','Parent',ax2);%, 'LineWidth', 1.2);
 
 legend('Sm','Nd','Th','U',0); %axis([0 .5 2000 3400]);
 
-title('Trace element concentrations ppm with depth for overturned model');
+%title('Trace element concentrations ppm with depth for overturned model');
     
-traceElement = strcat('plots/traceElement', DM_string, '.pdf');
-print('-dpdf', traceElement)
+traceElement = strcat('plots/traceElement', DM_string, '.eps');
+print('-depsc', traceElement)
 
 hold off;
  
@@ -210,8 +210,8 @@ plot(liquidSm./liquidNd, r./1000, 'r-')%,'LineWidth')%, 4);
     ylim([3400 6500])
     legend('Solid cumulates','Coexisting magma ocean liquids',0); %axis([0 .5 2000 3400]);
     
-traceElementSolids = strcat('plots/traceElementSolids', DM_string, '.pdf');
-print('-dpdf', traceElementSolids)
+traceElementSolids = strcat('plots/traceElementSolids', DM_string, '.eps');
+print('-depsc', traceElementSolids)
     
 hold off
 
@@ -231,104 +231,104 @@ hold off
 % 
 % 
 
-%% Temperature profile as a function of depth
-% 10/27/2010
-
-figure(45);
-
-jj = 1:1:maxstep;
-
-hold on
-
-title('Surface Temperature as a function of step number');
-
-    xlabel('step number')
-
-    ylabel('Surface Temperature');
-    
-    
-plot(jj, Tsurf, 'k')
-
-hold off
-
-%% Liquid Composition as a function of step
-% 11/14/2010
-
-figure(46);
-
-jj = 1:1:maxstep;
-
-hold on
-
-title('Liquid Composition as a function of step');
-
-xlabel('step number')
-
-ylabel('liquid composition');
-
-% all_liquid_composition
-
-plot(jj', all_liquid_composition(:, 1), 'k')
-plot(jj', all_liquid_composition(:, 2), 'b')
-plot(jj', all_liquid_composition(:, 3), 'c')
-plot(jj', all_liquid_composition(:, 4), 'g')
-plot(jj', all_liquid_composition(:, 5), 'y')
-plot(jj', all_liquid_composition(:, 6), 'r')
-plot(jj', all_liquid_composition(:, 7), 'm')
-plot(jj', all_liquid_composition(:, 8))
-plot(jj', all_liquid_composition(:, 9))
-plot(jj', all_liquid_composition(:, 10))
-plot(jj', all_liquid_composition(:, 11))
-
-
-legend('SiO2', 'Al2O3', 'FeO', 'MgO', 'CaO', 'Sm', 'Nd', 'Th', 'U',...
-    'OH', 'C')
-
-hold off;
-
-%% liquid
-% 11/15/2010
-
-figure(47);
-
-hold on;
-
-title('Liquid Composition as a function of step');
-
-xlabel('step number')
-
-ylabel('liquid composition');
-
-plot(jj', liquid(:, 1), 'k');
-plot(jj', liquid(:, 2), 'b');
-plot(jj', liquid(:, 3), 'c')
-plot(jj', liquid(:, 4), 'g')
-plot(jj', liquid(:, 5), 'y')
-plot(jj', liquid(:, 6), 'r')
-plot(jj', liquid(:, 7), 'm')
-plot(jj', liquid(:, 8))
-plot(jj', liquid(:, 9))
-plot(jj', liquid(:, 10))
-plot(jj', liquid(:, 11))
-
-legend('SiO2', 'Al2O3', 'FeO', 'MgO', 'CaO', 'Sm', 'Nd', 'Th', 'U',...
-    'OH', 'C')
-
-hold off
-
-%% mantle & residual liquid mass
-% 12/4/2010
-figure(48);
-
-hold on;
-
-title('normalized: solidified magma ocean mass (k); residual liquids mass (r)')
-
-xlabel('step number')
-
-ylabel('normalized mass')
-
-plot(jj', mantle_mass_vector./Mantlemass, 'k')
-plot(jj', residual_liquids_vector./Mantlemass, 'r')
-
-legend('solidified magma ocean mass (kg)', 'residual liquids mass (kg)')
+% %% Temperature profile as a function of depth
+% % 10/27/2010
+% 
+% figure(45);
+% 
+% jj = 1:1:maxstep;
+% 
+% hold on
+% 
+% title('Surface Temperature as a function of step number');
+% 
+%     xlabel('step number')
+% 
+%     ylabel('Surface Temperature');
+%     
+%     
+% plot(jj, Tsurf, 'k')
+% 
+% hold off
+% 
+% %% Liquid Composition as a function of step
+% % 11/14/2010
+% 
+% figure(46);
+% 
+% jj = 1:1:maxstep;
+% 
+% hold on
+% 
+% title('Liquid Composition as a function of step');
+% 
+% xlabel('step number')
+% 
+% ylabel('liquid composition');
+% 
+% % all_liquid_composition
+% 
+% plot(jj', all_liquid_composition(:, 1), 'k')
+% plot(jj', all_liquid_composition(:, 2), 'b')
+% plot(jj', all_liquid_composition(:, 3), 'c')
+% plot(jj', all_liquid_composition(:, 4), 'g')
+% plot(jj', all_liquid_composition(:, 5), 'y')
+% plot(jj', all_liquid_composition(:, 6), 'r')
+% plot(jj', all_liquid_composition(:, 7), 'm')
+% plot(jj', all_liquid_composition(:, 8))
+% plot(jj', all_liquid_composition(:, 9))
+% plot(jj', all_liquid_composition(:, 10))
+% plot(jj', all_liquid_composition(:, 11))
+% 
+% 
+% legend('SiO2', 'Al2O3', 'FeO', 'MgO', 'CaO', 'Sm', 'Nd', 'Th', 'U',...
+%     'OH', 'C')
+% 
+% hold off;
+% 
+% %% liquid
+% % 11/15/2010
+% 
+% figure(47);
+% 
+% hold on;
+% 
+% title('Liquid Composition as a function of step');
+% 
+% xlabel('step number')
+% 
+% ylabel('liquid composition');
+% 
+% plot(jj', liquid(:, 1), 'k');
+% plot(jj', liquid(:, 2), 'b');
+% plot(jj', liquid(:, 3), 'c')
+% plot(jj', liquid(:, 4), 'g')
+% plot(jj', liquid(:, 5), 'y')
+% plot(jj', liquid(:, 6), 'r')
+% plot(jj', liquid(:, 7), 'm')
+% plot(jj', liquid(:, 8))
+% plot(jj', liquid(:, 9))
+% plot(jj', liquid(:, 10))
+% plot(jj', liquid(:, 11))
+% 
+% legend('SiO2', 'Al2O3', 'FeO', 'MgO', 'CaO', 'Sm', 'Nd', 'Th', 'U',...
+%     'OH', 'C')
+% 
+% hold off
+% 
+% %% mantle & residual liquid mass
+% % 12/4/2010
+% figure(48);
+% 
+% hold on;
+% 
+% title('normalized: solidified magma ocean mass (k); residual liquids mass (r)')
+% 
+% xlabel('step number')
+% 
+% ylabel('normalized mass')
+% 
+% plot(jj', mantle_mass_vector./Mantlemass, 'k')
+% plot(jj', residual_liquids_vector./Mantlemass, 'r')
+% 
+% legend('solidified magma ocean mass (kg)', 'residual liquids mass (kg)')

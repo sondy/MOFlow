@@ -9,10 +9,11 @@
 %figure(2);title(['Reference density with depth for model:  ', name]); hold on; plot(Do(1:marker),r(1:marker)/1000,'y'); xlabel('density at 1 atm and 1 deg C [kg/m3]'); ylabel('radius, km');
 figure(3); %title(['Reference density with depth pre- and post-overturn for model:  ', name]);
 hold on;
-plot(Dsol, r./1000,'bO')%, 'LineWidth', 4)
-plot(Dsolinv, rinv./1000, 'kO')%, 'LineWidth', 4); %        plot(Dsol(1:marker2), r(1:marker2)/1000,'y',...
+plot(Dsol, r./1000,'b.', 'LineWidth', 4)%, 'LineWidth', 4)
+plot(Dsolinv, rinv./1000, 'k.', 'LineWidth', 4)%, 'LineWidth', 4); %        plot(Dsol(1:marker2), r(1:marker2)/1000,'y',...
 
-plot(Dsolinv(50),rinv(50)./1000,'Om')   %D'' layer is about here
+%plot(Dsolinv(50),rinv(50)./1000,'.m', 'LineWidth', 4)   %D'' layer is
+%about here
 
  % Now for calculated densities
 density_calc_plot = zeros(maxstep, 1);
@@ -43,9 +44,9 @@ ylabel('radius, km');
 xlim([2600 3500])
 ylim([3400 6500])
 
-legend(...%'Reference density',...
-    'Pre-overturn density',...
-    'Post-overturn density', 'Location of the D" Layer', ...
+legend('Location of the D" Layer', ... %...%'Reference density',...
+    'Pre-overturn density', ...
+    'Post-overturn density', ...
     ...%'Calculated reference density',
     ...%'Density from solid composition',...
     'Location', 'Best')
@@ -72,30 +73,35 @@ figure(47);
 
 hold on;
 
-title('Radius versus Liquid Composition of the Coevolving Liquids');
+%title('Radius versus Liquid Composition of the Coevolving Liquids');
 
-xlabel('liquid composition (mass percent)')
+xlabel('oxide liquid composition (mass percent)')
 
 ylabel('radius (km)');
 
-plot(liquid(:, 1), r./1000, 'k');
-plot(liquid(:, 2), r./1000, 'b');
-plot(liquid(:, 3), r./1000, 'c')
-plot(liquid(:, 4), r./1000, 'g')
-plot(liquid(:, 5), r./1000, 'y')
-plot(liquid(:, 6), r./1000, 'r')
-plot(liquid(:, 7), r./1000, 'm')
-plot(liquid(:, 8), r./1000, 'Color', [0 .5 1])
-plot(liquid(:, 9), r./1000, 'Color', [0 .5 .5])
-plot(liquid(:, 10), r./1000, 'Color', [1 .5 0])
-plot(liquid(:, 11), r./1000, 'Color', [.8 .5 1])
 
-legend('SiO2', 'Al2O3', 'FeO', 'MgO', 'CaO', 'Sm', 'Nd', 'Th', 'U',...
-    'OH', 'C', 'Location', 'Best')
+plot(liquid(:, 1), r./1000, 'k', 'LineWidth', 3)
+plot(liquid(:, 2), r./1000, 'b', 'LineWidth', 3)
+plot(liquid(:, 3), r./1000, 'c', 'LineWidth', 3)
+plot(liquid(:, 4), r./1000, 'g', 'LineWidth', 3)
+plot(liquid(:, 5), r./1000, 'y', 'LineWidth', 3)
+% plot(liquid(:, 6), r./1000, 'r', 'LineWidth', 3)
+% plot(liquid(:, 7), r./1000, 'm', 'LineWidth', 3)
+% plot(liquid(:, 8), r./1000, 'Color', [0 .5 1], 'LineWidth', 3)
+% plot(liquid(:, 9), r./1000, 'Color', [0 .5 .5], 'LineWidth', 3)
+%plot(liquid(:, 10), r./1000, 'Color', [1 .5 0], 'LineWidth', 3)
+% plot(liquid(:, 11), r./1000, 'Color', [.8 .5 1], 'LineWidth', 3)
+
+legend('SiO_2', 'Al_2O_3', 'FeO', 'MgO', 'CaO',...
+    'Location', 'EastOutside')
+    %'Sm', 'Nd', 'Th','U',...
+    %'OH',...% 'C',...
+   % ...,
+        
 
 hold off
 
-print('-dpng', 'plots/compositionStep.png')
+print('-depsc', 'plots/compositionStep.eps')
 
 %display('foo')
 

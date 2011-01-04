@@ -380,7 +380,13 @@ end
 %%
 figure(3); title(['Reference density with depth for model:  ', name]);
     hold on;
-    %plot(Dsol, r./1000, 'r')%,'LineWidth',4);
+    
+    
+    x = [2600, 3500];
+    y = [4497, 4497];
+
+    plot(x, y, 'm', 'LineWidth', 1)
+    %plot(Dsol, r./1000, 'r.')%,'LineWidth',4);
     xlabel('density at 1 atm and solidus temperature [kg/m3]');
     ylabel('radius, km');
 

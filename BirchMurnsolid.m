@@ -8,8 +8,9 @@ function VP = BirchMurnsolid(Kot, Kpt, Vo, P)
 Pfunc = @(Vratio)(3/2)*Kot*((Vratio)^(7/3) - ...
     (Vratio)^(5/3))*(1 - (3/4)*(4 - Kpt)*((Vratio)^(2/3) - 1)) - P;
 
-range = [1 4];
-% range = 1.3;
+%range = [1 4];
+%range = 1.3;
+range = [0.851 3];
 
 [Vpressure, FVAL, EXITFLAG] = fzero(Pfunc, range);
 
@@ -31,6 +32,8 @@ VP = Vo/Vpressure;
 end
 
 %VP = Vo/(fzero(Pfunc,1.2));
+
+%  fplot(Pfunc, [0.2 4])
 
 % Pfunc is just the birch-murn equation with Vratio in the place of Vo/VP
 % and the entire equation rearranged such that Pfunc is zero at the correct

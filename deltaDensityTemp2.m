@@ -22,7 +22,7 @@ deltaT = deltaT';
 
 delta_rho = zeros(max,max);
 
-%figure(3)
+figure(50);
 hold on
 for i = 1:max;
     delta_rho(i,:) = deltaT(i).*rho_1.*alpha; % change in density
@@ -34,9 +34,18 @@ shading interp;
 colorbar;
 colormap('hot')
 
+xlim([500 5000]);
+
 xlabel('\Delta T in K')
 ylabel('\Delta\rho  in kg\cdotm^{-3} (for \alpha = 1e-5 K^{-1})')
 % legend(legend_str1, legend_str2, legend_str3, 'Location', 'East') 
+
+%set(figure(50), 'Renderer', '-painters')
 hold off
 
-print('-dpng', 'plots/deltaRho.png')
+%print('-depsc', 'plots/deltaRho.eps')
+
+print -depsc -painters 'plots/deltaRho.eps';
+
+% this gives you an actual vector output;
+% http://www.mathworks.com/matlabcentral/newsreader/view_thread/155211
