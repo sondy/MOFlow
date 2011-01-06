@@ -109,8 +109,10 @@ end
 % 1: SiO2, 2: Al2O3, 3: FeO, 4: MgO, 5: CaO, 6: Sm, 7: Nd, 8: Th, 9: U, 10: OH, 11: C
 % Earth: Hart and Zindler - Na2O plus 2xchondritic traces plus chondritic water, all mass percent
 
-liq_comp = [45.96 4.06 7.54 37.78 3.21 0.00001472...
-    0.00004524 0.00000294 0.00000081 0.0 0.0];
+liq_comp = [45.96 4.06 7.54 37.78 3.21...
+    0.00001472... % Sm, mass percent
+    0.00004524... % Nd, mass percent
+    0.00000294 0.00000081 0.0 0.0];
 %0.00000243,0.0000104,... % changing from Lu-Hf to Th-U
 % U & Th from Anders and Grevesse CI chondrite table, column G.,
 % in some unholy units.  Units in table are in ppb.

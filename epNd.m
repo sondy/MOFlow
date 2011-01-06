@@ -3,21 +3,25 @@
 % Alessondra Springmann <asteroid@mit.edu>
 % The goal: calculate epsilon 142/144 Nd for our code.
 
-chonEp142 = 1.1414980; % Carlson, personal communication
+chonEp142Nd = 1.141901; % Amelin, 2004
+%chonEp142Nd = 1.149498;
 
-Nd142 = 0.272;
+chonEp142NdStart = 1.1414980;
 
-Nd144 = 0.239;
+abunNd142 = 0.272; % number ratio abundance "atom percent abundance"
 
-Nd142fromSm = 0.008; % see calculations in binder;
+abunNd144 = 0.239; % number ratio abundance
+
+abunNd142fromSm = 0.008; % number ratio abundance; see calculations in binder;
 % this is from Scott (2007): ratio of 146/144 Sm = 8 * 10^-3
 % [146] + [144] = 1; [146]/[144] = 8e-3
 % so [146] has to be 0.008; [144] = 0.992
 % all of 146 Sm has decayed to 142 Nd
 
-mass142 = 141.907719;
+massNd142 = 141.907719; % atomic mass 142-neodymium
 
-mass144 = 143.910083;
+massNd144 = 143.910083; % atomic mass 144-neodymium
+
 
 % %% Just \Dpp
 % 
@@ -42,21 +46,50 @@ mass144 = 143.910083;
 % avgNdEERwLiq - concentration of Nd in the Dpp with residual liquids
 % avgSmEERwLiq - "             "  Sm "  "   "   "    "        " 
 
-avgNdEERwLiq = 1.8951e-05;
-avgSmEERwLiq = 6.9755e-06;
+avgNdEERwLiq = 1.8951e-05; % mass percent of Nd in the \Dpp layer
+avgSmEERwLiq = 6.9755e-06; % mass percent of Sm in the \Dpp layer
 
 % mass_res_dpp - mass of the residual liquids + the Dpp layer
 % don't actually need the mass - it goes away when you divide
 
-abunNd142wLiq = avgNdEERwLiq*Nd142/(mass142); % from Nd
+abunNd142wLiq = avgNdEERwLiq*abunNd142/(144.24); % from Nd
 
-abunNd144wLiq = avgNdEERwLiq*Nd144/(mass144); % from Nd
+abunNd144wLiq = avgNdEERwLiq*abunNd144/(144.24); % from Nd
 
-abunNd142fromSmwLiq = avgSmEERwLiq*Nd142fromSm/(mass142); % from Sm
+abunNd142fromSmwLiq = avgSmEERwLiq*abunNd142fromSm/(150.36); % from Sm
 
-ratio142_144NdSamplewLiq = (abunNd142wLiq + abunNd142fromSmwLiq)/abunNd144wLiq;
+%ratio142_144NdSamplewLiq = (abunNd142wLiq + abunNd142fromSmwLiq)/abunNd144wLiq;
 
-ep142NdwLiq = ((ratio142_144NdSamplewLiq/chonEp142) - 1)*10000;
+
+%       1.1414980: starting 142/144 Nd ratio for earth (Carlson, 2008)
+%       0.008: abundance ratio for 146Sm/144Nd (Rollinson, 2007)
+ratio = 1.1414980 + 0.008*(avgNdEERwLiq/avgSmEERwLiq)*(150.36/144.24);
+
+ep142NdwLiq = ((ratio/chonEp142Nd) - 1)*10000;
 
 fprintf('\nThe epsilon^142 Nd value for Dpp & residuals is %2.3g.\n\n', ...
     ep142NdwLiq);
+
+muEpDppwLiq = (ratio142_144NdSamplewLiq - chonEp142Nd)*1000000;
+
+fprintf('\nThe mu^142 Nd value for Dpp & residuals is %2.3g.\n\n', ...
+    muEpDppwLiq);
+
+%% Emily's check: the mantle
+mantleSm = 0.00001472;
+mantleNd = 0.00004524;
+
+abunNd142mantle = mantleNd*abunNd142/(massNd142);
+
+abunNd144mantle = mantleNd*abunNd144/(massNd144);
+
+abunNd142SmMantle = mantleSm*abunNd142fromSm/(150.36);
+
+ratio142_144NdMantle = (abunNd142mantle + abunNd142SmMantle)/abunNd144mantle;
+
+ep142NdMantle = ((ratio142_144NdMantle/chonEp142Nd) - 1)*10000;
+
+fprintf('\nThe epsilon^142 Nd value for the mantle is %2.3g.\n\n', ...
+    ep142NdMantle);
+
+%% 142Nd/144Nd
