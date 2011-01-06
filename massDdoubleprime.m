@@ -10,17 +10,21 @@
 
 % trapz is a numerical integration routine in Matlab
 
-rho2_index = find(3100 < Dsolinv & Dsolinv < 3200); % density at the top of 
+rho2_index = find(3210 < Dsolinv & Dsolinv < 3284); % density at the top of 
 % the D'' layer
 
 rho1_index = 1; % density at the CMB
 
-radius1 = rinv(rho1_index); % radius at the CMB
-
-radius2 = rinv(50); % radius at the top of the D'' layer
+% radius1 = rinv(rho1_index); % radius at the CMB
+% 
+% radius2 = rinv(50); % radius at the top of the D'' layer
 
 % display(radius1)
 % display(radius2)
+
+%totalDvol = (4/3)*pi*(rinv(max)^3 - rinv(1)^3); % total D" volume
+totalliquidvol = (4/3)*pi*(R^3 - r(maxstep)^3); 
+    % total liquid unsolidified at top of MO; m^3
 
 rhoDprimeprime = mean(Dsolinv(rho1_index:rho2_index));
 
@@ -28,6 +32,8 @@ fprintf('The average density of the D" layer is %2.3g kg/m^3. \n',...
     rhoDprimeprime)
 
 volumeDprimeprime = (4*pi/3)*(rinv(50).^3 - rinv(rho1_index).^3);
+
+totalDvol = volumeDprimeprime;
 
 fprintf('The volume of the D" is %2.3g m^3. \n', volumeDprimeprime)
 

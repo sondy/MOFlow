@@ -5,12 +5,8 @@
 
 fprintf('\n \n')
 
-max = 50; %rho2_index
+max = rho2_index;
 % number of steps to consider as part of the D" layer
-
-totalDvol = (4/3)*pi*(rinv(max)^3 - rinv(1)^3); % total D" volume
-totalliquidvol = (4/3)*pi*(R^3 - r(maxstep)^3); 
-    % total liquid unsolidified at top of MO; m^3
 
 % preallocation
 volseq = [];
@@ -27,7 +23,7 @@ for k = 2:max
     delavgTh(k) = solidinv(k,8)*volseg;
 end
 
-%% calculation of final liquids - these might well sink with dense layers
+%% Calculation of \Dpp REE concentrations
 avgNdEER = sum(delavgNd);   % for insertion into Rick Carlson's spreadsheet
 avgSmEER = sum(delavgSm);
 avgUEER  = sum(delavgU);
@@ -46,7 +42,8 @@ fprintf('\n')
 avgEER(:, num_oceans) = cat(1, avgSmEER, avgNdEER, avgThEER, avgUEER);
 display(avgEER)
 
-%% these two include all the residual liquid from the surface:
+%% Residual Liquids
+% these two include all the residual liquid from the surface:
 % sort of like endmember of possibilities for D" composition
 avgNdEERwLiq = (totalliquidvol/(totalliquidvol +...
     totalDvol))*liquid(maxstep,7) +...

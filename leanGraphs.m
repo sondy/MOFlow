@@ -101,7 +101,7 @@ legend('SiO_2', 'Al_2O_3', 'FeO', 'MgO', 'CaO',...
 
 hold off
 
-print('-depsc', 'plots/compositionStep.eps')
+print -depsc plots/compositionStep.eps
 
 %display('foo')
 

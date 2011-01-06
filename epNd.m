@@ -19,6 +19,26 @@ mass142 = 141.907719;
 
 mass144 = 143.910083;
 
+% %% Just \Dpp
+% 
+% avgNdEER = 5.3573e-06; 
+% avgSmEER = 2.4196e-06;
+% 
+% abunNd142 = avgNdEER*Nd142/(mass142); % from Nd
+% 
+% abunNd144 = avgNdEER*Nd144/(mass144); % from Nd
+% 
+% abunNd142fromSm = avgSmEER*Nd142fromSm/(mass142); % from Sm
+% 
+% ratio142_144NdSample = (abunNd142 + abunNd142fromSm)/abunNd144;
+% 
+% ep142Nd = ((ratio142_144NdSample/chonEp142) - 1)*10000;
+% 
+% fprintf('\nThe epsilon^142 Nd value for Dpp w/o residuals is %2.3g.\n\n', ...
+%     ep142Nd);
+
+
+%% \Dpp and residual liquids
 % avgNdEERwLiq - concentration of Nd in the Dpp with residual liquids
 % avgSmEERwLiq - "             "  Sm "  "   "   "    "        " 
 
@@ -28,15 +48,15 @@ avgSmEERwLiq = 6.9755e-06;
 % mass_res_dpp - mass of the residual liquids + the Dpp layer
 % don't actually need the mass - it goes away when you divide
 
-abunNd142 = avgNdEERwLiq*Nd142/(mass142); % from Nd
+abunNd142wLiq = avgNdEERwLiq*Nd142/(mass142); % from Nd
 
-abunNd144 = avgNdEERwLiq*Nd144/(mass144); % from Nd
+abunNd144wLiq = avgNdEERwLiq*Nd144/(mass144); % from Nd
 
-abunNd142fromSm = avgSmEERwLiq*Nd142fromSm/(mass142); % from Sm
+abunNd142fromSmwLiq = avgSmEERwLiq*Nd142fromSm/(mass142); % from Sm
 
-ratio142_144NdSample = (abunNd142 + abunNd142fromSm)/abunNd144;
+ratio142_144NdSamplewLiq = (abunNd142wLiq + abunNd142fromSmwLiq)/abunNd144wLiq;
 
-ep142Nd = ((ratio142_144NdSample/chonEp142) - 1)*10000;
+ep142NdwLiq = ((ratio142_144NdSamplewLiq/chonEp142) - 1)*10000;
 
-fprintf('The epsilon^142 Nd value for our model is %2.3g.  \n', ...
-    ep142Nd);
+fprintf('\nThe epsilon^142 Nd value for Dpp & residuals is %2.3g.\n\n', ...
+    ep142NdwLiq);
