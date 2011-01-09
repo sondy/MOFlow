@@ -8,17 +8,17 @@ disp('In graphsdeep')
 %figure(2);title(['Reference density with depth for model:  ', name]); hold on; plot(Do(1:marker),r(1:marker)/1000,'y'); xlabel('density at 1 atm and 1 deg C [kg/m3]'); ylabel('radius, km');
 figure(3); %title(['Reference density with depth pre- and post-overturn for model:  ', name]); 
     hold on; 
-    plot(Dsol, r./1000,'b')%, 'LineWidth', 4)
-    plot(Dsolinv, rinv./1000, 'k')%, 'LineWidth', 4); %        plot(Dsol(1:marker2), r(1:marker2)/1000,'y',...     
+    plot(Dsol, r./1000, 'b--', 'LineWidth', 2)
+    plot(Dsolinv, rinv./1000, 'k-.', 'LineWidth', 2); %        plot(Dsol(1:marker2), r(1:marker2)/1000,'y',...     
 
-    plot(Dsolinv(50),rinv(50)./1000,'Om')   %D'' layer is about here
+    %plot(Dsolinv(50), 4497, 'Om')   %D'' layer is about here
     
-    xlabel('density at 1 atm and solidus temperature [kg m^{-3}]'); 
-    ylabel('radius, km'); 
+    xlabel('density (kg/m^3)'); 
+    ylabel('radius (km)'); 
     xlim([2600 3600])
     ylim([3400 6500])
     
-    %legend('Pre-overturn density', 'Post-overturn density', 'Location', 'East')
+    legend('Pre-overturn density', 'Post-overturn density', 'Location', 'Best')
     
     densityWithDepth = strcat('plots/densityWithDepth', DM_string, '.eps');
     print('-depsc', densityWithDepth)
@@ -163,9 +163,9 @@ y4 = rinv/1000;
 x5 = solidinv(:,9)*10^4; 
 y5 = rinv/1000;
 
-hl1 = line(x1, y1, 'Color', 'k');%, 'LineWidth', 2);
-xlabel('density at 1 atm and solidus temperature [kg/m^3]');
-ylabel('radius, km');
+hl1 = line(x1, y1, 'Color', 'k', 'LineWidth', 2);
+xlabel('density (kg/m^3)');
+ylabel('radius (km)');
  
     xlim([2600 3600])
     ylim([3400 6500]) 
@@ -183,7 +183,7 @@ hl3 = line(x3,y1,'Color','g','Parent',ax2);%, 'LineWidth', 1.2);
 hl4 = line(x4,y1,'Color','r','Parent',ax2);%, 'LineWidth', 1.2);
 hl5 = line(x5,y1,'Color','c','Parent',ax2);%, 'LineWidth', 1.2);
 
-legend('Sm','Nd','Th','U',0); %axis([0 .5 2000 3400]);
+legend('Sm','Nd','Th','U', 'Location', 'East'); %axis([0 .5 2000 3400]);
 
 %title('Trace element concentrations ppm with depth for overturned model');
     

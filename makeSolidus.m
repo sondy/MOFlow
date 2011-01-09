@@ -42,18 +42,18 @@ t_solidus = solidus(range);
 
 % Plotting
 % 
-% figure(0); 
-% 
-% hold on 
-% plot(t_solidus_new, radius_range, 'r', 'LineWidth', 1.5) % from Abe (1997)
-% plot(t_solidus_old, radius_range, 'b', 'LineWidth', 1.5) % from Elkins-Tanton (2008)
-% plot(t_solidus, radius_range, 'm', 'LineWidth', 1.5)
-% legend('Abe (1997)', 'Elkins-Tanton (2008)', 'This Work',...
-%     'Location', 'NorthEast')
-% xlabel('Temperature (^{\circ}C)')
-% ylabel('Radius (km)')
-% 
-% print('-depsc', 'plots/solidi.eps')
+figure(1); 
+
+hold on 
+plot(t_solidus_new, radius_range, 'r--', 'LineWidth', 1.2) % from Abe (1997)
+plot(t_solidus_old, radius_range, 'b:', 'LineWidth', 1.2) % from Elkins-Tanton (2008)
+plot(t_solidus, radius_range, 'm-.', 'LineWidth', 1.2)
+legend('Abe (1997)', 'Elkins-Tanton (2008)', 'This Work',...
+    'Location', 'NorthEast')
+xlabel('Temperature (^{\circ}C)')
+ylabel('Radius (km)')
+
+print('-depsc', 'plots/solidi.eps')
 
 
 %% old comments

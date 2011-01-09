@@ -58,7 +58,7 @@ abunNd144wLiq = avgNdEERwLiq*abunNd144/(144.24); % from Nd
 
 abunNd142fromSmwLiq = avgSmEERwLiq*abunNd142fromSm/(150.36); % from Sm
 
-%ratio142_144NdSamplewLiq = (abunNd142wLiq + abunNd142fromSmwLiq)/abunNd144wLiq;
+ratio142_144NdSamplewLiq = (abunNd142wLiq + abunNd142fromSmwLiq)/abunNd144wLiq;
 
 
 %       1.1414980: starting 142/144 Nd ratio for earth (Carlson, 2008)
@@ -93,3 +93,4 @@ fprintf('\nThe epsilon^142 Nd value for the mantle is %2.3g.\n\n', ...
     ep142NdMantle);
 
 %% 142Nd/144Nd
+disp();

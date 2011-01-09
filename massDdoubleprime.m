@@ -31,6 +31,13 @@ rhoDprimeprime = mean(Dsolinv(rho1_index:rho2_index));
 fprintf('The average density of the D" layer is %2.3g kg/m^3. \n',...
     rhoDprimeprime)
 
+calcDprimeprimeRho = liq_comp.*mineral_density;
+
+rhoCalcDprimeprime = sum((calcDprimeprimeRho./100));
+
+fprintf('The calculated density of the D" layer is %2.3g kg/m^3 \n',...
+    rhoCalcDprimeprime)
+
 volumeDprimeprime = (4*pi/3)*(rinv(50).^3 - rinv(rho1_index).^3);
 
 totalDvol = volumeDprimeprime;
