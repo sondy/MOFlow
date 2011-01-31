@@ -34,7 +34,7 @@ CO2liquid(1) =  0.0; %0.01;%0.1;%0.6; %
 % initial values for calculations in this program
 CMB_depth = 2885000;             % *** m, depth to core-mantle boundary
 R = 6378000;                     % *** m, total radius of planet
-CMB = R - CMB_depth;e
+CMB = R - CMB_depth;
 
 m = 140*1000/(CMB - R);
 
@@ -384,7 +384,7 @@ figure(3); %title(['Reference density with depth for model:  ', name]);
     hold on;
     
     
-    x = [2600, 3500];
+   % x = [2600, 3500];
     y = [4497, 4497];
 
     %plot(x, y, 'm', 'LineWidth', 1)

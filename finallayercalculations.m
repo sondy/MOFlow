@@ -19,7 +19,7 @@ if P(j) < Layer6P;
 else        % Note that solid composition includes interstitial liquids
     %    new_liq = liquid(j-1,:)*(liqfrac(j)/liqfrac(j-1)) - solid(j,:)*(1-liqfrac(j)/liqfrac(j-1))*(1-intliqx) - liquid(j-1,:)*(1-liqfrac(j)/liqfrac(j-1))*(intliqx);
     %   new_liq = liquid(j-1,:) - solid(j,:)*(1-liqfrac(j)/liqfrac(j-1)); %*(1-intliqx); % - liquid(j-1,:)*(1-liqfrac(j)/liqfrac(j-1))*(intliqx);
-    %   new_liq = liquid(j-1,:) - solid(j,:)*((Mantlemass*0.001)/(liqfrac(j)*Mantlemass)); % - liquid(j-1,:)*(intliqx)*((Mantlemass*0.001)/(liqfrac(j)*Mantlemass));
+       new_liq = liquid(j-1,:) - solid(j,:)*((Mantlemass*0.001)/(liqfrac(j)*Mantlemass)); % - liquid(j-1,:)*(intliqx)*((Mantlemass*0.001)/(liqfrac(j)*Mantlemass));
     %new_liq = (liquid(j-1,:) * mass_liquid - mass_this_shell * solid(j,:))/new_mass_liquid;
 %         new_liq = liq_comp_calc_ECD(...
 %             j, ...
@@ -31,14 +31,16 @@ else        % Note that solid composition includes interstitial liquids
 %             new_mass_liquid, ...
 %             solid);
     
-    liq_term = liquid(j-1,:) .* (mass_liquid./new_mass_liquid);
-    
-    sol_term = solid(j,:) .* (mass_this_shell./new_mass_liquid);
-    
-    vol_term = 1 + (Mantlevolume + delr(j))./Mantlevolume;
-    
-    new_liq = liq_term.*vol_term - sol_term;
-    
+%     liq_term = liquid(j-1,:) .* (mass_liquid./new_mass_liquid);
+%     
+%     sol_term = solid(j,:) .* (mass_this_shell./new_mass_liquid);
+%     
+% %    vol_term = 1 + (Mantlevolume + delr(j))./Mantlevolume;
+%     
+% %    new_liq = liq_term.*vol_term - sol_term;
+%  
+%     new_liq = liq_term - sol_term;
+   
     %     new_liq = liq_comp_calc(liquid, ...
     %         mass_liquid,...
     %         mass_this_shell, ...
