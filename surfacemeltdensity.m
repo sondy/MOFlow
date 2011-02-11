@@ -19,7 +19,7 @@ wtpct(6) = liq_comp(5);     % CaO
 wtpct(7) = 0;               % Na2O
 wtpct(8) = 0;               % K2O
 wtpct(9) = 0;               % Na2O - TiO2
-wtpct(10) = -liq_comp(2);   % Na2O - Al2O3
+wtpct(10) = 0;%-liq_comp(2);   % Na2O - Al2O3
 wtpct(11) = liq_comp(10);   % H2O
 wtpct(12) = liq_comp(11);   % CO2
  

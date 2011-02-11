@@ -37,7 +37,7 @@ Pfunc = @(rho_ratio)(3/2).*Kot.*((rho_ratio).^(7/3) - ...
 
 % rho/rhon
 
-rhon = rho/(fzero(Pfunc,rho/rhon));
+%rhon = rho/(fzero(Pfunc,rho/rhon));
  
 % while abs(CalcPressure-ActPressure) >= error
 %      if (CalcPressure - ActPressure) > 0 % CalcPressure too high, rho too low

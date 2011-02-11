@@ -7,7 +7,9 @@
 
 %change radius into pressure GPa
 
+%P(j) = -0.0374*(r(j)/1000) + 238.5372;   %***[GPa] from radius in km, from 130GPa at 2900 depth (CMB) to 0 at 6378 (surface)
 P(j) = RtoP(r(j));   %***[GPa] from radius in km, from 130GPa at 2900 depth (CMB) to 0 at 6378 (surface)
+
 
 %%
 % %%%%%% LAYER 0 %%%%%%%%%%%%%%%%%%%% post-perovskite
@@ -15,7 +17,7 @@ P(j) = RtoP(r(j));   %***[GPa] from radius in km, from 130GPa at 2900 depth (CMB
 if (P(j) > Layer0P);
    intliqx = intliq0;
    [eqminppv, Mgnumppv] = postperovskite(liq_comp);
-     
+   
    ppvdensity = postperovskitedensity(Mgnumppv, 0, P(j), Tsolid(j));
    ppvdensityzero = postperovskitedensity(Mgnumppv, 0, 1e-4, 1);
    ppvdensitysol = postperovskitedensity(Mgnumppv, 0, 1e-4, Tsolid(j));
@@ -87,7 +89,7 @@ if P(j) > Layer2P;
 %display('Layer 2: Gamma spinel, Majorite')
     intliqx = intliq2;
     %    disp(['Layer 2, index = ', num2str(j)])
-    [eqmingamma, Mgnumg] = gamma_mineral(liq_comp);
+    [eqmingamma, Mgnumg] = gammaolivine(liq_comp);
     gdensity = gammadensity(Mgnumg, P(j), Tsolid(j));
     gdensityzero = gammadensity(Mgnumg, 1e-4, 1);
     gdensitysol = gammadensity(Mgnumg, 1e-4, Tsolid(j));
@@ -121,7 +123,7 @@ end
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LAYER 3 %%%%%%%%%%%%%%%%%%%% gammaspinel + majorite
 if P(j) > Layer3P;
-%display('Layer 3: Beta spinel, Majorite')
+%display('Layer 3: Gamma spinel, Majorite')
     intliqx = intliq3;
     %    disp(['Layer 3, index = ', num2str(j)])
     [eqminbeta, Mgnumb] = beta(liq_comp);
@@ -338,10 +340,10 @@ if P(j) > Layer6P;
     return
 end
 
+display('Layer 7: Same as layer 6 (fixed liquid)')
 %%
 %%%%%%%%%%%%%%%%%% LAYER 7 %%%%%%%%%%%% same as layer 6; fixed liquid
 if P(j) > Layer7P;
-%display('Layer 7: Same as layer 6 (fixed liquid)')
     intliqx = intliq7;
     %    disp(['Layer 7, index = ', num2str(j)])
     [eqminplag, Anplag] = plagioclase(liq_comp);
