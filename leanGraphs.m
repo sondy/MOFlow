@@ -41,7 +41,7 @@ density_calc_plot = zeros(maxstep, 1);
 
 xlabel('density at 1 atm and solidus temperature [kg m^{-3}]');
 ylabel('radius, km');
-xlim([2600 3500])
+%xlim([2600 3500])
 ylim([3400 6500])
 
 legend('Location of the D" Layer', ... %...%'Reference density',...

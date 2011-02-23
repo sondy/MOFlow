@@ -2,36 +2,36 @@
 
 disp('In graphsdeep')
 
-%% Cumulate density profiles
-% Figures 1, 2, 3 also appear in MOFlow1 so density can be plotted before mineral recalculation that occurs in sortandinvert.m
-% figure(1);title(['Density with depth for model:  ', name]); hold on; plot(D(1:marker2),r(1:marker2)/1000,'y'); xlabel('density at P and solidus temperature [kg/m3]'); ylabel('radius, km');
-%figure(2);title(['Reference density with depth for model:  ', name]); hold on; plot(Do(1:marker),r(1:marker)/1000,'y'); xlabel('density at 1 atm and 1 deg C [kg/m3]'); ylabel('radius, km');
+% %% Cumulate density profiles
+% % Figures 1, 2, 3 also appear in MOFlow1 so density can be plotted before mineral recalculation that occurs in sortandinvert.m
+% % figure(1);title(['Density with depth for model:  ', name]); hold on; plot(D(1:marker2),r(1:marker2)/1000,'y'); xlabel('density at P and solidus temperature [kg/m3]'); ylabel('radius, km');
+% %figure(2);title(['Reference density with depth for model:  ', name]); hold on; plot(Do(1:marker),r(1:marker)/1000,'y'); xlabel('density at 1 atm and 1 deg C [kg/m3]'); ylabel('radius, km');
 figure(3); title(['Reference density with depth pre- and post-overturn for model:  ', name]); 
     hold on; 
     plot(Dsol(1:marker2), r(1:marker2)/1000,'y',...
         Dsolinv, rinv/1000, 'k'); 
     xlabel('density at 1 atm and solidus temperature [kg m^{-3}]'); 
     ylabel('radius, km');    
-%    print -depsc 'plots/densityWithDepth.eps'
-    
- figure(4); title(['Phase densities for model:  ', name]); hold on; axis([2500 6500 CMB/1000 R/1000]); plot(perov, r/1000, magnesio, r/1000, bet, r/1000, gam, r/1000, maj, r/1000, stish, r/1000, cpyrox, r/1000, opyrox, r/1000, gar, r/1000, spi, r/1000, plag, r/1000, oliv, r/1000, iliq, r/1000); 
-     legend('perovskite', 'magnesiowustite', 'beta', 'gamma', 'majorite', 'stishovite', 'cpx', 'opx', 'garnet', 'spinel', 'plagioclase', 'olivine', 'int liq', 0); xlabel('Density [kg/m3]'); ylabel('radius, km'); zoom on;
-% figure(5); title(['Phase densities for model:  ', name]); axis ij; hold on; plot(perov, P, magnesio, P, bet, P, gam, P, maj, P, stish, P, cpyrox, P, opyrox, P, gar, P, spi, P, plag, P, oliv, P, iliq, P); 
-%     legend('perovskite', 'magnesiowustite', 'beta', 'gamma', 'majorite', 'stishovite', 'cpx', 'opx', 'garnet', 'spinel', 'plagioclase', 'olivine', 'int liq', 0); xlabel('Density [kg/m3]'); ylabel('Pressure [GPa]'); zoom on; %axis([2000 4500 5400 6400]);
-%figure(5); title(['Solidus density with depth for overturned model']);  hold on;
-%    plot(Dsolinv,rinv/1000, 'r',Dinv,rinv/1000, 'y', Doinv,rinv/1000, 'k'); xlabel('density [kg/m3]'); ylabel('radius, km'); legend('Density at 1 atm, solidus','Density at P, solidus','Density at 1 atm, 1 deg',0);
+    print -depsc 'plots/densityWithDepth.eps'
+%     
+%  figure(4); title(['Phase densities for model:  ', name]); hold on; axis([2500 6500 CMB/1000 R/1000]); plot(perov, r/1000, magnesio, r/1000, bet, r/1000, gam, r/1000, maj, r/1000, stish, r/1000, cpyrox, r/1000, opyrox, r/1000, gar, r/1000, spi, r/1000, plag, r/1000, oliv, r/1000, iliq, r/1000); 
+%      legend('perovskite', 'magnesiowustite', 'beta', 'gamma', 'majorite', 'stishovite', 'cpx', 'opx', 'garnet', 'spinel', 'plagioclase', 'olivine', 'int liq', 0); xlabel('Density [kg/m3]'); ylabel('radius, km'); zoom on;
+% % figure(5); title(['Phase densities for model:  ', name]); axis ij; hold on; plot(perov, P, magnesio, P, bet, P, gam, P, maj, P, stish, P, cpyrox, P, opyrox, P, gar, P, spi, P, plag, P, oliv, P, iliq, P); 
+% %     legend('perovskite', 'magnesiowustite', 'beta', 'gamma', 'majorite', 'stishovite', 'cpx', 'opx', 'garnet', 'spinel', 'plagioclase', 'olivine', 'int liq', 0); xlabel('Density [kg/m3]'); ylabel('Pressure [GPa]'); zoom on; %axis([2000 4500 5400 6400]);
+% %figure(5); title(['Solidus density with depth for overturned model']);  hold on;
+% %    plot(Dsolinv,rinv/1000, 'r',Dinv,rinv/1000, 'y', Doinv,rinv/1000, 'k'); xlabel('density [kg/m3]'); ylabel('radius, km'); legend('Density at 1 atm, solidus','Density at P, solidus','Density at 1 atm, 1 deg',0);
  
 
-%% Temperatures and pressures
-% figure(6); title(['temperature evolutions [C] for: ', name]); hold on; plot(time/3.1536e13, Tsurf, 'r-', time/3.1536e13, Tsolid, 'b-'); legend('surface temp','interior temp',0); xlabel('time [Ma]')
-%%    figure(7); title(['temperature evolutions [C] for: ', name]); hold on; plot(Tsurffig, R/1000, 'ro', Tsolidfig, rfig/1000, 'bx', Tsolid(1) - adiabslope*(rfig - (R-RM)), rfig/1000, 'k-'); legend('surface temp','temp at top of solid','adiabat',0); ylabel('radius [km]')
- figure(8); title(['Temperature with depth for overturned model']);  hold on;
-     plot(Tinv,rinv/1000, 'r', CorrectedTinv,rinv/1000, 'g', Tsolid, r/1000, 'k:'); xlabel('temperature [C]'); ylabel('radius, km'); legend('Inverted temperature','Adiabatically corrected','solidus',0);
-%    print -depsc 'plots/temperatureWithDepth.eps'
-%   plot(Tinv,rinv/1000, 'r', CorrectedTinv,rinv/1000, 'g', solidus, rinv/1000, 'k:'); xlabel('temperature [C]'); ylabel('radius, km'); legend('Inverted temperature','Adiabatically corrected','solidus',0);
-figure(9); title(['Pressure vs r for model:  ', name]); hold on; plot(P,r/1000, 'r'); xlabel('Pressure [GPa]'); ylabel('radius, km');
-%%    figure(9); title(['temperature evolutions [C] for: ', name]); hold on; plot(Tsurf, Patm*10^-5, 'r-'); legend('surface temp',0); xlabel('Surface T [C]'); ylabel('Patm [bar]')
-%%    figure(10); title(['temperature evolutions [C] for: ', name]); hold on; plot(Tsurf, log10(HPatm*10^-5), 'r-'); legend('surface temp',0); xlabel('Surface T [C]'); ylabel('log10(HPatm) [bar]')
+% %% Temperatures and pressures
+% % figure(6); title(['temperature evolutions [C] for: ', name]); hold on; plot(time/3.1536e13, Tsurf, 'r-', time/3.1536e13, Tsolid, 'b-'); legend('surface temp','interior temp',0); xlabel('time [Ma]')
+% %%    figure(7); title(['temperature evolutions [C] for: ', name]); hold on; plot(Tsurffig, R/1000, 'ro', Tsolidfig, rfig/1000, 'bx', Tsolid(1) - adiabslope*(rfig - (R-RM)), rfig/1000, 'k-'); legend('surface temp','temp at top of solid','adiabat',0); ylabel('radius [km]')
+%  figure(8); title(['Temperature with depth for overturned model']);  hold on;
+%      plot(Tinv,rinv/1000, 'r', CorrectedTinv,rinv/1000, 'g', Tsolid, r/1000, 'k:'); xlabel('temperature [C]'); ylabel('radius, km'); legend('Inverted temperature','Adiabatically corrected','solidus',0);
+% %    print -depsc 'plots/temperatureWithDepth.eps'
+% %   plot(Tinv,rinv/1000, 'r', CorrectedTinv,rinv/1000, 'g', solidus, rinv/1000, 'k:'); xlabel('temperature [C]'); ylabel('radius, km'); legend('Inverted temperature','Adiabatically corrected','solidus',0);
+% figure(9); title(['Pressure vs r for model:  ', name]); hold on; plot(P,r/1000, 'r'); xlabel('Pressure [GPa]'); ylabel('radius, km');
+% %%    figure(9); title(['temperature evolutions [C] for: ', name]); hold on; plot(Tsurf, Patm*10^-5, 'r-'); legend('surface temp',0); xlabel('Surface T [C]'); ylabel('Patm [bar]')
+% %%    figure(10); title(['temperature evolutions [C] for: ', name]); hold on; plot(Tsurf, log10(HPatm*10^-5), 'r-'); legend('surface temp',0); xlabel('Surface T [C]'); ylabel('log10(HPatm) [bar]')
 
 % Flux, emissivity, solidification rate, viscous boundary layer
 %figure(10); title(['log(10)planetary heat flux [W/m^2] for: ', name]); hold on; plot(time/3.1536e13, log10(flux), 'g-'); xlabel('time [Ma]'); %axis([0 1.2 0.5 4])
@@ -55,12 +55,13 @@ figure(9); title(['Pressure vs r for model:  ', name]); hold on; plot(P,r/1000, 
 %figure(21); title(['Volatile contents in evolving liquid']); hold on; plot(liquid(:,10),r/1000, 'g', liquid(:,11),r/1000,'r'); xlabel('water and carbon content in evolving liquid wt%]'); ylabel('radius, km'); legend('water','carbon',0);
 
 %figure(22); title(['Oxide percentage of evolving liquid:  ', name]); hold on; plot(liquid(:,1), r/1000, liquid(:,2), r/1000, liquid(:,3), r/1000, liquid(:,4), r/1000, liquid(:,5), r/1000); xlabel('wt% of oxide'); ylabel('radius, km'); legend('SiO2','Al2O3', 'Feo','MgO', 'CaO', 0);
-
-figure(22); title(['Oxide percentage of evolving liquid:  ', name]); 
-hold on; plot(liquid(:,1), [1:j]/1000, liquid(:,2), [1:j]/1000, liquid(:,3), [1:j]/1000, liquid(:,4), [1:j]/1000, liquid(:,5), [1:j]/1000); xlabel('Wt% of oxide'); ylabel('Fraction solidified by volume'); legend('SiO2','Al2O3', 'Feo','MgO', 'CaO', 0);
-
-figure(23); title('Ppm by weight of trace elements in evolving liquids'); hold on;
-    plot(liquid(:,6)*10^4, r/1000, liquid(:,7)*10^4, r/1000, liquid(:,8)*10^4, r/1000, liquid(:,9)*10^4, r/1000); xlabel('ppm of trace element'); ylabel('radius, km'); legend('Sm','Nd','Th','U',0);
+% 
+% figure(22); title(['Oxide percentage of evolving liquid:  ', name]); 
+% hold on; plot(liquid(:,1), [1:j]/1000, liquid(:,2), [1:j]/1000, liquid(:,3), [1:j]/1000, liquid(:,4), [1:j]/1000, liquid(:,5), [1:j]/1000); xlabel('Wt% of oxide'); ylabel('Fraction solidified by volume'); legend('SiO2','Al2O3', 'Feo','MgO', 'CaO', 0);
+% 
+% %%
+% figure(23); title('Ppm by weight of trace elements in evolving liquids'); hold on;
+%     plot(liquid(:,6)*10^4, r/1000, liquid(:,7)*10^4, r/1000, liquid(:,8)*10^4, r/1000, liquid(:,9)*10^4, r/1000); xlabel('ppm of trace element'); ylabel('radius, km'); legend('Sm','Nd','Th','U',0);
 
 %% Major element compositions of cumulates
 %%    figure(24); title(['Oxide percentage with depth for pre-overturn model:  ', name]); hold on; plot(solid(:,1), r/1000, solid(:,2), r/1000, solid(:,3), r/1000, solid(:,4), r/1000, solid(:,5), r/1000); xlabel('wt% of oxide'); ylabel('radius, km'); legend('SiO2','Al2O3', 'Feo','MgO', 'CaO', 0);

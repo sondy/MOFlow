@@ -38,9 +38,9 @@ Kot = par(9,1);                            % for consistency in function BirchMu
 Kpt = par(3,1);
 Vo = par(8,1);
 %fprintf('Mgnum=%.2f, CaMg=%.2f, P=%.2f, T=%.2f \n', Mgnum, CaMg, P, T)
-if Mgnum < 0.29 
-    fprintf('clino Mg num < 0.29\n')
-elseif Mgnum < 0
+% if Mgnum < 0.29 
+%     fprintf('clino Mg num < 0.29\n')
+if Mgnum < 0.01
     fprintf('clino Mg num < 0\n')
 elseif Mgnum > 1
     fprintf('clino Mg num > 1\n')

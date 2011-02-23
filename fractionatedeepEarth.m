@@ -340,7 +340,7 @@ if P(j) > Layer6P;
     return
 end
 
-display('Layer 7: Same as layer 6 (fixed liquid)')
+%display('Layer 7: Same as layer 6 (fixed liquid)')
 %%
 %%%%%%%%%%%%%%%%%% LAYER 7 %%%%%%%%%%%% same as layer 6; fixed liquid
 if P(j) > Layer7P;

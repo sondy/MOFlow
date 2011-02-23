@@ -17,7 +17,7 @@
 % T_surf(j)
 
 close all;
-clear all;
+%clear all;
 
 H2Oliquid(1) = 0.00; %0.5;    %0;  % in mass percent
 CO2liquid(1) =  0.00;%0.1;%0.6; %
@@ -25,15 +25,15 @@ CO2liquid(1) =  0.00;%0.1;%0.6; %
 % initial values for calculations in this program
 CMB = 3470000;                  % *** m, radius of core-mantle boundary
 R = 6378000;                    % *** m, total radius of planet
-RM = (R - CMB); %2000000;                   % *** m, depth of magma ocean
+%RM = (R - CMB); %2000000;                   % *** m, depth of magma ocean
 g = 9.8;                        % *** m/sec2
 adiabslope = 0.33/1000;         %*** K/m, slope of adiabat
 tfinal = 50*3.14e13;            % *** sec total time of conductive cooling in cool2clement
 tempcore = 1600 + 273;         % *** in K (2100C = 2373 K; 1900C = 2173K) match to ending T in MOFlow
-InitP = -0.0374*((R-RM)/1000) + 238.5372;   % ***[GPa] at bottom of MO
+InitP = -0.0374*((R-DM)/1000) + 238.5372;   % ***[GPa] at bottom of MO
 Tsolidend = 600;                %*** temp when all interior is solid according to our calcs; used to distribute latent heat
 Tsurflatent = 1500;             %*** surface temp below which latent heat begins to be phased out
-Mantlemass = (R^3 - (R - RM)^3)/(R^3 - CMB^3)*4.032e+024; %*** kg, mass of MO
+Mantlemass = (R^3 - (R - DM)^3)/(R^3 - CMB^3)*4.032e+024; %*** kg, mass of MO
 %sum
 name = ([num2str(H2Oliquid(1)),'% H_2O, ',num2str(CO2liquid(1)),'% CO_2']);
 
@@ -50,7 +50,7 @@ rhocore = 7500;             % kg/m^3
 solidrho = 4000;    % kg/m3
 alpha = 3e-5;       % K-1
 r = zeros(1, maxstep);
-r(1) = (R-RM);
+r(1) = (R-DM);
 eta = 1;            % Pas
 kwater = 0.01;      % m2/kg Yamamoto '52 for water for emissivity calculations
 kcarbon = 0.01; %0.001; %0.05;     % m2/kg Pujol and North 2003
@@ -308,5 +308,7 @@ endemiss = (2 /(taustarwend+taustarcend + 2));    % H2O/CO2 relative absorption 
 %%%%%%%%%%%%
 %cool2clementwhole
 graphsdeep
+%leanGraphs
 Ddoubleprime
 
+epNd

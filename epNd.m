@@ -2,7 +2,7 @@
 % 1/4/2011
 % Alessondra Springmann
 % The goal: calculate epsilon 142/144 Nd for the model
-% This script can run independently of MOFlowCMB
+% This script can run independently of MOFlowCMB --- not any more!
 
 chonEp142Nd = 1.141901; % from Amelin, 2004
 %chonEp142Nd = 1.149498;
@@ -29,7 +29,10 @@ massNd144 = 143.910083; % atomic mass 144-neodymium
 % 
 % avgNdEER = 5.3573e-06; 
 % avgSmEER = 2.4196e-06;
-% 
+
+avgNdEERwLiq = 1.4753e-04;
+avgSmEERwLiq = 4.8635e-05;
+
 % abunNd142 = avgNdEER*Nd142/(mass142); % from Nd
 % 
 % abunNd144 = avgNdEER*Nd144/(mass144); % from Nd
@@ -44,12 +47,15 @@ massNd144 = 143.910083; % atomic mass 144-neodymium
 %     ep142Nd);
 
 
+Nd142 = 141.907719;
+Nd144 = 143.910083;
+
 %% \Dpp and residual liquids
 % avgNdEERwLiq - concentration of Nd in the Dpp with residual liquids
 % avgSmEERwLiq - "             "  Sm "  "   "   "    "        " 
 
-avgNdEERwLiq = 1.8951e-05; % mass percent of Nd in the \Dpp layer
-avgSmEERwLiq = 6.9755e-06; % mass percent of Sm in the \Dpp layer
+% avgNdEERwLiq = 1.8951e-05; % mass percent of Nd in the \Dpp layer
+% avgSmEERwLiq = 6.9755e-06; % mass percent of Sm in the \Dpp layer
 
 % mass_res_dpp - mass of the residual liquids + the Dpp layer
 % don't actually need the mass - it goes away when you divide
@@ -66,7 +72,9 @@ ratio142_144NdSamplewLiq = (abunNd142wLiq + abunNd142fromSmwLiq)/abunNd144wLiq;
 %       0.008: abundance ratio for 146Sm/144Nd (Rollinson, 2007)
 ratio = 1.1414980 + 0.008*(avgNdEERwLiq/avgSmEERwLiq)*(150.36/144.24);
 
-ep142NdwLiq = ((ratio/chonEp142Nd) - 1)*10000;
+ep142NdwLiq = ((ratio142_144NdSamplewLiq/chonEp142Nd) - 1)*10000;
+
+%ep142NdwLiq = ((ratio/chonEp142Nd) - 1)*10000;
 
 fprintf('\nThe epsilon^142 Nd value for Dpp & residuals is %2.3g.\n\n', ...
     ep142NdwLiq);
