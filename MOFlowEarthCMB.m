@@ -22,6 +22,8 @@ close all;
 H2Oliquid(1) = 0.00; %0.5;    %0;  % in mass percent
 CO2liquid(1) =  0.00;%0.1;%0.6; %
 
+DM_string = num2str(DM/1000);
+
 % initial values for calculations in this program
 CMB = 3470000;                  % *** m, radius of core-mantle boundary
 R = 6378000;                    % *** m, total radius of planet
@@ -184,6 +186,32 @@ k = 1;  m = 1; % loops for abbreviated data for output - see bottom of file
 
 magnesio_thermal = zeros(maxstep, 2);
 
+%% Vectors for later graphing tests
+mass_solidified = 0;
+
+all_liquid_composition = zeros(maxstep, length(liq_comp));
+all_liquid_composition(1, :) = liq_comp;
+
+mantle_mass_vector = zeros(maxstep, 1);
+mantle_mass_vector(1, :) = mass_solidified;
+
+mantle_mass_by_layer = zeros(maxstep, 1);
+mantle_mass_by_layer(1, :) = mass_solidified;
+
+% mantle_volume_by_layer = ones(maxstep, 1);
+% mantle_volume_by_layer = mantle_volume_by_layer.*(Mantlevolume./1000);
+
+solid_comp_by_layer = zeros(maxstep, length(liq_comp));
+solid_comp_by_layer(1, :) = liq_comp;
+
+residual_liquids_vector = zeros(maxstep, 1);
+residual_liquids_vector(1, :) = Mantlemass;
+
+samarium = zeros(maxstep, 1);
+samarium_percent = zeros(maxstep, 1);
+samarium(1, :) = liq_comp(6)./150.36;
+samarium_percent = samarium(1, :)*mass_solidified;
+
 for j = 2:1:maxstep    % each step is one-tenth of a percent solidification by volume
 %     display(j)
     vol(j) = j;
@@ -294,11 +322,11 @@ end
 
 %figure(1);title(['Density with depth for model:  ', name]); hold on; plot(D,r/1000, 'r'); xlabel('density [kg/m3]'); ylabel('radius, km');
 %figure(2);title(['Reference density with depth for model:  ', name]); hold on; plot(Do,r/1000, 'r'); xlabel('density at 1 atm and 1 deg C [kg/m3]'); ylabel('radius, km');
-figure(3); title(['Reference density with depth for model:  ', name]); 
+figure(3); %title(['Reference density with depth for model:  ', name]); 
     hold on; 
-    plot(Dsol,r/1000, 'r'); 
-    xlabel('density at 1 atm and solidus temperature [kg/m3]'); 
-    ylabel('radius, km');
+    %plot(Dsol,r/1000, 'r'); 
+    %xlabel('density at 1 atm and solidus temperature [kg/m^3]'); 
+    %ylabel('radius, km');
 
 sortandinvertperovskite
 %%%calculate new emissivity with volatile release from melting

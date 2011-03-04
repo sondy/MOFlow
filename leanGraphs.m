@@ -103,6 +103,19 @@ hold off
 
 print -depsc plots/compositionStep.eps
 
+%% samarium as a function of depth
+
+figure(55); %title(['Reference density with depth pre- and post-overturn for model:  ', name]);
+hold on;
+plot(samarium, r./1000, 'g.', 'LineWidth', 4)%, 'LineWidth', 4)
+plot(samarium_percent, r./1000, 'b.', 'LineWidth', 4)
+
+disp('')
+
+hold off
+
+%plot(Dsolinv, rinv./1000, 'k.', 'LineWidth', 4)%, 'LineWidth', 4); %  
+
 %display('foo')
 
 % %% mantle & residual liquid mass

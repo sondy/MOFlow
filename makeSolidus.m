@@ -9,10 +9,10 @@ function solidus = soniaSolidus()
 P = [130  35    30    24    20   17   16   15   10   5    0];  %GPa
 Tabe = [4200 2927  2747 2517  2337 2130 2040 2027 1907 1627 1120]; % changed T(1) from 5000
 
-figure(100);
-plot(P, Tabe, 'r');
+% figure(100);
+% plot(P, Tabe, 'r');
 
-hold on 
+% hold on 
 
 R = (P - 238.5372)/-0.0374;
 range = [0 140];
@@ -26,11 +26,11 @@ Rplot = (Pplot - 238.5372)/-0.0374;
 
 Telk = (-1.160e-7)*R.^3 + (0.0014)*R.^2 - (6.382)*R + 1.444e4;
 TelkPlot = (-1.160e-7)*Rplot.^3 + (0.0014)*Rplot.^2 - (6.382)*Rplot + 1.444e4;
-plot(Pplot, TelkPlot, 'b');
+% plot(Pplot, TelkPlot, 'b');
 
 Tmin = min(Tabe,Telk);
 
-% plot(P, Tmin, 'g')
+%plot(P, Tmin, 'g')
 
 pp_solidus_sonia = spline(P,Tmin); % returns piecewise polynomial form of cubic spline
 % pp_solidus_elkins = spline(P,Telk); % returns piecewise polynomial form of cubic spline
@@ -38,7 +38,7 @@ pp_solidus_sonia = spline(P,Tmin); % returns piecewise polynomial form of cubic 
 
 % print out the coeficients
 
-pp_solidus_sonia.coefs;
+%pp_solidus_sonia.coefs;
 
 
 % range = [0 140];
@@ -54,9 +54,19 @@ pp_solidus_sonia.coefs;
 % 
 
 
-solidus = @(P) ppval(pp_solidus_sonia, P); %% final solidus!
+solidus = @(P) ppval(pp_solidus_sonia, P); %% final solidus
 
-fplot(solidus, range, 'g');
+%fplot(solidus, range, 'r');
+
+% plot(t_solidus_new, radius_range, 'r', 'LineWidth', 1.5) % from Abe (1997)
+% plot(t_solidus_old, radius_range, 'b', 'LineWidth', 1.5) % from Elkins-Tanton (2008)
+% plot(t_solidus, radius_range, 'm', 'LineWidth', 1.5)
+% legend('Abe (1997)', 'Elkins-Tanton (2008)', 'This Work',...
+%     'Location', 'NorthEast')
+% xlabel('Temperature (^{\circ}C)')
+% ylabel('Radius (km)')
+% 
+% print('-depsc', 'plots/solidi.eps')
 
 
 return

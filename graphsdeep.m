@@ -6,12 +6,17 @@ disp('In graphsdeep')
 % % Figures 1, 2, 3 also appear in MOFlow1 so density can be plotted before mineral recalculation that occurs in sortandinvert.m
 % % figure(1);title(['Density with depth for model:  ', name]); hold on; plot(D(1:marker2),r(1:marker2)/1000,'y'); xlabel('density at P and solidus temperature [kg/m3]'); ylabel('radius, km');
 % %figure(2);title(['Reference density with depth for model:  ', name]); hold on; plot(Do(1:marker),r(1:marker)/1000,'y'); xlabel('density at 1 atm and 1 deg C [kg/m3]'); ylabel('radius, km');
-figure(3); title(['Reference density with depth pre- and post-overturn for model:  ', name]); 
+figure(3); %title(['Reference density with depth pre- and post-overturn for model:  ', name]); 
     hold on; 
-    plot(Dsol(1:marker2), r(1:marker2)/1000,'y',...
-        Dsolinv, rinv/1000, 'k'); 
-    xlabel('density at 1 atm and solidus temperature [kg m^{-3}]'); 
-    ylabel('radius, km');    
+%     plot(Dsol(1:marker2), r(1:marker2)/1000,'y',...
+%         Dsolinv, rinv/1000, 'k'); 
+    plot(Dsol, r./1000, 'b--', 'LineWidth', 2)
+    plot(Dsolinv, rinv./1000, 'k-.', 'LineWidth', 2); % 
+
+    legend('Pre-overturn density', 'Post-overturn density', 'Location', 'Best')
+    
+    xlabel('density (kg/m^3)'); 
+    ylabel('radius (km)');    
     print -depsc 'plots/densityWithDepth.eps'
 %     
 %  figure(4); title(['Phase densities for model:  ', name]); hold on; axis([2500 6500 CMB/1000 R/1000]); plot(perov, r/1000, magnesio, r/1000, bet, r/1000, gam, r/1000, maj, r/1000, stish, r/1000, cpyrox, r/1000, opyrox, r/1000, gar, r/1000, spi, r/1000, plag, r/1000, oliv, r/1000, iliq, r/1000); 
@@ -146,9 +151,9 @@ y4 = rinv/1000;
 x5 = solidinv(:,9)*10^4; 
 y5 = rinv/1000;
 
-hl1 = line(x1, y1, 'Color', 'k');
-xlabel('density at 1 atm and solidus temperature [kg/m^3]');
-ylabel('radius, km');
+hl1 = line(x1, y1, 'Color', 'k', 'LineWidth', 1.4);
+xlabel('density (kg/m^3)');
+ylabel('radius (km)');
 ax1 = gca;
 
 ax2 = axes('Position',get(ax1,'Position'),...
@@ -156,34 +161,59 @@ ax2 = axes('Position',get(ax1,'Position'),...
            'YAxisLocation','right',...
            'Color','none',...
            'XColor','k','YColor','k');
-hl2 = line(x2,y1,'Color','b','Parent',ax2);
-hl3 = line(x3,y1,'Color','g','Parent',ax2);
-hl4 = line(x4,y1,'Color','r','Parent',ax2);
-hl5 = line(x5,y1,'Color','c','Parent',ax2);
+hl2 = line(x2,y1,'Color','b','Parent',ax2);%, 'LineWidth', 1.2);
+hl3 = line(x3,y1,'Color','g','Parent',ax2);%, 'LineWidth', 1.2);
+hl4 = line(x4,y1,'Color','r','Parent',ax2);%, 'LineWidth', 1.2);
+hl5 = line(x5,y1,'Color','c','Parent',ax2);%, 'LineWidth', 1.2);
+
 
 legend('Sm','Nd','Th','U',0); %axis([0 .5 2000 3400]);
 
-title('Trace element concentrations ppm with depth for overturned model');
+traceElement = strcat('plots/traceElement', DM_string, '.eps');
+print('-depsc', traceElement)
 
+%title('Trace element concentrations ppm with depth for overturned model');
 hold off;
 
-
+%%
+figure(43); 
+hold on;
 solidSm = (solid(:,6)*0.1499/150.36);
 solidNd = (solid(:,7)*0.238/144.24);
 liquidSm = (liquid(:,6)*0.1499/150.36);
 liquidNd = (liquid(:,7)*0.238/144.24);
-figure(43); 
+
 title('147Sm/144Nd ratio in magma ocean cumulates and in coevolving liquids'); 
 plot(solidSm./solidNd, r/1000, 'g-',liquidSm./liquidNd, r/1000, 'r-');
     xlabel('147Sm/144Nd molar');ylabel('radius [km] of cumulate solidification');
 %    legend('Solid cumulates','Coexisting magma ocean liquids',0); %axis([0 .5 2000 3400]);
 
+hold off;
+
+
+%%
+figure(44);
+
 solidinvSm = (solidinv(:,6)*0.1499/150.36);
 solidinvNd = (solidinv(:,7)*0.238/144.24);
-figure(44);
+
 title('147Sm/144Nd ratio in magma ocean cumulates after overturn'); 
 plot(solidinvSm./solidinvNd, r/1000, 'g-');
     xlabel('147Sm/144Nd molar');ylabel('radius [km] of cumulate after overturn');
+    
+
+figure(43); 
+hold on
+title('147Sm/144Nd ratio in magma ocean cumulates and in coevolving liquids'); 
+plot(solidSm./solidNd, r./1000, 'b-')%,'LineWidth')%, 4)
+plot(liquidSm./liquidNd, r./1000, 'r-')%,'LineWidth')%, 4);
+    xlabel('147Sm/144Nd molar ratio');
+    ylabel('radius [km] of cumulate solidification');
+    xlim([0 1.4])
+    ylim([3400 6500])
+    legend('Solid cumulates','Coexisting magma ocean liquids',0); %axis([0 .5 2000 3400]);
+    
+hold off
 
     
 %figure(200); title(['Magma ocean surface temperature for model:  ', name]); 
