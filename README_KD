@@ -1,0 +1,40 @@
+How to parse kd_*.m files:
+
+Perovskite:
+
+    Ca   MgFe
+Sm  9   0.05
+
+Nd  7   0.016
+
+Th  10  0.005
+
+U   8   0.025
+
+Post Perovskite:
+
+Sm  0.15
+
+Nd  0.05
+
+Th  0.5
+
+U   0.5
+
+OH  0.0001
+
+CO  0.0005
+
+Magnesiowustite:
+
+Sm  0.001
+
+Nd  0.001
+
+Th  0.01
+
+U   0.001
+
+OH  0.008
+
+CO  0.0005

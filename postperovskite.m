@@ -9,12 +9,15 @@ FeMgKd = 0.4;  % Kd = (Fe/Mg)min / (Fe/Mg)liq
  
 M_liq_comp = liq_comp./MW;
 
-KSm = 0.15;
-KNd = 0.05; 
-KTh = 0.5; 
-KU = 0.5;
-KOH = 0.0001;    % KOH = (OH)min/(OH)liq 
-KCO = 0.0005;
+load kd_postperovskite.dat
+kd_pp = kd_postperovskite;
+
+KSm = kd_pp(1);%0.15;
+KNd = kd_pp(2);%0.05; 
+KTh = kd_pp(3);%0.5; 
+KU  = kd_pp(4);%0.5;
+KOH = kd_pp(5);%0.0001;    % KOH = (OH)min/(OH)liq 
+KCO = kd_pp(6);%0.0005;
 
 % use molar weights and Kds to calculate ratios of elements in mineral
  

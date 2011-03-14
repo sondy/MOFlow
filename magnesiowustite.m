@@ -8,12 +8,15 @@ FeMgKd = 2;  % Kd = (Fe/Mg)min / (Fe/Mg)liq 2.00 from Fei analysis
 
 M_liq_comp = liq_comp./MW;
 
-KSm = 0.001; %0.2;
-KNd = 0.001; %0.06;
-KTh = 0.01; % Change me
-KU = 0.001; % Change me
-KOH = 0.008;    % KOH = (OH)min/(OH)liq
-KCO = 0.0005;    % complete guesses
+load kd_magnesiowustite.dat;
+kd_m = kd_magnesiowustite;
+
+KSm = kd_m(1);% 0.001; %0.2;
+KNd = kd_m(2);%0.001; %0.06;
+KTh = kd_m(3);%0.01; % Change me
+KU  = kd_m(4);%0.001; % Change me
+KOH = kd_m(5);%0.008;    % KOH = (OH)min/(OH)liq
+KCO = kd_m(6);%0.0005;    % complete guesses
 
 % use molar weights and Kds to calculate ratios of elements in mineral
  

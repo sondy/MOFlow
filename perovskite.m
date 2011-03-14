@@ -15,23 +15,26 @@ Siwt = 52; % experimental SiO2 wt%
 AlSi = (Alwt/MW(2))/(Siwt/MW(1));
 M_liq_comp = liq_comp./MW;
 
+load kd_perovskite.dat
+kd_p = kd_perovskite;
+
 % KSm = 0.15; 
 % KNd = 0.05;
 
-KSm_Ca = 9;
-KSm_MgFe = 0.05;
+KSm_Ca   = kd_p(1,1);%9;
+KSm_MgFe = kd_p(1,2);%0.05;
 KSm_Al = KSm_MgFe;
 
-KNd_Ca = 7;
-KNd_MgFe = 0.016;
+KNd_Ca   = kd_p(2,1);%7;
+KNd_MgFe = kd_p(2,2);%0.016;
 KNd_Al = KNd_MgFe;
 
-KTh_Ca = 10;
-KTh_MgFe = 0.005;
+KTh_Ca = kd_p(3,1);%10;
+KTh_MgFe = kd_p(3,2);%0.005;
 KTh_Al = KTh_MgFe;
 
-KU_Ca = 8;
-KU_MgFe = 0.025;
+KU_Ca = kd_p(4,1);%8;
+KU_MgFe = kd_p(4,2);%0.025;
 KU_Al = KU_MgFe;
  
 % KTh = 0.01; % corgne et al. 2004
