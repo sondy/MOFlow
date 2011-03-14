@@ -25,8 +25,9 @@ wtpct(12) = liq_comp(11);   % CO2
  
 T = Tpot + 298;             % Kelvins
 
-%    SiO2    TiO2     Al2O3,   FeO,    MgO,    CaO   Na2O    K2O  Na2O-TiO2 Na2O-Al2O3  H2O     CO2
-MW = [60.09, 79.879, 101.96, 71.846, 40.304, 56.077, 61.979, 94.196, 1,          1,       18.99, 44.00];
+%     SiO2   TiO2    Al2O3,  FeO,    MgO,    CaO     Na2O    K2O     Na2O-TiO2 Na2O-Al2O3  H2O     CO2
+MW = [60.09, 79.879, 101.96, 71.846, 40.304, 56.077, 61.979, 94.196, 1,        1,          18.99,  44.00];
+
 mol = wtpct./MW;
 X = mol/sum(mol);
 

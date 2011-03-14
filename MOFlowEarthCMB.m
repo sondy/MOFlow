@@ -94,7 +94,25 @@ end
 
 liq_comp = [45.96 4.06 7.54 37.78 3.21 0.00001472 0.00004524 0.00000294 0.00000081 0 0];
 %0.00000243,0.0000104,... % changing from Lu-Hf to Th-U
-% U & Th from Anders and Grevesse CI chondrite table, column G., 
+% U & Th from Anders and Grevesse CI chondrite table, column G.,
+
+% Molar weights of oxides and elements.  Putting this here to make it easy
+% to change in once place, rather than each individual mineral file,
+% especially if we resort to using Lu/Hf to confirm Carlson's suggestions.
+MW = [  60.09,...   % SiO2   (1)   g/mol for oxides
+       101.96,...   % Al2O3  (2)
+        71.846,...  % FeO    (3)
+        40.311,...  % MgO    (4)
+        56.077,...  % CaO    (5)
+       150.36,...   % Sm     (6) (these in molar ppm after division)
+       144.24,...   % Nd     (7)
+       232.0381,... % Th     (8)
+       238.0289,... % U      (9)
+       17.00,...    % OH     (10)   g/mol again
+       28.00];      % CO     (11)
+ 
+       %174.967,...  % Lu     (8)
+       %178.49,...   % Hf     (9)  
     
 liq_comp = 100*liq_comp./(100-(H2Oliquid2(1)+CO2liquid2(1))); % normalized MO oxides so volatiles remain at values specified above
 liq_comp(10) = H2Oliquid2(1); liq_comp(11) = CO2liquid2(1);

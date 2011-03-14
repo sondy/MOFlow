@@ -38,7 +38,7 @@ pp_solidus_sonia = spline(P,Tmin); % returns piecewise polynomial form of cubic 
 
 % print out the coeficients
 
-%pp_solidus_sonia.coefs;
+pp_solidus_sonia.coefs;
 
 
 % range = [0 140];

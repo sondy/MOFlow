@@ -7,22 +7,6 @@ function [eqmin, Mgnum, CaMg] = orthopyroxene(liq_comp)
  
 FeMgKd = 0.28;  % Kd = (Fe/Mg)min / (Fe/Mg)liq
 CaMg = .02;       % Molar distrubution of Ca/Mg+Fe in pyroxene
-
-MW = [  60.09,...   % SiO2   (1)   g/mol for oxides
-       101.96,...   % Al2O3  (2)
-        71.846,...  % FeO    (3)
-        40.311,...  % MgO    (4)
-        56.077,...  % CaO    (5)
-       150.36,...   % Sm     (6) (these in molar ppm after division)
-       144.24,...   % Nd     (7)
-       232.0381,... % Th     (8)
-       238.0289,... % U      (9)
-       17.00,...    % OH     (10)   g/mol again
-       28.00];      % CO     (11)
- 
-       %174.967,...  % Lu     (8)
-       %178.49,...   % Hf     (9)   
-      
  
 M_liq_comp = liq_comp./MW;
 

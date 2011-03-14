@@ -11,21 +11,6 @@ SiMgKd = 1.1;
  
 Alwt = 5; %mol% of Al2O3; experimental Al2O3 wt% from Bertka and Fei: 4; Tronnes is similar; Panero (2006) higher: 15 mol%
 Siwt = 52; % experimental SiO2 wt%
- 
-MW = [  60.09,...   % SiO2   (1)   g/mol for oxides
-       101.96,...   % Al2O3  (2)
-        71.846,...  % FeO    (3)
-        40.311,...  % MgO    (4)
-        56.077,...  % CaO    (5)
-       150.36,...   % Sm     (6) (these in molar ppm after division)
-       144.24,...   % Nd     (7)
-       232.0381,... % Th     (8)
-       238.0289,... % U      (9)
-       17.00,...    % OH     (10)   g/mol again
-       28.00];      % CO     (11)
- 
-       %174.967,...  % Lu     (8)
-       %178.49,...   % Hf     (9)   
 
 AlSi = (Alwt/MW(2))/(Siwt/MW(1));
 M_liq_comp = liq_comp./MW;
@@ -122,5 +107,3 @@ end
 
 % now divide into (Mg, Fe)3(Al)2 perovskite, [CaSiO3]3 Ca perovskite, and [(Mg,Fe)SiO3]3 non-Al, non-Ca perovskite
 % req. 2 Als or 3 Cas per unit
- 
-
