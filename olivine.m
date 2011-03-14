@@ -1,4 +1,4 @@
-function [eqmin, Mgnum] = olivine(liq_comp)
+function [eqmin, Mgnum] = olivine(liq_comp, MW)
 
 % OLIVINE calculates olivine equilibrium
 % (Mg, Fe)2(Si)2(O)6

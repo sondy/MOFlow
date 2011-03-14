@@ -1,4 +1,4 @@
-function [eqmin, Mgnum] = gamma(liq_comp)
+function [eqmin, Mgnum] = gamma(liq_comp, MW)
 % GAMMA (GAMMA OLIVINE, RINGWOODITE) calculates gamma equilibrium
 % (Mg, Fe)2(Si)1(O)4
 % given liquid composition with five components

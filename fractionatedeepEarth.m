@@ -16,7 +16,7 @@ P(j) = RtoP(r(j));   %***[GPa] from radius in km, from 130GPa at 2900 depth (CMB
 %display('Layer 0: Post-perovskite')
 if (P(j) > Layer0P);
    intliqx = intliq0;
-   [eqminppv, Mgnumppv] = postperovskite(liq_comp);
+   [eqminppv, Mgnumppv] = postperovskite(liq_comp, MW);
    
    ppvdensity = postperovskitedensity(Mgnumppv, 0, P(j), Tsolid(j));
    ppvdensityzero = postperovskitedensity(Mgnumppv, 0, 1e-4, 1);
@@ -53,12 +53,12 @@ if P(j) > Layer1P;
 %display('Layer 1: Perovskite, Magnesiowustite')
     intliqx = intliq1;
     %    disp(['Layer 2, index = ', num2str(j)])
-    [eqminper, Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe] = perovskite(liq_comp);
+    [eqminper, Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe] = perovskite(liq_comp, MW);
     pdensity = perovskitedensity(Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe, P(j), Tsolid(j));
     pdensityzero = perovskitedensity(Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe, 1e-4, 1);
     pdensitysol = perovskitedensity(Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe, 1e-4, Tsolid(j));
     
-    [Mgnummw, eqminmw] = magnesiowustite(liq_comp);
+    [Mgnummw, eqminmw] = magnesiowustite(liq_comp, MW);
     mwdensity = magnesiowustitedensity(Mgnummw, P(j), Tsolid(j));
     mwdensityzero = magnesiowustitedensity(Mgnummw, 1e-4, 1);
     mwdensitysol = magnesiowustitedensity(Mgnummw, 1e-4, Tsolid(j));
@@ -89,12 +89,12 @@ if P(j) > Layer2P;
 %display('Layer 2: Gamma spinel, Majorite')
     intliqx = intliq2;
     %    disp(['Layer 2, index = ', num2str(j)])
-    [eqmingamma, Mgnumg] = gammaolivine(liq_comp);
+    [eqmingamma, Mgnumg] = gammaolivine(liq_comp, MW);
     gdensity = gammadensity(Mgnumg, P(j), Tsolid(j));
     gdensityzero = gammadensity(Mgnumg, 1e-4, 1);
     gdensitysol = gammadensity(Mgnumg, 1e-4, Tsolid(j));
 
-    [eqminmaj, Mgnummaj, Perc_Ca, Perc_AlMgFe, Perc_MgFe] = majorite(liq_comp);
+    [eqminmaj, Mgnummaj, Perc_Ca, Perc_AlMgFe, Perc_MgFe] = majorite(liq_comp, MW);
     majdensity = majoritedensity(Mgnummaj, Perc_Ca, Perc_AlMgFe, Perc_MgFe, P(j), Tsolid(j));
     majdensityzero = majoritedensity(Mgnummaj, Perc_Ca, Perc_AlMgFe, Perc_MgFe, 1e-4, 1);
     majdensitysol = majoritedensity(Mgnummaj, Perc_Ca, Perc_AlMgFe, Perc_MgFe, 1e-4, Tsolid(j));
@@ -126,17 +126,17 @@ if P(j) > Layer3P;
 %display('Layer 3: Gamma spinel, Majorite')
     intliqx = intliq3;
     %    disp(['Layer 3, index = ', num2str(j)])
-    [eqminbeta, Mgnumb] = beta(liq_comp);
+    [eqminbeta, Mgnumb] = beta(liq_comp, MW);
     bdensity = betadensity(Mgnumb, P(j), Tsolid(j));
     bdensityzero = betadensity(Mgnumb, 1e-4, 1);
     bdensitysol = betadensity(Mgnumb, 1e-4, Tsolid(j));
 
-    [eqminmaj, Mgnummaj, Perc_Ca, Perc_AlMgFe, Perc_MgFe] = majorite(liq_comp);
+    [eqminmaj, Mgnummaj, Perc_Ca, Perc_AlMgFe, Perc_MgFe] = majorite(liq_comp, MW);
     majdensity = majoritedensity(Mgnummaj, Perc_Ca, Perc_AlMgFe, Perc_MgFe, P(j), Tsolid(j));
     majdensityzero = majoritedensity(Mgnummaj, Perc_Ca, Perc_AlMgFe, Perc_MgFe, 1e-4, 1);
     majdensitysol = majoritedensity(Mgnummaj, Perc_Ca, Perc_AlMgFe, Perc_MgFe, 1e-4, Tsolid(j));
 
-    [eqmincpx, Mgnumcpx, CaMg] = clinopyroxene(liq_comp);
+    [eqmincpx, Mgnumcpx, CaMg] = clinopyroxene(liq_comp, MW);
     cpxdensity = clinopyroxenedensity(Mgnumcpx, CaMg, P(j), Tsolid(j));
     cpxdensityzero = clinopyroxenedensity(Mgnumcpx, CaMg, 1e-4, 1);
     cpxdensitysol = clinopyroxenedensity(Mgnumcpx, CaMg, 1e-4, Tsolid(j));
@@ -168,7 +168,7 @@ end
 %   intliqx = intliq4;
 % if liquid(j-1,2) > 1.5;	% only garnet falls out and is sequestered; ol + pyx rehomogenize and are therefore not calculated here
 % % disp(['Layer 4, garnet fractionation, index = ', num2str(j)])
-%        [eqmingar, Mgnumgar, Perc_AlCa, Perc_AlMgFe] = garnet(liq_comp);
+%        [eqmingar, Mgnumgar, Perc_AlCa, Perc_AlMgFe] = garnet(liq_comp, MW);
 %        gardensity = garnetdensity(Mgnumgar, Perc_AlCa, Perc_AlMgFe, P(j), Tsolid(j));
 %        gardensityzero = garnetdensity(Mgnumgar, Perc_AlCa, Perc_AlMgFe, 1e-4, 1);
 %        gardensitysol = garnetdensity(Mgnumgar, Perc_AlCa, Perc_AlMgFe, 1e-4, Tsolid(j));
@@ -202,22 +202,22 @@ if P(j) > Layer4P;
 %display('Layer 4: Garnet, Alpha olivine, Clinopyroxene, Orthopyroxene')
     intliqx = intliq4;
     %    disp(['Layer 4 after garnet, index = ', num2str(j)])
-    [eqmingar, Mgnumgar, Perc_AlCa, Perc_AlMgFe] = garnet(liq_comp);
+    [eqmingar, Mgnumgar, Perc_AlCa, Perc_AlMgFe] = garnet(liq_comp, MW);
     gardensity = garnetdensity(Mgnumgar, Perc_AlCa, Perc_AlMgFe, P(j), Tsolid(j));
     gardensityzero = garnetdensity(Mgnumgar, Perc_AlCa, Perc_AlMgFe, 1e-4, 1);
     gardensitysol = garnetdensity(Mgnumgar, Perc_AlCa, Perc_AlMgFe, 1e-4, Tsolid(j));
 
-    [eqminalpha, Mgnumalpha] = olivine(liq_comp);
+    [eqminalpha, Mgnumalpha] = olivine(liq_comp, MW);
     alphadensity = olivinedensity(Mgnumalpha, P(j), Tsolid(j));
     alphadensityzero = olivinedensity(Mgnumalpha, 1e-4, 1);
     alphadensitysol = olivinedensity(Mgnumalpha, 1e-4, Tsolid(j));
 
-    [eqmincpx, Mgnumcpx, CaMg] = clinopyroxene(liq_comp);
+    [eqmincpx, Mgnumcpx, CaMg] = clinopyroxene(liq_comp, MW);
     cpxdensity = clinopyroxenedensity(Mgnumcpx, CaMg, P(j), Tsolid(j));
     cpxdensityzero = clinopyroxenedensity(Mgnumcpx, CaMg, 1e-4, 1);
     cpxdensitysol = clinopyroxenedensity(Mgnumcpx, CaMg, 1e-4, Tsolid(j));
 
-    [eqminopx, Mgnumopx, CaMg] = orthopyroxene(liq_comp);
+    [eqminopx, Mgnumopx, CaMg] = orthopyroxene(liq_comp, MW);
     opxdensity = orthopyroxenedensity(Mgnumopx, CaMg, P(j), Tsolid(j));
     opxdensityzero = orthopyroxenedensity(Mgnumopx, CaMg, 1e-4, 1);
     opxdensitysol = orthopyroxenedensity(Mgnumopx, CaMg, 1e-4, Tsolid(j));
@@ -249,22 +249,22 @@ if P(j) > Layer5P;
 %display('Layer 5: Spinel, Alpha olivine, Clinopyroxene, Orthopyroxene')
     intliqx = intliq5;
     %    disp(['Layer 5, index = ', num2str(j)])
-    [eqminspin, Mgnumspin] = spinel(liq_comp);
+    [eqminspin, Mgnumspin] = spinel(liq_comp, MW);
     spindensity = spineldensity(Mgnumspin, P(j), Tsolid(j));
     spindensityzero = spineldensity(Mgnumspin, 1e-4, 1);
     spindensitysol = spineldensity(Mgnumspin, 1e-4, Tsolid(j));
 
-    [eqminalpha, Mgnumalpha] = olivine(liq_comp);
+    [eqminalpha, Mgnumalpha] = olivine(liq_comp, MW);
     alphadensity = olivinedensity(Mgnumalpha, P(j), Tsolid(j));
     alphadensityzero = olivinedensity(Mgnumalpha, 1e-4, 1);
     alphadensitysol = olivinedensity(Mgnumalpha, 1e-4, Tsolid(j));
 
-    [eqmincpx, Mgnumcpx, CaMg] = clinopyroxene(liq_comp);
+    [eqmincpx, Mgnumcpx, CaMg] = clinopyroxene(liq_comp, MW);
     cpxdensity = clinopyroxenedensity(Mgnumcpx, CaMg, P(j), Tsolid(j));
     cpxdensityzero = clinopyroxenedensity(Mgnumcpx, CaMg, 1e-4, 1);
     cpxdensitysol = clinopyroxenedensity(Mgnumcpx, CaMg, 1e-4, Tsolid(j));
 
-    [eqminopx, Mgnumopx, CaMg] = orthopyroxene(liq_comp);
+    [eqminopx, Mgnumopx, CaMg] = orthopyroxene(liq_comp, MW);
     opxdensity = orthopyroxenedensity(Mgnumopx, CaMg, P(j), Tsolid(j));
     opxdensityzero = orthopyroxenedensity(Mgnumopx, CaMg, 1e-4, 1);
     opxdensitysol = orthopyroxenedensity(Mgnumopx, CaMg, 1e-4, Tsolid(j));
@@ -296,22 +296,22 @@ if P(j) > Layer6P;
 %display('Layer 6: Plagioclase, Alpha olivine, Clinopyroxene, Orthopyroxene')
     intliqx = intliq6;
     %    disp(['Layer 6, index = ', num2str(j)])
-    [eqminplag, Anplag] = plagioclase(liq_comp);
+    [eqminplag, Anplag] = plagioclase(liq_comp, MW);
     plagdensity = plagioclasedensity(Anplag, P(j), Tsolid(j));
     plagdensityzero = plagioclasedensity(Anplag, 1e-4, 1);
     plagdensitysol = plagioclasedensity(Anplag, 1e-4, Tsolid(j));
 
-    [eqminalpha, Mgnumalpha] = olivine(liq_comp);
+    [eqminalpha, Mgnumalpha] = olivine(liq_comp, MW);
     alphadensity = olivinedensity(Mgnumalpha, P(j), Tsolid(j));
     alphadensityzero = olivinedensity(Mgnumalpha, 1e-4, 1);
     alphadensitysol = olivinedensity(Mgnumalpha, 1e-4, Tsolid(j));
 
-    [eqmincpx, Mgnumpyx, CaMg] = clinopyroxene(liq_comp);
+    [eqmincpx, Mgnumpyx, CaMg] = clinopyroxene(liq_comp, MW);
     cpxdensity = clinopyroxenedensity(Mgnumpyx, CaMg, P(j), Tsolid(j));
     cpxdensityzero = clinopyroxenedensity(Mgnumpyx, CaMg, 1e-4, 1);
     cpxdensitysol = clinopyroxenedensity(Mgnumpyx, CaMg, 1e-4, Tsolid(j));
 
-    [eqminopx, Mgnumpyx, CaMg] = orthopyroxene(liq_comp);
+    [eqminopx, Mgnumpyx, CaMg] = orthopyroxene(liq_comp, MW);
     opxdensity = orthopyroxenedensity(Mgnumpyx, CaMg, P(j), Tsolid(j));
     opxdensityzero = orthopyroxenedensity(Mgnumpyx, CaMg, 1e-4, 1);
     opxdensitysol = orthopyroxenedensity(Mgnumpyx, CaMg, 1e-4, Tsolid(j));
@@ -346,22 +346,22 @@ end
 if P(j) > Layer7P;
     intliqx = intliq7;
     %    disp(['Layer 7, index = ', num2str(j)])
-    [eqminplag, Anplag] = plagioclase(liq_comp);
+    [eqminplag, Anplag] = plagioclase(liq_comp, MW);
     plagdensity = plagioclasedensity(Anplag, P(j), Tsolid(j));
     plagdensityzero = plagioclasedensity(Anplag, 1e-4, 1);
     plagdensitysol = plagioclasedensity(Anplag, 1e-4, Tsolid(j));
 
-    [eqminalpha, Mgnumalpha] = olivine(liq_comp);
+    [eqminalpha, Mgnumalpha] = olivine(liq_comp, MW);
     alphadensity = olivinedensity(Mgnumalpha, P(j), Tsolid(j));
     alphadensityzero = olivinedensity(Mgnumalpha, 1e-4, 1);
     alphadensitysol = olivinedensity(Mgnumalpha, 1e-4, Tsolid(j));
 
-    [eqmincpx, Mgnumpyx, CaMg] = clinopyroxene(liq_comp);
+    [eqmincpx, Mgnumpyx, CaMg] = clinopyroxene(liq_comp, MW);
     cpxdensity = clinopyroxenedensity(Mgnumpyx, CaMg, P(j), Tsolid(j));
     cpxdensityzero = clinopyroxenedensity(Mgnumpyx, CaMg, 1e-4, 1);
     cpxdensitysol = clinopyroxenedensity(Mgnumpyx, CaMg, 1e-4, Tsolid(j));
 
-    [eqminopx, Mgnumpyx, CaMg] = orthopyroxene(liq_comp);
+    [eqminopx, Mgnumpyx, CaMg] = orthopyroxene(liq_comp, MW);
     opxdensity = orthopyroxenedensity(Mgnumpyx, CaMg, P(j), Tsolid(j));
     opxdensityzero = orthopyroxenedensity(Mgnumpyx, CaMg, 1e-4, 1);
     opxdensitysol = orthopyroxenedensity(Mgnumpyx, CaMg, 1e-4, Tsolid(j));

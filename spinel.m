@@ -1,4 +1,4 @@
-function [eqmin, Mgnum] = spinel(liq_comp)
+function [eqmin, Mgnum] = spinel(liq_comp, MW)
 % SPINEL calculates spinel compositional equilibrium
 % (Mg, Fe)(Al)2(O)4
 % liq_comp is in wt%

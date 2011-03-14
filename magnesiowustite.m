@@ -1,4 +1,4 @@
-function [Mgnum, eqmin] = magnesiowustite(liq_comp)
+function [Mgnum, eqmin] = magnesiowustite(liq_comp, MW)
 % MAGNESIOWUSTITE calculates equilibrium magnesiowustite
 % (Mg, Fe)O
 % liq_comp is in wt%

@@ -7,7 +7,7 @@
 %global all_liquid_composition % keep tabs on what the liquid composition
 %is doing!
 
-global Dolinv liquid maxstep num_oceans r rinv solidinv 
+global Dolinv liquid maxstep num_oceans r rinv solidinv MW
 % for later plotting/debugging
 %global num_oceans % for making the following into vectors
 global densityResidual

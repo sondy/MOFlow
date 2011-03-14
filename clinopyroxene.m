@@ -1,4 +1,4 @@
-function [eqmin, Mgnum, CaMg] = clinopyroxene(liq_comp)
+function [eqmin, Mgnum, CaMg] = clinopyroxene(liq_comp, MW)
 
 % CLINOPYROXENE calculates equilibrium for clinopyroxene
 % (Mg, Fe, Ca)2(Si)2(O)6

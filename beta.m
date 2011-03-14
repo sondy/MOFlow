@@ -1,4 +1,4 @@
-function [eqmin, Mgnum] = beta(liq_comp)
+function [eqmin, Mgnum] = beta(liq_comp, MW)
 
 % BETA calculates wadsleyite equilibrium
 % (Mg, Fe)2(Si)1(O)4

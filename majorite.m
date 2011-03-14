@@ -1,4 +1,4 @@
-function [eqmin, Mgnum, Perc_Ca, Perc_AlMgFe, Perc_MgFe] = majorite(liq_comp)
+function [eqmin, Mgnum, Perc_Ca, Perc_AlMgFe, Perc_MgFe] = majorite(liq_comp, MW)
 % MAJORITE calculates majorite equilibrium
 % (Mg, Fe, Ca)3(Al)2(Si)3(O)12
 % Order of elements = SiO2, Al2O3, FeO, MgO, CaO, Sm, Nd, Lu, Hf

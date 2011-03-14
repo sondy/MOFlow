@@ -1,4 +1,4 @@
-function [eqmin, Mgnum, CaMg] = orthopyroxene(liq_comp)
+function [eqmin, Mgnum, CaMg] = orthopyroxene(liq_comp, MW)
 
 % ORTHOPYROXENE calculates equilibrium for orthopyroxene
 % (Mg, Fe)2(Si)2(O)6

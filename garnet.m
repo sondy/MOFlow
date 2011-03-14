@@ -1,4 +1,4 @@
-function [eqmin, Mgnum, Perc_AlCa, Perc_AlMgFe] = garnet(liq_comp)
+function [eqmin, Mgnum, Perc_AlCa, Perc_AlMgFe] = garnet(liq_comp, MW)
 % GARNET calculates garnet equilibrium
 % (Mg, Fe, Ca)3(Al)2(Si)3(O)12
 % liq_comp is in wt%

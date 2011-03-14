@@ -1,4 +1,4 @@
-function [eqmin, Mgnum, Perc_Al, Perc_Ca, Perc_MgFe] = perovskite(liq_comp)
+function [eqmin, Mgnum, Perc_Al, Perc_Ca, Perc_MgFe] = perovskite(liq_comp, MW)
 % PEROVSKITE calculates equilibrium perovskite
 % (Mg, Fe, Ca)3(Al)2(Si)3(O)12
 % given liquid composition with five components

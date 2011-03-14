@@ -1,4 +1,4 @@
-function [eqmin, Mgnum] = postperovskite(liq_comp)
+function [eqmin, Mgnum] = postperovskite(liq_comp, MW)
 
 % POSTPEROVSKITE calculates equilibrium compositions
 % (Mg, Fe)(Si)(O)3

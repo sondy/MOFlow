@@ -1,4 +1,4 @@
-function [eqmin, An] = plagioclase(liq_comp)
+function [eqmin, An] = plagioclase(liq_comp, MW)
 % PLAGIOCLASE calculates equilibrium for plagioclase
 % Ca(Al)2(Si)2(O)6 (anorthite) and NaAlSi3O8 (albite)
 % given liquid composition with seven components
