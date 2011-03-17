@@ -71,9 +71,13 @@ M_eqmin(5) = CaAlmin*2*M_eqmin(2);
 Mgnum = M_eqmin(4)/(M_eqmin(4) + M_eqmin(3));
 TotMgFe = (3)*M_eqmin(2);        % moles of Mg+Fe that go into Al perovskite to charge balance Al
 RemMgFe = (M_eqmin(3) + M_eqmin(4)) - TotMgFe;  % moles of Mg+Fe left to make non-Al, non-Ca perovskite
-Perc_Al = (M_eqmin(2))/((M_eqmin(2)) + (RemMgFe) + (M_eqmin(5)));   % fraction of Al perovskite
-Perc_Ca = (M_eqmin(5))/((M_eqmin(2)) + (RemMgFe) + (M_eqmin(5)));   % fraction of Ca perovskite
-Perc_MgFe = (RemMgFe)/((M_eqmin(2)) + (RemMgFe) + (M_eqmin(5)));   % fraction of MgFe perovskite
+% Perc_Al = (M_eqmin(2))/((M_eqmin(2)) + (RemMgFe) + (M_eqmin(5)));   % fraction of Al perovskite
+% Perc_Ca = (M_eqmin(5))/((M_eqmin(2)) + (RemMgFe) + (M_eqmin(5)));   % fraction of Ca perovskite
+% Perc_MgFe = (RemMgFe)/((M_eqmin(2)) + (RemMgFe) + (M_eqmin(5)));   % fraction of MgFe perovskite
+
+Perc_Al = 0.10;
+Perc_Ca = 0.02;
+Perc_MgFe = 0.88;
 
 % M_eqmin(6) = KSm*M_liq_comp(6); % Sm
 % M_eqmin(7) = KNd*M_liq_comp(7); % Nd

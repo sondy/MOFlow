@@ -69,9 +69,9 @@ figure(3); %title(['Reference density with depth pre- and post-overturn for mode
 %     plot(liquid(:,6)*10^4, r/1000, liquid(:,7)*10^4, r/1000, liquid(:,8)*10^4, r/1000, liquid(:,9)*10^4, r/1000); xlabel('ppm of trace element'); ylabel('radius, km'); legend('Sm','Nd','Th','U',0);
 
 %% Major element compositions of cumulates
-%%    figure(24); title(['Oxide percentage with depth for pre-overturn model:  ', name]); hold on; plot(solid(:,1), r/1000, solid(:,2), r/1000, solid(:,3), r/1000, solid(:,4), r/1000, solid(:,5), r/1000); xlabel('wt% of oxide'); ylabel('radius, km'); legend('SiO2','Al2O3', 'Feo','MgO', 'CaO', 0);
-%figure(25); title(['Oxide percentage with depth for overturned model:  ', name]); hold on;
-%   plot(solidinv(:,1), rinv/1000, solidinv(:,2), rinv/1000, solidinv(:,3), rinv/1000, solidinv(:,4), rinv/1000, solidinv(:,5), rinv/1000); xlabel('wt% of oxide'); ylabel('radius, km'); legend('SiO2','Al2O3','FeO','MgO','CaO',0);
+    figure(24); title(['Oxide percentage with depth for pre-overturn model:  ', name]); hold on; plot(solid(:,1), r/1000, solid(:,2), r/1000, solid(:,3), r/1000, solid(:,4), r/1000, solid(:,5), r/1000); xlabel('wt% of oxide'); ylabel('radius, km'); legend('SiO2','Al2O3', 'Feo','MgO', 'CaO', 0);
+figure(25); title(['Oxide percentage with depth for overturned model:  ', name]); hold on;
+  plot(solidinv(:,1), rinv/1000, solidinv(:,2), rinv/1000, solidinv(:,3), rinv/1000, solidinv(:,4), rinv/1000, solidinv(:,5), rinv/1000); xlabel('wt% of oxide'); ylabel('radius, km'); legend('SiO2','Al2O3','FeO','MgO','CaO',0);
 %%    figure(26); title(['Mg# of phases for pre-overturn model:  ', name]); hold on; plot(MG(:,1),r/1000, MG(:,2),r/1000); xlabel('Mg#'); ylabel('radius, km');legend('Liquid','Bulk solid',0);
 % figure(27); title(['Mg# of overturned cumulates']); hold on; plot(MGinv(:,2),rinv/1000, 'g'); hold on; xlabel('Mg#'); ylabel('radius, km'); axis([0 1 1396 3396]);
 
