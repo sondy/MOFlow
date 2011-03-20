@@ -167,8 +167,8 @@ for i = 1:(endi-1)  % calculate potential energy of final stratigraphy
     PEinit = PEinit +PEdelta;
 end
 Tempinc = ((PEinit - PEfin)/Cp)/(Planetmass - Coremass); %calculate degrees overturn could raise entire magma ocean
-disp(['Ratio of final to initial potential energy of mantle: ', num2str(PEfin/PEinit)]);
-disp(['Entire mantle temp raised by: ', num2str(Tempinc)]);
+% disp(['Ratio of final to initial potential energy of mantle: ', num2str(PEfin/PEinit)]);
+% disp(['Entire mantle temp raised by: ', num2str(Tempinc)]);
 
 
 % this part to output text files for input to CitCom

@@ -212,8 +212,12 @@ end
 % fprintf('The final 143Nd/144Nd ratio is %2.6g.\n', Nd143Nd144(maxsize))
 % fprintf('The final 147Sm/144Nd ratio is %2.6g.\n', Sm147Nd144(maxsize))
 % fprintf('The final EDR 142Nd/144Nd ratio is %2.8g. \n', EDR_Nd142Nd144(maxsize))
-fprintf('\n \n')
-fprintf('The final EDR del-LJ ratio is %2.4g. \n', EDR_del_LJ(maxsize))
-% fprintf('The final EER 142Nd/144Nd ratio is %2.8g. \n', EER_Nd142Nd144(maxsize))
-fprintf('The final EER del-LJ ratio is %2.4g. \n', EER_del_LJ(maxsize))
-fprintf('\n')
+
+% fprintf('\n \n')
+% fprintf('The final EDR del-LJ ratio is %2.4g. \n', EDR_del_LJ(maxsize))
+% % fprintf('The final EER 142Nd/144Nd ratio is %2.8g. \n', EER_Nd142Nd144(maxsize))
+% fprintf('The final EER del-LJ ratio is %2.4g. \n', EER_del_LJ(maxsize))
+% fprintf('\n')
+
+EDR_del_LJ_print = EDR_del_LJ(maxsize);
+EER_del_LJ_print = EER_del_LJ(maxsize);

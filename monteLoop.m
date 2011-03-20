@@ -8,35 +8,35 @@
 % write run number, input variables into a file
 % calculate output values, write into a file
 
-numRuns = 10;
+%matlabpool local 4
+
+numRuns = 5;
 
 numPar = 6;
-
 numMin = 3;
-
 kdNum = numPar*numMin; % number of partition coefficients * number of minerals
 
-kdMatrix = cell(numRuns, kdNum);
+%kdMatrix = cell(numRuns, kdNum);
 
-%% magnesiowustite
-magSmNdUMin = 0.0001;
-magSmNdUMax = 0.1;
-
-magThMin = 0.001;
-magThMax = 1.0;
-
-magOHMin = 0.0001;
-magOHMax = 0.1;
-
-magCOMin = 0.00001;
-magCOMax = 0.01;
-
-Kd_m_minmax = [magSmNdUMin, magSmNdUMax;...
-    magSmNdUMin, magSmNdUMin;...
-    magThMin, magThMax ;...
-    magSmNdUMin, magSmNdUMax;...
-    magOHMin, magOHMax;...
-    magCOMin, magCOMax];
+% %% magnesiowustite
+% magSmNdUMin = 0.0001;
+% magSmNdUMax = 0.1;
+% 
+% magThMin = 0.001;
+% magThMax = 1.0;
+% 
+% magOHMin = 0.0001;
+% magOHMax = 0.1;
+% 
+% magCOMin = 0.00001;
+% magCOMax = 0.01;
+% 
+% Kd_m_minmax = [magSmNdUMin, magSmNdUMax;...
+%     magSmNdUMin, magSmNdUMax;...
+%     magThMin, magThMax ;...
+%     magSmNdUMin, magSmNdUMax;...
+%     magOHMin, magOHMax;...
+%     magCOMin, magCOMax];
 
 %% perovskite, Ca
 
@@ -113,88 +113,88 @@ Kd_p_MgFe_minmax = [perMgFeSmMin, perMgFeSmMax;...
 %printableRunName = cell(numRuns, 1); %zeros(numRuns, 1);
 runInfo = zeros(numRuns, (kdNum + 3));
 
-for i = 1:1:numRuns
+for loop = 1:1:numRuns
     %runName = cellstr(strcat('run', num2str(i)));
     %printableRunName(i, 1) = runName;
-    runInfo(i, 1) = i;
+    runInfo(loop, 1) = loop;
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Magnesiowustite
     
-    % Sm
-    %outValues(i, 1)
-    runInfo(i, 2) = Kd_m_minmax(1,1) +...
-        (Kd_m_minmax(1,2) - Kd_m_minmax(1,1)).*rand(1);
-    KSm_m = runInfo(i, 2);
-    
-    % Nd
-    %outValues(i, 2)
-    runInfo(i, 3) = Kd_m_minmax(2,1) +...
-        (Kd_m_minmax(2,2) - Kd_m_minmax(2,1)).*rand(1);
-    KNd_m = runInfo(i, 3);
-    
-    % Th
-    %outValues(i, 3)
-    runInfo(i, 4) = Kd_m_minmax(3,1) +...
-        (Kd_m_minmax(3,2) - Kd_m_minmax(3,1)).*rand(1);
-    KTh_m = runInfo(i, 4);
-    
-    % U
-    %outValues(i, 4)
-    runInfo(i, 5) = Kd_m_minmax(4,1) +...
-        (Kd_m_minmax(4,2) - Kd_m_minmax(4,1)).*rand(1);
-    KU_m = runInfo(i, 5);
-    
-    % OH
-    %outValues(i, 5)
-    runInfo(i, 6) = Kd_m_minmax(5,1) +...
-        (Kd_m_minmax(5,2) - Kd_m_minmax(5,1)).*rand(1);
-    KOH_m = runInfo(i, 6);
-    
-    % CO
-    %outValues(i, 6)
-    runInfo(i, 7) = Kd_m_minmax(6,1) +...
-        (Kd_m_minmax(6,2) - Kd_m_minmax(6,1)).*rand(1);
-    KCO_m = runInfo(i, 7);
-    
-    Kd_m = [KSm_m; KNd_m; KTh_m; KU_m; KOH_m; KCO_m];
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     % Sm
+%     %outValues(i, 1)
+%     runInfo(loop, 2) = Kd_m_minmax(1,1) +...
+%         (Kd_m_minmax(1,2) - Kd_m_minmax(1,1)).*rand(1);
+%     KSm_m = runInfo(loop, 2);
+%     
+%     % Nd
+%     %outValues(i, 2)
+%     runInfo(loop, 3) = Kd_m_minmax(2,1) +...
+%         (Kd_m_minmax(2,2) - Kd_m_minmax(2,1)).*rand(1);
+%     KNd_m = runInfo(loop, 3);
+%     
+%     % Th
+%     %outValues(i, 3)
+%     runInfo(loop, 4) = Kd_m_minmax(3,1) +...
+%         (Kd_m_minmax(3,2) - Kd_m_minmax(3,1)).*rand(1);
+%     KTh_m = runInfo(loop, 4);
+%     
+%     % U
+%     %outValues(i, 4)
+%     runInfo(loop, 5) = Kd_m_minmax(4,1) +...
+%         (Kd_m_minmax(4,2) - Kd_m_minmax(4,1)).*rand(1);
+%     KU_m = runInfo(loop, 5);
+%     
+%     % OH
+%     %outValues(i, 5)
+%     runInfo(loop, 6) = Kd_m_minmax(5,1) +...
+%         (Kd_m_minmax(5,2) - Kd_m_minmax(5,1)).*rand(1);
+%     KOH_m = runInfo(loop, 6);
+%     
+%     % CO
+%     %outValues(i, 6)
+%     runInfo(loop, 7) = Kd_m_minmax(6,1) +...
+%         (Kd_m_minmax(6,2) - Kd_m_minmax(6,1)).*rand(1);
+%     KCO_m = runInfo(loop, 7);
+%     
+%     Kd_m = [KSm_m; KNd_m; KTh_m; KU_m; KOH_m; KCO_m];
+%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Ca-Perovskite
-    runInfo(i, 8) = Kd_p_Ca_minmax(1,1) +...
+    runInfo(loop, 8) = Kd_p_Ca_minmax(1,1) +...
         (Kd_p_Ca_minmax(1,2) - Kd_p_Ca_minmax(1,1)).*rand(1);
-    KSm_p_Ca = runInfo(i, 2);
+    KSm_p_Ca = runInfo(loop, 8);
     
     % Nd
-    %outValues(i, 2)
-    runInfo(i, 9) = Kd_p_Ca_minmax(2,1) +...
+    %outValues(loop, 2)
+    runInfo(loop, 9) = Kd_p_Ca_minmax(2,1) +...
         (Kd_p_Ca_minmax(2,2) - Kd_p_Ca_minmax(2,1)).*rand(1);
-    KNd_p_Ca = runInfo(i, 3);
+    KNd_p_Ca = runInfo(loop, 9);
     
     % Th
-    %outValues(i, 3)
-    runInfo(i, 10) = Kd_p_Ca_minmax(3,1) +...
+    %outValues(loop, 3)
+    runInfo(loop, 10) = Kd_p_Ca_minmax(3,1) +...
         (Kd_p_Ca_minmax(3,2) - Kd_p_Ca_minmax(3,1)).*rand(1);
-    KTh_p_Ca = runInfo(i, 4);
+    KTh_p_Ca = runInfo(loop, 10);
     
     % U
-    %outValues(i, 4)
-    runInfo(i, 11) = Kd_p_Ca_minmax(4,1) +...
+    %outValues(loop, 4)
+    runInfo(loop, 11) = Kd_p_Ca_minmax(4,1) +...
         (Kd_p_Ca_minmax(4,2) - Kd_p_Ca_minmax(4,1)).*rand(1);
-    KU_p_Ca = runInfo(i, 5);
+    KU_p_Ca = runInfo(loop, 12);
     
     % OH
-    %outValues(i, 5)
-    runInfo(i, 12) = Kd_p_Ca_minmax(5,1) +...
+    %outValues(loop, 5)
+    runInfo(loop, 12) = Kd_p_Ca_minmax(5,1) +...
         (Kd_p_Ca_minmax(5,2) - Kd_p_Ca_minmax(5,1)).*rand(1);
-    KOH_p_Ca = runInfo(i, 6);
+    KOH_p_Ca = runInfo(loop, 12);
     
     % CO
-    %outValues(i, 6)
-    runInfo(i, 13) = Kd_p_Ca_minmax(6,1) +...
+    %outValues(loop, 6)
+    runInfo(loop, 13) = Kd_p_Ca_minmax(6,1) +...
         (Kd_p_Ca_minmax(6,2) - Kd_p_Ca_minmax(6,1)).*rand(1);
-    KCO_p_Ca = runInfo(i, 7);
+    KCO_p_Ca = runInfo(loop, 13);
     
     Kd_p_Ca = [KSm_p_Ca; KNd_p_Ca; KTh_p_Ca; KU_p_Ca; KOH_p_Ca; KCO_p_Ca];  
     
@@ -202,39 +202,39 @@ for i = 1:1:numRuns
      
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% MgFe-Perovskite
-    runInfo(i, 14) = Kd_p_MgFe_minmax(1,1) +...
+    runInfo(loop, 14) = Kd_p_MgFe_minmax(1,1) +...
         (Kd_p_MgFe_minmax(1,2) - Kd_p_MgFe_minmax(1,1)).*rand(1);
-    KSm_p_MgFe = runInfo(i, 2);
+    KSm_p_MgFe = runInfo(loop, 14);
     
     % Nd
-    %outValues(i, 2)
-    runInfo(i, 15) = Kd_p_MgFe_minmax(2,1) +...
+    %outValues(loop, 2)
+    runInfo(loop, 15) = Kd_p_MgFe_minmax(2,1) +...
         (Kd_p_MgFe_minmax(2,2) - Kd_p_MgFe_minmax(2,1)).*rand(1);
-    KNd_p_MgFe = runInfo(i, 3);
+    KNd_p_MgFe = runInfo(loop, 15);
     
     % Th
-    %outValues(i, 3)
-    runInfo(i, 16) = Kd_p_MgFe_minmax(3,1) +...
+    %outValues(loop, 3)
+    runInfo(loop, 16) = Kd_p_MgFe_minmax(3,1) +...
         (Kd_p_MgFe_minmax(3,2) - Kd_p_MgFe_minmax(3,1)).*rand(1);
-    KTh_p_MgFe = runInfo(i, 4);
+    KTh_p_MgFe = runInfo(loop, 16);
     
     % U
-    %outValues(i, 4)
-    runInfo(i, 17) = Kd_p_MgFe_minmax(4,1) +...
+    %outValues(loop, 4)
+    runInfo(loop, 17) = Kd_p_MgFe_minmax(4,1) +...
         (Kd_p_MgFe_minmax(4,2) - Kd_p_MgFe_minmax(4,1)).*rand(1);
-    KU_p_MgFe = runInfo(i, 5);
+    KU_p_MgFe = runInfo(loop, 17);
     
     % OH
-    %outValues(i, 5)
-    runInfo(i, 18) = Kd_p_MgFe_minmax(5,1) +...
+    %outValues(loop, 5)
+    runInfo(loop, 18) = Kd_p_MgFe_minmax(5,1) +...
         (Kd_p_MgFe_minmax(5,2) - Kd_p_MgFe_minmax(5,1)).*rand(1);
-    KOH_p_MgFe = runInfo(i, 6);
+    KOH_p_MgFe = runInfo(loop, 18);
     
     % CO
-    %outValues(i, 6)
-    runInfo(i, 19) = Kd_p_MgFe_minmax(6,1) +...
+    %outValues(loop, 6)
+    runInfo(loop, 19) = Kd_p_MgFe_minmax(6,1) +...
         (Kd_p_MgFe_minmax(6,2) - Kd_p_MgFe_minmax(6,1)).*rand(1);
-    KCO_p_MgFe = runInfo(i, 7);
+    KCO_p_MgFe = runInfo(loop, 19);
     
     Kd_p_MgFe = [KSm_p_MgFe; KNd_p_MgFe; KTh_p_MgFe; KU_p_MgFe; ...
         KOH_p_MgFe; KCO_p_MgFe];  
@@ -245,7 +245,10 @@ for i = 1:1:numRuns
     
     all_oceans
     
-    runInfo(i, 20) = EDR_del_LJ;
-    runInfo(i, 21) = EER_del_LJ;
+    runInfo(loop, 20) = EDR_del_LJ_print;
+    runInfo(loop, 21) = EER_del_LJ_print;
     
 end
+
+dlmwrite('runInfo.dat', runInfo, 'precision', '%.6f', ...
+         'newline', 'pc')

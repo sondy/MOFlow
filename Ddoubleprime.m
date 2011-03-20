@@ -58,23 +58,24 @@ end
 
 avgNdEER = sum(delavgNd);   % for insertion into Rick Carlson's spreadsheet
 avgSmEER = sum(delavgSm);
-disp(['D" Nd wt% is ', num2str(avgNdEER),' and Sm wt% is ', num2str(avgSmEER)])
-% these two include all the residual liquid from the surface
+
+% disp(['D" Nd wt% is ', num2str(avgNdEER),' and Sm wt% is ', num2str(avgSmEER)])
+% % these two include all the residual liquid from the surface
 avgNdEERwLiq = (totalliquidvol/(totalliquidvol+totalDvol))*liquid(maxstep,7) + (totalDvol/(totalliquidvol+totalDvol))*avgNdEER;
 avgSmEERwLiq = (totalliquidvol/(totalliquidvol+totalDvol))*liquid(maxstep,6) + (totalDvol/(totalliquidvol+totalDvol))*avgSmEER;
-disp(['With all final liquids D" Nd wt% is ', num2str(avgNdEERwLiq),' and Sm wt% is ', num2str(avgSmEERwLiq)])
-
+% disp(['With all final liquids D" Nd wt% is ', num2str(avgNdEERwLiq),' and Sm wt% is ', num2str(avgSmEERwLiq)])
+% 
 avgU = sum(delavgU);
 avgTh = sum(delavgTh);
 EERUfracoftotal = avgU*totalDvol/(liquid(1,9)*Mantlevolume);  % for comparison with Carlson's estimates
 EERThfracoftotal = avgTh*totalDvol/(liquid(1,8)*Mantlevolume);    % of what U and Th fraction must be in D"
-disp(['D" fraction of total Earth U is ', num2str(EERUfracoftotal),' and Th fraction is ', num2str(EERThfracoftotal)])
-
-%% with liquids
+% disp(['D" fraction of total Earth U is ', num2str(EERUfracoftotal),' and Th fraction is ', num2str(EERThfracoftotal)])
+% 
+% %% with liquids
 EERUfracoftotalwliq = (avgU*totalDvol + liquid(maxstep,9)*totalliquidvol)/(liquid(1,9)*Mantlevolume);
 EERThfracoftotalwliq = (avgTh*totalDvol + liquid(maxstep,8)*totalliquidvol)/(liquid(1,8)*Mantlevolume);
-disp(['With all final liquids D" fraction of total Earth U is ', num2str(EERUfracoftotalwliq),' and Th fraction is ', num2str(EERThfracoftotalwliq)])
-
+% disp(['With all final liquids D" fraction of total Earth U is ', num2str(EERUfracoftotalwliq),' and Th fraction is ', num2str(EERThfracoftotalwliq)])
+% 
 avgNdEDR = mean(solidinv(max:990,7));
 avgSmEDR = mean(solidinv(max:990,6));
-disp(['Mantle minus D" Nd wt% is ', num2str(avgNdEDR),' and Sm wt% is ', num2str(avgSmEDR)])
+% disp(['Mantle minus D" Nd wt% is ', num2str(avgNdEDR),' and Sm wt% is ', num2str(avgSmEDR)])
