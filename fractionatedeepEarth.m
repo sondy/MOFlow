@@ -53,12 +53,12 @@ if P(j) > Layer1P;
 %display('Layer 1: Perovskite, Magnesiowustite')
     intliqx = intliq1;
     %    disp(['Layer 2, index = ', num2str(j)])
-    [eqminper, Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe] = perovskite(liq_comp, MW);
+    [eqminper, Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe] = perovskite(liq_comp, MW, Kd_p_Ca, Kd_p_MgFe);
     pdensity = perovskitedensity(Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe, P(j), Tsolid(j));
     pdensityzero = perovskitedensity(Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe, 1e-4, 1);
     pdensitysol = perovskitedensity(Mgnumper, Perc_Al, Perc_Ca, Perc_MgFe, 1e-4, Tsolid(j));
     
-    [Mgnummw, eqminmw] = magnesiowustite(liq_comp, MW);
+    [Mgnummw, eqminmw] = magnesiowustite(liq_comp, MW, Kd_m);
     mwdensity = magnesiowustitedensity(Mgnummw, P(j), Tsolid(j));
     mwdensityzero = magnesiowustitedensity(Mgnummw, 1e-4, 1);
     mwdensitysol = magnesiowustitedensity(Mgnummw, 1e-4, Tsolid(j));

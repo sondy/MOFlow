@@ -12,11 +12,10 @@ global Dolinv liquid maxstep num_oceans r rinv solidinv MW
 %global num_oceans % for making the following into vectors
 global densityResidual
 global avgEER avgEERwLiq EERfracoftotal EERfracoftotalwliq avgEDR
+%global KSm_m KNd_m KTh_m KU_m KOH_m KCO_m
 
 
 % global xrecord xrecordn % for determing ranges for fzero in BMsolid.m
 % 
 % xrecordn = 0; % when you initialize a global, it gets cast as a vector.  
-% % Incrementing a vector results in an empty vector.  Who knew.  Thanks
-% % Henry.
-
+% % Incrementing a vector results in an empty vector.  Who knew.

@@ -215,5 +215,5 @@ end
 fprintf('\n \n')
 fprintf('The final EDR del-LJ ratio is %2.4g. \n', EDR_del_LJ(maxsize))
 % fprintf('The final EER 142Nd/144Nd ratio is %2.8g. \n', EER_Nd142Nd144(maxsize))
-% fprintf('The final EER del-LJ ratio is %2.4g. \n', EER_del_LJ(maxsize))
+fprintf('The final EER del-LJ ratio is %2.4g. \n', EER_del_LJ(maxsize))
 fprintf('\n')

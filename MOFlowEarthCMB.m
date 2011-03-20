@@ -340,8 +340,8 @@ end
 
 %figure(1);title(['Density with depth for model:  ', name]); hold on; plot(D,r/1000, 'r'); xlabel('density [kg/m3]'); ylabel('radius, km');
 %figure(2);title(['Reference density with depth for model:  ', name]); hold on; plot(Do,r/1000, 'r'); xlabel('density at 1 atm and 1 deg C [kg/m3]'); ylabel('radius, km');
-figure(3); %title(['Reference density with depth for model:  ', name]); 
-    hold on; 
+%figure(3); %title(['Reference density with depth for model:  ', name]); 
+ %   hold on; 
     %plot(Dsol,r/1000, 'r'); 
     %xlabel('density at 1 atm and solidus temperature [kg/m^3]'); 
     %ylabel('radius, km');
@@ -353,7 +353,7 @@ taustarcend = ((3*(CMatm(j)+Cnewatm))/(8*pi*R^2))*(((kcarbon*g)/(3*po))^0.5);
 endemiss = (2 /(taustarwend+taustarcend + 2));    % H2O/CO2 relative absorption wavelength widths =1.5/0.5 not considered here
 %%%%%%%%%%%%
 %cool2clementwhole
-graphsdeep
+%graphsdeep
 %leanGraphs
 Ddoubleprime
 
