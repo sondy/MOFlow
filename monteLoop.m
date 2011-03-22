@@ -10,13 +10,11 @@
 
 %matlabpool local 4
 
-numRuns = 5;
+numRuns = 1000;
 
 numPar = 6;
 numMin = 3;
 kdNum = numPar*numMin; % number of partition coefficients * number of minerals
-
-%kdMatrix = cell(numRuns, kdNum);
 
 % %% magnesiowustite
 % magSmNdUMin = 0.0001;
@@ -158,6 +156,7 @@ for loop = 1:1:numRuns
 %     KCO_m = runInfo(loop, 7);
 %     
 %     Kd_m = [KSm_m; KNd_m; KTh_m; KU_m; KOH_m; KCO_m];
+    Kd_m = [];
 %     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -252,3 +251,15 @@ end
 
 dlmwrite('runInfo.dat', runInfo, 'precision', '%.6f', ...
          'newline', 'pc')
+     
+%% plotting
+
+load runInfo.dat;
+figure(90);
+hold on
+plot(runInfo(:,20),runInfo(:,21),'b.')
+xlabel('EDR \mu^{142}Nd (ppm)')
+ylabel('EER \mu^{142}Nd (ppm)')
+hold off
+
+print -depsc plots/runInfo.eps

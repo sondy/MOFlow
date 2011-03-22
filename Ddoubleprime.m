@@ -32,19 +32,19 @@ massDprimeprime = trapz(radiusDprimeprime,...
     4*pi.*rhoDprimeprime.*radiusDprimeprime.^2) + ...
     totalliquidvol*avgrhoD;
 
-fprintf('The mass of the D double prime layer is %2.3g kg. \n',...
-    massDprimeprime)
+%fprintf('The mass of the D double prime layer is %2.3g kg. \n',...
+%    massDprimeprime)
 
 Mearth = 5.9742e24;
 Mantlemass = (R^3)/(R^3 - CMB^3)*4.032e+024;
 
 percEarthMass = massDprimeprime*100/Mearth;
 
-fprintf('This is %2.3g%% the mass of the Earth. \n', percEarthMass)
+%fprintf('This is %2.3g%% the mass of the Earth. \n', percEarthMass)
 
 percMantleMass = massDprimeprime*100/Mantlemass;
 
-fprintf('This is %2.3g%% the mass of the mantle. \n', percMantleMass)
+%fprintf('This is %2.3g%% the mass of the mantle. \n', percMantleMass)
 
 % calculates average Sm, Nd, U, Th content for EER (=D") layers of "max" steps above CMB
 max = rho2_index;

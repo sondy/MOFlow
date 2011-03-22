@@ -1,6 +1,6 @@
 % sortandinvertperovskite.m
 
-disp('In sortandinvertperovskite')
+%disp('In sortandinvertperovskite')
 
 % includes separate recalculation of density for perovskite + mw layer 5/9/2007
 % altered for integrated code on 09/23/2006

@@ -1,6 +1,6 @@
 % calling all oceans...
 
-tic
+%tic
 
 globals
 
@@ -28,4 +28,4 @@ DM = CMB_depth; % depth of the magma ocean, not radius
 
 MOFlowEarthCMB
 
-toc
+%toc
