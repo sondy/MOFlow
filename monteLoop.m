@@ -251,15 +251,3 @@ end
 
 dlmwrite('runInfo.dat', runInfo, 'precision', '%.6f', ...
          'newline', 'pc')
-     
-%% plotting
-
-load runInfo.dat;
-figure(90);
-hold on
-plot(runInfo(:,20),runInfo(:,21),'b.')
-xlabel('EDR \mu^{142}Nd (ppm)')
-ylabel('EER \mu^{142}Nd (ppm)')
-hold off
-
-print -depsc plots/runInfo.eps
