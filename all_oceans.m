@@ -26,6 +26,9 @@ CMB_depth = 2885000;                % *** m, depth of core-mantle boundary
 
 DM = CMB_depth; % depth of the magma ocean, not radius
 
+%Kd_p_Ca = [];
+%Kd_p_MgFe = [];
+
 MOFlowEarthCMB
 
 %toc

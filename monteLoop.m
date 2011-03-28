@@ -10,6 +10,8 @@
 
 %matlabpool local 4
 
+tic
+
 numRuns = 1000;
 
 numPar = 6;
@@ -43,17 +45,17 @@ kdNum = numPar*numMin; % number of partition coefficients * number of minerals
 % 0.01 - 20 for U
 % 1 - 20 for Th
 
-perCaSmMin = 0.9;
-perCaSmMax = 20;
+perCaSmMin = 1;
+perCaSmMax = 5;
 
-perCaNdMin = 4;
-perCaNdMax = 20;
+perCaNdMin = 1;
+perCaNdMax = 10;
 
-perCaUMin = 0.009;
-perCaUMax = 20;
+perCaUMin = 0.01;
+perCaUMax = 1;
 
-perCaThMin = 0.9;
-perCaThMax = 20;
+perCaThMin = 1;
+perCaThMax = 10;
 
 perCaOHMin = 0.00001;
 perCaOHMax = 0.001;
@@ -75,16 +77,16 @@ Kd_p_Ca_minmax = [perCaSmMin, perCaSmMax;...
 % 0.01 to 1 for U
 % 0.01 to 0.1 for Th
 
-perMgFeSmMin = 0.009;
-perMgFeSmMax = 0.6;
+perMgFeSmMin = 0.01;
+perMgFeSmMax = 0.5;
 
-perMgFeNdMin = 0.009;
-perMgFeNdMax = 0.03;
+perMgFeNdMin = 0.01;
+perMgFeNdMax = 0.1;
 
-perMgFeUMin = 0.009;
+perMgFeUMin = 0.01;
 perMgFeUMax = 1.1;
 
-perMgFeThMin = 0.009;
+perMgFeThMin = 0.01;
 perMgFeThMax = 0.2;
 
 perMgFeOHMin = 0.00001;
@@ -109,7 +111,7 @@ Kd_p_MgFe_minmax = [perMgFeSmMin, perMgFeSmMax;...
 % del-LJ values - N - 1, N - 2
 
 %printableRunName = cell(numRuns, 1); %zeros(numRuns, 1);
-runInfo = zeros(numRuns, (kdNum + 3));
+runInfo = zeros(numRuns, (kdNum + 3 + 4)); % + 4 for U & Th
 
 for loop = 1:1:numRuns
     %runName = cellstr(strcat('run', num2str(i)));
@@ -242,12 +244,22 @@ for loop = 1:1:numRuns
     %     delEDR = 0;
     %     delEER = -60;
     
-    all_oceans
     
+    all_oceans
+
+    %% EDR & EER
     runInfo(loop, 20) = EDR_del_LJ_print;
     runInfo(loop, 21) = EER_del_LJ_print;
-    
+
+    %% U & Th
+    runInfo(loop, 22) = EERUfracoftotal;
+    runInfo(loop, 23) = EERThfracoftotal;
+    runInfo(loop, 24) = EERUfracoftotalwliq;
+    runInfo(loop, 25) = EERThfracoftotalwliq;
+
 end
+
+toc
 
 dlmwrite('runInfo.dat', runInfo, 'precision', '%.6f', ...
          'newline', 'pc')
