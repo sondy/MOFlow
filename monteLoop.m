@@ -12,7 +12,7 @@
 
 tic
 
-numRuns = 1000;
+numRuns = 1;
 
 numPar = 6;
 numMin = 3;

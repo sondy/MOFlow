@@ -35,28 +35,28 @@ Dsol(j) = densitysol;
 
 if liquid(j,1) <= 3; 
     liquid(j,1) = 3; 
-    %disp(['No Si at step: ', num2str(j)]); 
+    disp(['No Si at step: ', num2str(j)]); 
     liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));
 end
 
 if liquid(j,2) <= 2; 
     liquid(j,1) = 2; 
-    %disp(['No Al at step: ', num2str(j)]); 
+    disp(['No Al at step: ', num2str(j)]); 
     liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));
 end
 
 if liquid(j,3) <= 1; liquid(j,3) = 1; 
-    %disp(['No Fe at step: ', num2str(j)]); 
+    disp(['No Fe at step: ', num2str(j)]); 
     liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));
 end
 
 if liquid(j,4) <= 1; liquid(j,4) = 1; 
-    %disp(['No Mg at step: ', num2str(j)]); 
+    disp(['No Mg at step: ', num2str(j)]); 
     liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));
 end
 
 if liquid(j,5) <= 1; liquid(j,5) = 1; 
-    %disp(['No Ca at step: ', num2str(j)]); 
+    disp(['No Ca at step: ', num2str(j)]); 
     liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));
 end
 %        if liquid(j-1,6) <= 1e-7; liquid(j-1,5) = 1e-6; disp(['No Sm at step: ', num2str(j)]); liquid(j,:) = 100*liquid(j,:)/sum(liquid(j,:));end

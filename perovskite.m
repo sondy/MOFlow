@@ -15,39 +15,55 @@ Siwt = 52; % experimental SiO2 wt%
 AlSi = (Alwt/MW(2))/(Siwt/MW(1));
 M_liq_comp = liq_comp./MW;
 
-% load kd_perovskite.dat
-% kd_p = kd_perovskite;
+load kd_perovskite.dat
+kd_p = kd_perovskite;
 
 % KSm = 0.15; 
 % KNd = 0.05;
 
-KSm_Ca   = Kd_p_Ca(1); %kd_p(1,1);%9;
-KSm_MgFe = Kd_p_MgFe(1); %kd_p(1,2);%0.05;
+% KSm_Ca   = Kd_p_Ca(1); %kd_p(1,1);%9;
+% KSm_MgFe = Kd_p_MgFe(1); %kd_p(1,2);%0.05;
+% KSm_Al = KSm_MgFe;
+% 
+% KNd_Ca   = Kd_p_Ca(2); %kd_p(2,1);%7;
+% KNd_MgFe = Kd_p_MgFe(2); %kd_p(2,2);%0.016;
+% KNd_Al = KNd_MgFe;
+% 
+% KTh_Ca = Kd_p_Ca(3); %kd_p(3,1);%10;
+% KTh_MgFe = Kd_p_MgFe(3); %kd_p(3,2);%0.005;
+% KTh_Al = KTh_MgFe;
+% 
+% KU_Ca = Kd_p_Ca(4); %kd_p(4,1);%8;
+% KU_MgFe = Kd_p_MgFe(4); %kd_p(4,2);%0.025;
+% KU_Al = KU_MgFe;
+
+KSm_Ca   = kd_p(1,1);%9;
+KSm_MgFe = kd_p(1,2);%0.05;
 KSm_Al = KSm_MgFe;
 
-KNd_Ca   = Kd_p_Ca(2); %kd_p(2,1);%7;
-KNd_MgFe = Kd_p_MgFe(2); %kd_p(2,2);%0.016;
+KNd_Ca   = kd_p(2,1);%7;
+KNd_MgFe = kd_p(2,2);%0.016;
 KNd_Al = KNd_MgFe;
 
-KTh_Ca = Kd_p_Ca(3); %kd_p(3,1);%10;
-KTh_MgFe = Kd_p_MgFe(3); %kd_p(3,2);%0.005;
+KTh_Ca = kd_p(3,1);%10;
+KTh_MgFe = kd_p(3,2);%0.005;
 KTh_Al = KTh_MgFe;
 
-KU_Ca = Kd_p_Ca(4); %kd_p(4,1);%8;
-KU_MgFe = Kd_p_MgFe(4); %kd_p(4,2);%0.025;
+KU_Ca = kd_p(4,1);%8;
+KU_MgFe = kd_p(4,2);%0.025;
 KU_Al = KU_MgFe;
- 
+
 % KTh = 0.01; % corgne et al. 2004
 % KU =  0.03; % " "
 
-% KOH = 0.0001;    % KOH = (OH)min/(OH)liq
-% KCO = 0.0005; 
+% KOH_Ca = Kd_p_Ca(5);
+% KOH_MgFe = Kd_p_MgFe(5);
+% 
+% KCO_Ca = Kd_p_Ca(6);
+% KCO_MgFe = Kd_p_MgFe(6);
 
-KOH_Ca = Kd_p_Ca(5);
-KOH_MgFe = Kd_p_MgFe(5);
-
-KCO_Ca = Kd_p_Ca(6);
-KCO_MgFe = Kd_p_MgFe(6);
+KOH = 0.0001;    % KOH = (OH)min/(OH)liq
+KCO = 0.0005; 
 
 % use molar weights and Kds to calculate ratios of elements in mineral
  
@@ -101,8 +117,8 @@ M_eqmin(9) = M_liq_comp(9)*(Perc_Al*KU_Al + Perc_Ca*KU_Ca +...
 % M_eqmin(8) = KTh*M_liq_comp(8);
 % M_eqmin(9) = KU*M_liq_comp(9);
 
-KOH = Perc_MgFe*KOH_MgFe + Perc_Ca*KOH_Ca;
-KCO = Perc_MgFe*KCO_MgFe + Perc_Ca*KCO_Ca;
+% KOH = Perc_MgFe*KOH_MgFe + Perc_Ca*KOH_Ca;
+% KCO = Perc_MgFe*KCO_MgFe + Perc_Ca*KCO_Ca;
 
 M_eqmin(10) = KOH*M_liq_comp(10);
 M_eqmin(11) = KCO*M_liq_comp(11);

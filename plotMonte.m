@@ -23,7 +23,7 @@ hold on
 scatter(EDR_mu, EER_mu, 5, Ca_Kd_Sm)
 plot(0, -54, 'ks')
 colorbar
-colormap(copper)
+colormap(winter)
 xlabel('EDR \mu^{142}Nd (ppm)')
 ylabel('EER \mu^{142}Nd (ppm)')
 hold off
@@ -36,7 +36,7 @@ hold on
 scatter(EDR_mu, EER_mu, 5, Ca_Kd_Nd)
 plot(0, -54, 'ks')
 colorbar
-colormap(copper)
+colormap(winter)
 xlabel('EDR \mu^{142}Nd (ppm)')
 ylabel('EER \mu^{142}Nd (ppm)')
 hold off
@@ -50,8 +50,8 @@ scatter(EDR_mu, EER_mu, 5, MgFe_Kd_Sm)
 plot(0, -54, 'ks')
 colorbar
 colormap(copper)
-xlabel('EDR \mu^{142}Nd (ppm)')
-ylabel('EER \mu^{142}Nd (ppm)')
+xlabel('mantle \mu^{142}Nd (ppm)')
+ylabel('deep dense layer \mu^{142}Nd (ppm)')
 hold off
 
 print -depsc plots/runInfo_MgFe_Sm.eps
@@ -67,4 +67,4 @@ xlabel('EDR \mu^{142}Nd (ppm)')
 ylabel('EER \mu^{142}Nd (ppm)')
 hold off
 
-print -depsc plots/runInfo_Ca_Sm.eps
+print -depsc plots/runInfo_MgFe_Nd.eps

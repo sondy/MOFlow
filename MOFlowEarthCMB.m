@@ -353,7 +353,7 @@ taustarcend = ((3*(CMatm(j)+Cnewatm))/(8*pi*R^2))*(((kcarbon*g)/(3*po))^0.5);
 endemiss = (2 /(taustarwend+taustarcend + 2));    % H2O/CO2 relative absorption wavelength widths =1.5/0.5 not considered here
 %%%%%%%%%%%%
 %cool2clementwhole
-%graphsdeep
+graphsdeep
 %leanGraphs
 Ddoubleprime
 
